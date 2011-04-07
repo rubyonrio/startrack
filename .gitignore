@@ -1,0 +1,13 @@
+log/**/*
+log
+tmp/**/*
+tmp
+config/database.yml
+db/schema.rb
+.bundle
+*.log
+db/schema.rb
+db/*.sqlite3
+.rvmrc
+Gemfile.lock
+

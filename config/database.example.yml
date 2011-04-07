@@ -1,0 +1,25 @@
+development:
+  adapter: mysql2
+  database: startrack_dev
+  username: root
+  password: 
+  host: 127.0.0.1
+  encoding: utf8
+  socket: /var/lib/mysql/mysqld.sock
+test:
+  adapter: mysql2
+  database: startrack_test
+  username: root
+  password: 
+  host: 127.0.0.1
+  encoding: utf8
+  socket: /var/lib/mysql/mysqld.sock
+
+production:
+  adapter: mysql2
+  database: startrack_prod
+  username: root
+  password: 
+  host: 127.0.0.1
+  encoding: utf8
+  socket: /var/lib/mysql/mysqld.sock
