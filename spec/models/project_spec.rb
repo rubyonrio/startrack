@@ -3,16 +3,16 @@ require 'spec_helper'
 describe Project do
   let(:project) { Factory.build(:project) }
 
-  describe 'Fields' do
+  describe 'Attributes' do
 
-    it 'should have a name' do
+    it 'have a name' do
       project.name = 'StarTrack'
-      project.valid?.should == true
+      project.should be_valid
     end
 
-    it 'should have a description' do
+    it 'have a description' do
       project.description = 'An Agile Project Management'
-      project.valid?.should == true
+      project.should be_valid
     end
   end
 
@@ -20,11 +20,11 @@ describe Project do
 
     it 'should not create without name' do
       project.name = nil
-      project.valid?.should == false
+      project.should_not be_valid
     end
 
     it 'should create with all requirements' do
-      project.valid?.should == true
+      project.should be_valid
     end
   end
 
@@ -33,7 +33,9 @@ describe Project do
     it 'has users' do
       user = Factory.build(:user)
       project.users << user
-      project.valid?.should == true
+      project.should be_valid
     end
+    
+    it 'has stories'
   end
 end

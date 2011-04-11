@@ -8,6 +8,11 @@ Factory.define :project do |project|
   project.description Factory.next(:description)
 end
 
+Factory.define :story do |story|
+  story.name Factory.next(:name)
+  story.description Factory.next(:description)
+end
+
 Factory.define :user do |user|
   user.name Factory.next(:name)
   user.email Factory.next(:email)
