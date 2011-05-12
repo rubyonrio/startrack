@@ -10,4 +10,6 @@ db/schema.rb
 db/*.sqlite3
 .rvmrc
 Gemfile.lock
+log/*.log
+tmp/
 
