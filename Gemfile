@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.beta1'
-gem 'mysql2'
 gem 'devise'
 gem 'sass'
 gem 'coffee-script'
