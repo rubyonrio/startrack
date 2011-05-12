@@ -12,4 +12,5 @@ db/*.sqlite3
 Gemfile.lock
 log/*.log
 tmp/
+.sass-cache/*
 
