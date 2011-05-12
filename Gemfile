@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.beta1'
 gem 'devise'
-gem 'mysql2'
+gem 'sqlite3'
 gem 'sass'
 gem 'coffee-script'
 gem 'uglifier'
