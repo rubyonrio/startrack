@@ -1,4 +1,6 @@
 Startrack::Application.routes.draw do
+  resources :stories
+
   resources :tasks
 
   resources :projects

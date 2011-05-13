@@ -1,15 +1,14 @@
 class CreateStories < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :stories do |t|
       t.string :name
       t.text :description
+      t.references :task
       t.references :project
 
       t.timestamps
     end
-  end
-
-  def self.down
-    drop_table :stories
+    add_index :stories, :task_id
+    add_index :stories, :project_id
   end
 end
