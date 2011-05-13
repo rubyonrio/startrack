@@ -1,12 +1,9 @@
 Startrack::Application.routes.draw do
-  resources :stories
-
-  resources :tasks
+  devise_for :users
 
   resources :projects
-  devise_for :users
- 
+  resources :stories
+  resources :tasks
+
   root :to => "home#index"
-
 end
-
