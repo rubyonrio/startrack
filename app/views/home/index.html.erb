@@ -1,9 +1,6 @@
-  <div id="user_nav">
-    <% if user_signed_in? %>
-      <%= image_tag avatar_url(current_user) %> Logado como <%= current_user.email %>. Não é você?
-      <%= link_to 'Sair', destroy_user_session_path %>
-      </br>
-    <% else %>
-      <%= link_to 'Cadastrar', new_user_registration_path %> ou <%= link_to 'Logar', new_user_session_path %>
-    <% end %>  
-  </div>
+<% if user_signed_in? %>
+  <% @user_projects.each do |p| %>
+    <h2>Projects:</h2>
+    <%= p.name %>
+  <% end %>
+<% end %>
