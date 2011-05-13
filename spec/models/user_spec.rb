@@ -3,19 +3,6 @@ require 'spec_helper'
 describe User do
   let(:user) { Factory.build(:user) }
 
-  describe 'Attributes' do
-
-    it 'have name' do
-      user.name = 'StarTrack Member'
-      user.should be_valid
-    end
-
-    it 'have email' do
-      user.email = 'startrack@startrack.com'
-      user.should be_valid
-    end
-  end
-
   describe 'Validates' do
 
     it 'should not create without name' do
