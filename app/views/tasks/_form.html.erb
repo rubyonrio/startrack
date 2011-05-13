@@ -33,11 +33,11 @@
   </div>
   <div class="field">
     <%= f.label :user %><br />
-    <%= f.text_field :user %>
+    <%= f.collection_select :user_id, User.all, :id, :name, {:prompt => true} %>
   </div>
   <div class="field">
     <%= f.label :story %><br />
-    <%= f.text_field :story %>
+    <%= f.collection_select :story_id, Story.all, :id, :name, {:prompt => true} %>
   </div>
   <div class="actions">
     <%= f.submit %>
