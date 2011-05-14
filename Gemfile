@@ -8,7 +8,6 @@ gem 'coffee-script'
 gem 'uglifier'
 
 gem 'jquery-rails'
-gem 'therubyracer'
 
 group :development,:test do
   gem 'factory_girl_rails'
