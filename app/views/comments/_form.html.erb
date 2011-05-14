@@ -16,12 +16,8 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label(:story) unless @stories.nil? %><br />
-    <%= f.collection_select(:story_id, @stories, :id, :name, {:prompt => true}) unless @stories.nil? %>
-  </div>
-  <div class="field">
-    <%= f.label(:task) unless @tasks.nil? %><br />
-    <%= f.collection_select(:task_id, @tasks, :id, :name, {:prompt => true}) unless @tasks.nil? %>
+    <%= f.label(:task) %><br />
+    <%= f.collection_select(:task_id, @tasks, :id, :name, {:prompt => true}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

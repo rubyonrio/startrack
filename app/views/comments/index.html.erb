@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Description</th>
-    <th>Story</th>
+    <th>Tasks</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +12,7 @@
 <% @comments.each do |comment| %>
   <tr>
     <td><%= comment.description %></td>
-    <td><%= comment.story.name %></td>
+    <td><%= comment.task.name %></td>
     <td><%= link_to 'Show', comment %></td>
     <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
     <td><%= link_to 'Destroy', comment, confirm: 'Are you sure?', method: :delete %></td>
