@@ -5,5 +5,5 @@ Startrack::Application.routes.draw do
   resources :stories
   resources :tasks
 
-  root :to => "home#index"
+  root :to => "projects#index"
 end
