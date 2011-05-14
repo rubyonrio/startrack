@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Project:</b>
+  <%= @story.project.name %>
+</p>
+
+<p>
   <b>Name:</b>
   <%= @story.name %>
 </p>
@@ -10,17 +15,14 @@
   <%= @story.description %>
 </p>
 
-<p>
-  <b>Task:</b>
-  <%= @story.task %>
-</p>
+<h2>Tasks:</h2>
+<ul>
+  <% @story.tasks.each do |t| %>
+    <li><%= t.name %></li>
+  <% end %>
+</ul>
 
-<p>
-  <b>Project:</b>
-  <%= @story.project %>
-</p>
-
-
-<%= link_to 'Edit', edit_story_path(@story) %> |
 <%= link_to 'Back', stories_path %> |
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Delete', @story, :confirm => 'Are you sure?', :method => :delete %> |
 <%= link_to 'New Task', new_task_path %>

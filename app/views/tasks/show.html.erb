@@ -27,12 +27,12 @@
 
 <p>
   <b>User:</b>
-  <%= @task.user %>
+  <%= @task.user.name %>
 </p>
 
 <p>
   <b>Story:</b>
-  <%= @task.story %>
+  <%= link_to @task.story.name, story_path %>
 </p>
 
 

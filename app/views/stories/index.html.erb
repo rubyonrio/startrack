@@ -15,8 +15,8 @@
   <tr>
     <td><%= story.name %></td>
     <td><%= story.description %></td>
-    <td><%= story.task %></td>
-    <td><%= story.project %></td>
+    <td><%= story.tasks %></td>
+    <td><%= story.project.name %></td>
     <td><%= link_to 'Show', story %></td>
     <td><%= link_to 'Edit', edit_story_path(story) %></td>
     <td><%= link_to 'Destroy', story, confirm: 'Are you sure?', method: :delete %></td>
@@ -26,4 +26,5 @@
 
 <br />
 
-<%= link_to 'New Story', new_story_path %>
+<%= link_to 'New Story', new_story_path %> |
+<%= link_to 'New Task', new_task_path %>
