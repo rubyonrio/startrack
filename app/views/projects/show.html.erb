@@ -10,6 +10,13 @@
   <%= @project.description %>
 </p>
 
+<h2>Stories:</h2>
+<ul>
+  <% @project.stories.each do |s| %>
+  <li><%= @project.stories.name %></li>
+  <% end %>
+</ul>
+
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
