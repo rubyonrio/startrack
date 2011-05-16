@@ -35,6 +35,16 @@
   <%= @task.type %>
 </p>
 
+<h2>Comments:</h2>
+
+<ul>
+  <% @task.comments.each do |c| %>
+  <li><%= c.description %></li>
+  <% end %>
+</ul>
+
+
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
 <%= link_to 'New Comment', new_comment_path %>
