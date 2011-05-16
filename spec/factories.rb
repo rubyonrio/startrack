@@ -4,14 +4,14 @@ Factory.sequence(:email) { "email@startrack.com" }
 Factory.sequence(:password) { "PaSsWoRd" }
 Factory.sequence(:integer) {  |integer| integer }
 
+
+Factory.define :comment do |comment|
+  comment.description Factory.next(:description)
+end
+
 Factory.define :project do |project|
   project.name Factory.next(:name)
   project.description Factory.next(:description)
-end
-
-Factory.define :story do |story|
-  story.name Factory.next(:name)
-  story.description Factory.next(:description)
 end
 
 Factory.define :task do |task|
