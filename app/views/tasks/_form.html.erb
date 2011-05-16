@@ -32,10 +32,6 @@
     <%= f.text_field :type %>
   </div>
   <div class="field">
-    <%= f.label :user %><br />
-    <%= f.collection_select :user_id, User.all, :id, :name, {:prompt => true} %>
-  </div>
-  <div class="field">
     <%= f.label :project %><br />
     <%= f.collection_select :project_id, Project.all, :id, :name, {:prompt => true} %>
   </div>
