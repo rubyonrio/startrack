@@ -23,7 +23,9 @@ Factory.define :task do |task|
 end
 
 Factory.define :user do |user|
+  user.id {1}
   user.name Factory.next(:name)
   user.email Factory.next(:email)
-  user.password Factory.next(:password)
+  user.password ("abc,123")
+  user.password_confirmation ("abc,123")
 end

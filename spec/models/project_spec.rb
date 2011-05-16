@@ -24,13 +24,13 @@ describe Project do
       project.users.length.should eql(2)
       project.should be_valid
     end
-    
-    it 'has stories' do
-      story_one = Factory.build(:story)
-      story_two = Factory.build(:story)
-      project.stories << story_one
-      project.stories << story_two
-      project.stories.length.should eql(2)
+
+    it 'has tasks' do
+      task_one = Factory.build(:task)
+      task_two = Factory.build(:task)
+      project.tasks << task_one
+      project.tasks << task_two
+      project.tasks.length.should eql(2)
       project.should be_valid
     end
   end
