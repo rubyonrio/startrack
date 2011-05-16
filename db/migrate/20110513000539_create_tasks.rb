@@ -7,11 +7,11 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :status
       t.integer :type
       t.references :user
-      t.references :story
+      t.references :project
 
       t.timestamps
     end
     add_index :tasks, :user_id
-    add_index :tasks, :story_id
+    add_index :tasks, :project_id
   end
 end

@@ -10,10 +10,10 @@
   <%= @project.description %>
 </p>
 
-<h2>Stories:</h2>
+<h2>Tasks:</h2>
 <ul>
-  <% @project.stories.each do |s| %>
-  <li><%= @project.stories.name %></li>
+  <% @project.tasks.each do |s| %>
+  <li><%= link_to @project.tasks.name, task_path  %></li>
   <% end %>
 </ul>
 
@@ -21,4 +21,4 @@
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
  |
-<%= link_to 'New Story', new_story_path %>
+<%= link_to 'New Task', new_task_path %>

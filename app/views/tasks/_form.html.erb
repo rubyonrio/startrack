@@ -36,8 +36,8 @@
     <%= f.collection_select :user_id, User.all, :id, :name, {:prompt => true} %>
   </div>
   <div class="field">
-    <%= f.label :story %><br />
-    <%= f.collection_select :story_id, Story.all, :id, :name, {:prompt => true} %>
+    <%= f.label :project %><br />
+    <%= f.collection_select :project_id, Project.all, :id, :name, {:prompt => true} %>
   </div>
   <div class="actions">
     <%= f.submit %>
