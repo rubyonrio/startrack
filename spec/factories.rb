@@ -4,7 +4,6 @@ Factory.sequence(:email) { "email@startrack.com" }
 Factory.sequence(:password) { "PaSsWoRd" }
 Factory.sequence(:integer) {  |integer| integer }
 
-
 Factory.define :comment do |comment|
   comment.description Factory.next(:description)
 end
