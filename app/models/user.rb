@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :url_image
 
+  has_many :comments
   has_and_belongs_to_many :projects
+  has_many :tasks
 
   validates :name,  :presence => true
 end
