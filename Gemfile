@@ -11,7 +11,7 @@ gem 'jquery-rails'
 
 group :development,:test do
   gem 'factory_girl_rails'
-  gem 'rspec-rails', '2.6.0'
+  gem 'rspec-rails', '2.6.1.beta1'
   gem 'turn', :require => false
 end
 
