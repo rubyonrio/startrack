@@ -13,5 +13,6 @@ group :development,:test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '2.6.1.beta1'
   gem 'turn', :require => false
+  gem 'spork', '0.9.0.rc5'
 end
 
