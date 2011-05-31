@@ -24,8 +24,8 @@ class CommentsController < ApplicationController
   # GET /comments/new
   # GET /comments/new.json
   def new
-    @comment = Comment.new
     @tasks = Task.all
+    @comment = Comment.new
     
     respond_to do |format|
       format.html # new.html.erb
@@ -42,7 +42,8 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(params[:comment])
+    @task = Task.find(params[:id])
+    @comment = @task.comments.build(params[:comment])
 
     respond_to do |format|
       if @comment.save

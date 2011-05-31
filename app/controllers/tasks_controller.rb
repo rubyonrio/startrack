@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
     @task = Task.find(params[:id])
   end
 
@@ -18,7 +19,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(params[:task])
+    @project = Project.find(params[:id])
+    @task = @project.task.build(params[:task])
     @task.user = current_user
 
     respond_to do |format|

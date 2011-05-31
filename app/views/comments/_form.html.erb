@@ -1,4 +1,4 @@
-<%= form_for(@comment) do |f| %>
+<%= form_for [@project, @task, @comment] do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -14,10 +14,6 @@
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label(:task) %><br />
-    <%= f.collection_select(:task_id, @tasks, :id, :name, {:prompt => true}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

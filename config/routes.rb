@@ -2,10 +2,11 @@ Startrack::Application.routes.draw do
 
   devise_for :users
 
-  resources :projects
-  resources :stories
-  resources :tasks
-  resources :comments
+  resources :projects do
+    resources :tasks do
+      resources :comments
+    end
+  end
 
   root :to => "projects#index"
 end

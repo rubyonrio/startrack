@@ -45,6 +45,6 @@
 
 
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
-<%= link_to 'New Comment', new_comment_path %>
+<%= link_to 'Edit', edit_project_task_path(@project, @task) %> |
+<%= link_to 'Back', project_tasks_path(@project, @task) %>
+<%= link_to 'New Comment', new_project_task_comment_path(@project, @task) %>
