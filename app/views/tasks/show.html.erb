@@ -2,7 +2,7 @@
 
 <p>
   <b>Project:</b>
-  <%= link_to @task.project.name, project_path %>
+  <%= link_to @task.project.name, project_path(@project) %>
 </p>
 
 <p>
@@ -35,16 +35,23 @@
   <%= @task.type %>
 </p>
 
-<h2>Comments:</h2>
+<%= content_tag :h2, "Comments:" if @task.comments.any? %>
 
 <ul>
-  <% @task.comments.each do |c| %>
+  <% @comments.each do |c| %>
   <li><%= c.description %></li>
   <% end %>
 </ul>
 
-
+<%= form_for :comment do |c| %>
+<div class="field">
+  <%= c.label :description %><br />
+  <%= c.text_area :description %>
+</div>
+<div class="actions">
+  <%= c.submit %>
+</div>
+<% end %>
 
 <%= link_to 'Edit', edit_project_task_path(@project, @task) %> |
 <%= link_to 'Back', project_tasks_path(@project, @task) %>
-<%= link_to 'New Comment', new_project_task_comment_path(@project, @task) %>

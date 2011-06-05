@@ -12,8 +12,8 @@
 
 <h2>Tasks:</h2>
 <ul>
-  <% @project.tasks.each do |s| %>
-  <li><%= link_to s.name, project_task_path(@project)  %></li>
+  <% @tasks.each do |t| %>
+  <li><%= link_to t.name, project_task_path(@project, t)  %></li>
   <% end %>
 </ul>
 
