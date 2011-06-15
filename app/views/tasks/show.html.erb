@@ -43,7 +43,7 @@
   <% end %>
 </ul>
 
-<%= form_for :comment do |c| %>
+<%= form_for [:task, @new_comment] do |c| %>
 <div class="field">
   <%= c.label :description %><br />
   <%= c.text_area :description %>

@@ -1,9 +1,5 @@
 class CommentsController < ApplicationController
 
-  def index
-    @comments = Comment.all
-  end
-
   def new
     @projects = Project.find(params[:project_id])
     @tasks = @projects.tasks.find(params[:task_id])
@@ -11,17 +7,18 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @projects = Project.find(params[:project_id])
-    @tasks = @projects.tasks.find(params[:task_id])
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.find(params[:task_id])
     @comment = @task.comments.build(params[:comment])
+    @comment.user = current_user
 
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render json: @comment, status: :created, location: @comment }
+        format.json { render json: [:project, :task, @comment], status: :created, location: @comment }
       else
         format.html { render action: "new" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.json { render json: [:project, :task, @comment].errors, status: :unprocessable_entity }
       end
     end
   end

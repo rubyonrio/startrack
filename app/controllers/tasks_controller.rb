@@ -10,6 +10,7 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
     @comments = @task.comments.all
+    @new_comment = @task.comments.new
   end
 
   def new
