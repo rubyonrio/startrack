@@ -13,4 +13,4 @@ Gemfile.lock
 log/*.log
 tmp/
 .sass-cache/*
-
+.DS_Store
