@@ -1,16 +1,10 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
 
-  def index
-    @project = Project.find(params[:project_id])
-    @tasks = @project.tasks.all
-  end
-
   def show
-    @project = Project.find(params[:project_id])
-    @task = @project.tasks.find(params[:id])
+    @task = Task.find(params[:id])
     @comments = @task.comments.all
-    @new_comment = @task.comments.new
+    @comment = @task.comments.new
   end
 
   def new
@@ -55,6 +49,6 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to tasks_url
+    redirect_to project_url(@task.project)
   end
 end

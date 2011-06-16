@@ -23,9 +23,9 @@
     <td><%= task.type %></td>
     <td><%= task.user.name %></td>
     <td><%= task.project.name %></td>
-    <td><%= link_to 'Show', project_task_path(task.project_id, task) %></td>
-    <td><%= link_to 'Edit', edit_project_task_path(task.project_id, task) %></td>
-    <td><%= link_to 'Destroy', project_task_path(task.project_id, task), confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', task_path(task) %></td>
+    <td><%= link_to 'Edit', edit_task_path(task) %></td>
+    <td><%= link_to 'Destroy', task_path(task), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

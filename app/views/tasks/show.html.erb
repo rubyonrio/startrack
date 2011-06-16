@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 
 <p>
   <b>Project:</b>
-  <%= link_to @task.project.name, project_path(@project) %>
+  <%= link_to @task.project.name, project_path(@task.project) %>
 </p>
 
 <p>
@@ -35,15 +36,21 @@
   <%= @task.type %>
 </p>
 
+<%= link_to 'Edit', edit_task_path(@task) %>
+
 <%= content_tag :h2, "Comments:" if @task.comments.any? %>
 
 <ul>
   <% @comments.each do |c| %>
-  <li><%= c.description %></li>
+  <li>
+    <em><%= c.user.email %></em> said<br />
+    <%= c.description %><br />
+    <%= link_to 'Destroy', comment_path(c), confirm: 'Are you sure?', method: :delete %>
+  </li>
   <% end %>
 </ul>
 
-<%= form_for [:task, @new_comment] do |c| %>
+<%= form_for [@task, @comment] do |c| %>
 <div class="field">
   <%= c.label :description %><br />
   <%= c.text_area :description %>
@@ -52,6 +59,3 @@
   <%= c.submit %>
 </div>
 <% end %>
-
-<%= link_to 'Edit', edit_project_task_path(@project, @task) %> |
-<%= link_to 'Back', project_tasks_path(@project, @task) %>

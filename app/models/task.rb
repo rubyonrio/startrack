@@ -6,6 +6,4 @@ class Task < ActiveRecord::Base
   validates :user, :presence => true
   validates :project, :presence => true
   validates :name, :presence => true
-
-  accepts_nested_attributes_for :comments
 end

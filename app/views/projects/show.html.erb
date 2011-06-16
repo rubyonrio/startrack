@@ -10,15 +10,14 @@
   <%= @project.description %>
 </p>
 
+<%= link_to 'Edit', edit_project_path(@project) %>
+
 <h2>Tasks:</h2>
+
 <ul>
   <% @tasks.each do |t| %>
-  <li><%= link_to t.name, project_task_path(@project, t)  %></li>
+  <li><%= link_to t.name, task_path(t)  %></li>
   <% end %>
 </ul>
 
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
- |
 <%= link_to 'New Task', new_project_task_path(@project) %>

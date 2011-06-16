@@ -2,9 +2,9 @@ Startrack::Application.routes.draw do
 
   devise_for :users
 
-  resources :projects do
-    resources :tasks do
-      resources :comments
+  resources :projects, :shallow => true  do
+    resources :tasks, :except => [:index] do
+      resources :comments, :only => [:create, :destroy]
     end
   end
 
