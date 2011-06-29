@@ -7,29 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <h1 style="display:inline;line-height:2em;"><%= link_to "Startrack", root_path %></h1>
-    <% if user_signed_in? %>
-    <div style="float:right;">
-      <%= image_tag avatar_url(current_user), :width => "50", :style => "vertical-align:middle;" %> Logado como <%= current_user.email %>. Não é você?
-      <%= link_to 'Sair', destroy_user_session_path %>
-    </div>
-    <% else %>
-    <div style="float:right;">
-      <%= link_to 'Cadastrar', new_user_registration_path %> ou <%= link_to 'Logar', new_user_session_path %>
-    </div>
-    <% end %>
-  </header>
+  <div id="wrap">
+    <header>
+      <h1 style="display:inline;line-height:2em;"><%= link_to "Startrack", root_path %></h1>
+      <% if user_signed_in? %>
+      <div style="float:right;">
+        <%= image_tag avatar_url(current_user), :width => "50", :style => "vertical-align:middle;" %> Logado como <%= current_user.email %>. Não é você?
+        <%= link_to 'Sair', destroy_user_session_path %>
+      </div>
+      <% else %>
+      <div style="float:right;">
+        <%= link_to 'Cadastrar', new_user_registration_path %> ou <%= link_to 'Logar', new_user_session_path %>
+      </div>
+      <% end %>
+    </header>
 
-  <hr />
+    <hr />
 
-  <%= yield %>
+    <%= yield %>
 
-  <hr />
-
-  <footer style="text-align:center;">
-    Startrack is an agile based tracker developed by <%= link_to "RubyOnRio", "http://rubyonrio.org", :target => "_new" %>
-  </footer>
-
+    <footer>
+      Startrack is an agile based tracker developed by <%= link_to "RubyOnRio", "http://rubyonrio.org", :target => "_new" %>
+    </footer>
+  </div>
 </body>
 </html>

@@ -1,61 +1,46 @@
 <p id="notice"><%= notice %></p>
 <p id="alert"><%= alert %></p>
+<article>
+  <p><b>Project:</b> <%= link_to @task.project.name, project_path(@task.project) %></p>
+  
+  <section id="task-details">
+    <h1><%= @task.name %></h1>
 
-<p>
-  <b>Project:</b>
-  <%= link_to @task.project.name, project_path(@task.project) %>
-</p>
+    <p><b>Owner:</b> <%= @task.user.name %></p>
 
-<p>
-  <b>Task:</b>
-  <%= @task.name %>
-</p>
+    <p><b>Estimate:</b> <%= @task.estimate %></p>
 
-<p>
-  <b>Description:</b>
-  <%= @task.description %>
-</p>
+    <p><b>Status:</b> <%= @task.status %></p>
 
-<p>
-  <b>Owner:</b>
-  <%= @task.user.name %>
-</p>
+    <p><b>Type:</b> <%= @task.type %></p>
 
-<p>
-  <b>Estimate:</b>
-  <%= @task.estimate %>
-</p>
+    <p><%= @task.description %></p>
 
-<p>
-  <b>Status:</b>
-  <%= @task.status %>
-</p>
+    <%= link_to 'Edit', edit_task_path(@task) %>
+  </section>
 
-<p>
-  <b>Type:</b>
-  <%= @task.type %>
-</p>
+  <aside>
+    <% if @task.comments.any? %>
+    <h2>Comments</h2>
 
-<%= link_to 'Edit', edit_task_path(@task) %>
+    <ul class="thread">
+      <% @comments.each do |c| %>
+      <li>
+        <%= link_to 'Destroy', comment_path(c), confirm: 'Are you sure?', method: :delete, :class => "destroy" if c.user == current_user%>
+        <em><%= c.user.email %> said</em>
+        <%= c.description %>
+      </li>
+      <% end %>
+    </ul>
+    <% else %>
+    <h2>No comments yet!</h2>
+    <h3>User the form below to start posting...</h3>
+    <% end %>
 
-<%= content_tag :h2, "Comments:" if @task.comments.any? %>
-
-<ul>
-  <% @comments.each do |c| %>
-  <li>
-    <em><%= c.user.email %></em> said<br />
-    <%= c.description %><br />
-    <%= link_to 'Destroy', comment_path(c), confirm: 'Are you sure?', method: :delete %>
-  </li>
-  <% end %>
-</ul>
-
-<%= form_for [@task, @comment] do |c| %>
-<div class="field">
-  <%= c.label :description %><br />
-  <%= c.text_area :description %>
-</div>
-<div class="actions">
-  <%= c.submit %>
-</div>
-<% end %>
+    <%= form_for [@task, @comment] do |c| %>
+      <%= c.label :description %><br />
+      <%= c.text_area :description %>
+      <%= c.submit %>
+    <% end %>
+  </aside>
+</article>
