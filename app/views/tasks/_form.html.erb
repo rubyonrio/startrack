@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :status %><br />
-    <%= f.text_field :status %>
+    <%= f.collection_select :status_id, Status.all, :id, :name, {:prompt => true} %>
   </div>
   <div class="field">
     <%= f.label :type %><br />

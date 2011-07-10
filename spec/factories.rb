@@ -17,7 +17,7 @@ Factory.define :task do |task|
   task.name Factory.next(:name)
   task.description Factory.next(:description)
   task.estimate Factory.next(:integer)
-  task.status Factory.next(:integer)
+  task.association :status
   task.type Factory.next(:integer)
 end
 
@@ -27,4 +27,8 @@ Factory.define :user do |user|
   user.email Factory.next(:email)
   user.password ("abc,123")
   user.password_confirmation ("abc,123")
+end
+
+Factory.define :status do |status|
+  status.name Factory.next(:name)
 end
