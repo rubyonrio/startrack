@@ -6,6 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Daley', city: cities.first)
 
+Status.delete_all
 ["TODO", "Scheduled", "Current", "Done"].each do |status|
   Status.create :name => status
-end 
+end
+
+Type.delete_all
+["Feature", "Bug"].each do |type|
+  Type.create :name => type
+end
+

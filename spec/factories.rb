@@ -18,7 +18,7 @@ Factory.define :task do |task|
   task.description Factory.next(:description)
   task.estimate Factory.next(:integer)
   task.association :status
-  task.type Factory.next(:integer)
+  task.association :type
 end
 
 Factory.define :user do |user|
@@ -31,4 +31,8 @@ end
 
 Factory.define :status do |status|
   status.name Factory.next(:name)
+end
+
+Factory.define :type do |type|
+  type.name Factory.next(:name)
 end
