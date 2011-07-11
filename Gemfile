@@ -12,6 +12,8 @@ gem 'jquery-rails'
 gem 'therubyracer'
 
 group :development,:test do
+  gem 'capybara'
+  gem 'launchy'
   gem 'factory_girl_rails'
   gem 'rspec-rails', '2.6.1'
   gem 'turn', :require => false
