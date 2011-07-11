@@ -16,3 +16,8 @@ Type.delete_all
   Type.create :name => type
 end
 
+Estimate.delete_all
+["Fast", "Medium", "Longstanding", "Very longstanding"].each do |estimate|
+  Estimate.create :name => estimate
+end
+

@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :estimate %><br />
-    <%= f.text_field :estimate %>
+    <%= f.collection_select :estimate_id, Estimate.all, :id, :name, {:prompt => true} %>
   </div>
   <div class="field">
     <%= f.label :status %><br />
