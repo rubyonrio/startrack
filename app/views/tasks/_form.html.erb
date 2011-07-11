@@ -21,15 +21,15 @@
   </div>
   <div class="field">
     <%= f.label :estimate %><br />
-    <%= f.collection_select :estimate_id, Estimate.all, :id, :name, {:prompt => true} %>
+    <%= f.collection_select :estimate_id, @estimate, :id, :name, {:prompt => true} %>
   </div>
   <div class="field">
     <%= f.label :status %><br />
-    <%= f.collection_select :status_id, Status.all, :id, :name, {:prompt => true} %>
+    <%= f.collection_select :status_id, @status, :id, :name, {:prompt => true} %>
   </div>
   <div class="field">
     <%= f.label :type %><br />
-    <%= f.collection_select :type_id, Type.all, :id, :name, {:prompt => true} %>
+    <%= f.collection_select :type_id, @type, :id, :name, {:prompt => true} %>
   </div>
   <div class="actions">
     <%= f.submit %>

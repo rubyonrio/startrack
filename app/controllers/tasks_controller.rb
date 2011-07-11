@@ -10,10 +10,16 @@ class TasksController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @task = @project.tasks.new
+    @estimate = Estimate.all
+    @status = Status.all
+    @type = Type.all
   end
 
   def edit
     @task = Task.find(params[:id])
+    @estimate = Estimate.all
+    @status = Status.all
+    @type = Type.all
   end
 
   def create
