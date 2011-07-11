@@ -12,7 +12,6 @@ end
 Factory.define :task do |task|
   task.name Factory.next(:name)
   task.description Factory.next(:description)
-  task.estimate Factory.next(:integer)
   task.association :status
   task.association :type
   task.association :estimate
