@@ -27,7 +27,7 @@
     <%= yield %>
 
     <footer>
-      Startrack is an agile based tracker developed by <%= link_to "RubyOnRio", "http://rubyonrio.org", :target => "_new" %>
+      Startrack is an agile based tracker developed by <%= link_to "RubyOnRio", "http://rubyonrio.org", :target => "_new" %> on version <%= `git describe --tags --always --dirty`.chomp %>
     </footer>
   </div>
 </body>
