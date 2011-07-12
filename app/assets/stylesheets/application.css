@@ -121,6 +121,16 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 
 #notice {
   color: green;
+  background: #cfc;
+  position: fixed;
+  top: 0;
+  left: 40%;
+  padding: 1% 2%;
+  margin: 0;
+  font-size: 1.2em;
+  opacity: .6;
+  moz-opacity: .60;
+  filter:alpha(opacity=60);
 }
 
 .field_with_errors {
@@ -136,4 +146,9 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   padding-bottom: 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+}
+
+.done, .done:visited {
+  text-decoration: line-through;
+  color: #999;
 }

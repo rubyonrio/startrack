@@ -1,12 +1,9 @@
-<p id="notice"><%= notice %></p>
-<p id="alert"><%= alert %></p>
 <article>
   <p><b>Project:</b> <%= link_to @task.project.name, project_path(@task.project) %></p>
-  
   <section id="task-details">
     <h1><%= @task.name %></h1>
 
-    <p><b>Owner:</b> <%= @task.user.name %></p>
+    <p><b>Owner:</b> <%= image_tag avatar_url(current_user), :width => "20", :style => "vertical-align:middle;" %> <%= @task.user.name %></p>
 
     <p><b>Estimate:</b> <%= @task.estimate.name rescue ''%></p>
 
@@ -14,7 +11,7 @@
 
     <p><b>Type:</b> <%= @task.type.name rescue ''%></p>
 
-    <p><%= @task.description %></p>
+    <p><b>Description:</b> <%= @task.description %></p>
 
     <%= link_to 'Edit', edit_task_path(@task) %>
   </section>
