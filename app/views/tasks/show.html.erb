@@ -8,11 +8,11 @@
 
     <p><b>Owner:</b> <%= @task.user.name %></p>
 
-    <p><b>Estimate:</b> <%= @task.estimate.name %></p>
+    <p><b>Estimate:</b> <%= @task.estimate.name rescue ''%></p>
 
-    <p><b>Status:</b> <%= @task.status.name %></p>
+    <p><b>Status:</b> <%= @task.status.name rescue ''%></p>
 
-    <p><b>Type:</b> <%= @task.type.name %></p>
+    <p><b>Type:</b> <%= @task.type.name rescue ''%></p>
 
     <p><%= @task.description %></p>
 
