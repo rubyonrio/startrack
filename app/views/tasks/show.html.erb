@@ -3,7 +3,7 @@
   <section id="task-details">
     <h1><%= @task.name %></h1>
 
-    <p><b>Owner:</b> <%= image_tag avatar_url(current_user), :width => "20", :style => "vertical-align:middle;" %> <%= @task.user.name %></p>
+    <p><b>Owner:</b> <%= image_tag avatar_url(@task.user), :width => "20", :style => "vertical-align:middle;" %> <%= @task.user.name %></p>
 
     <p><b>Estimate:</b> <%= @task.estimate.name rescue ''%></p>
 
