@@ -2,8 +2,6 @@
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
-  <%= flash[:alert] %>
-
   <p><%= f.label :email %><br />
   <%= f.email_field :email %></p>
 
