@@ -75,6 +75,10 @@ section {
   clear: both;
 }
 
+.status-pane .bug {
+  color: #df0000;
+}
+
 aside {
   float: right;
   width: 49%;
