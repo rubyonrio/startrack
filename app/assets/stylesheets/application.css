@@ -15,6 +15,10 @@ h1 {
   margin: 0;
 }
 
+h1 span {
+  font-size: .5em;
+}
+
 h2 {
   font-size: 1.6em;
   margin: 0;
@@ -36,6 +40,39 @@ article {
 section {
   float: left;
   width: 35%;
+}
+
+#project-show header {
+  overflow: hidden;
+  padding: 0 0 1em;
+  border-bottom: 1px solid #ccc;
+}
+
+#project-show h1 {
+  float: left;
+}
+
+#new-task {
+  float: right;
+}
+
+.status-pane {
+  width: 31.4%;
+  padding: 1%;
+  min-height: 300px;
+}
+
+.status-pane.current {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.status-pane.todo {
+  width: inherit;
+  min-height: 100px;
+  border-top: 1px solid #ccc;
+  float: none;
+  clear: both;
 }
 
 aside {

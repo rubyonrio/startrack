@@ -9,4 +9,9 @@ class Task < ActiveRecord::Base
   validates :user, :presence => true
   validates :project, :presence => true
   validates :name, :presence => true
+
+  scope :todo, where(:status_id => 1)
+  scope :scheduled, where(:status_id => 2)
+  scope :current, where(:status_id => 3)
+  scope :done, where(:status_id => 4)
 end
