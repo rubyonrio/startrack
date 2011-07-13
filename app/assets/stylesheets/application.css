@@ -29,8 +29,9 @@ h3 {
 }
 
 #wrap {
-  width: 960px;
+  max-width: 1260px;
   margin: 0 auto;
+  padding: 0 2%;
 }
 
 article {
@@ -39,7 +40,8 @@ article {
 
 section {
   float: left;
-  width: 35%;
+  width: 45%;
+  max-width: 590px;
 }
 
 #project-show header {
