@@ -72,6 +72,7 @@ section {
 .status-pane.todo {
   width: inherit;
   min-height: 100px;
+  max-width: none;
   border-top: 1px solid #ccc;
   float: none;
   clear: both;
