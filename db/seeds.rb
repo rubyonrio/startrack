@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Daley', city: cities.first)
 
 Status.delete_all
-["TODO", "Scheduled", "Current", "Done"].each do |status|
+["TODO", "Scheduled", "Current", "Done", "Invalid"].each do |status|
   Status.create :name => status
 end
 
