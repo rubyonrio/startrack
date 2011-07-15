@@ -1,7 +1,7 @@
 <article>
   <p><b>Project:</b> <%= link_to @task.project.name, project_path(@task.project) %></p>
   <section id="task-details">
-    <h1><%= @task.name %></h1>
+    <h1>#<%= @task.id %> <%= @task.type.name %> - <%= @task.name %></h1>
 
     <p><b>Owner:</b> <%= image_tag avatar_url(@task.user), :width => "20", :style => "vertical-align:middle;" %> <%= @task.user.name %></p>
 
