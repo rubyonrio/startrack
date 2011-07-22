@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Startrack</title>
+  <link rel="shortcut icon" href="/favicon.ico" />
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -9,14 +10,14 @@
 <body>
   <div id="wrap">
     <header>
-      <h1 style="display:inline;line-height:2em;"><%= link_to "Startrack", root_path %></h1>
+      <h1><%= link_to "Startrack", root_path %></h1>
       <% if user_signed_in? %>
-      <div style="float:right;">
-        <%= image_tag avatar_url(current_user), :width => "50", :style => "vertical-align:middle;" %> Logado como <%= current_user.email %>. Não é você?
+      <div class="login-info">
+        <%= image_tag avatar_url(current_user), :class => "avatar icon" %> Logado como <%= current_user.email %>. Não é você?
         <%= link_to 'Sair', destroy_user_session_path %>
       </div>
       <% else %>
-      <div style="float:right;">
+      <div class="login-info">
         <%= link_to 'Cadastrar', new_user_registration_path %> ou <%= link_to 'Logar', new_user_session_path %>
       </div>
       <% end %>

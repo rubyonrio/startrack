@@ -10,9 +10,23 @@ body {
   background: #eee;
 }
 
+header {
+  overflow: hidden;
+  padding: 1em 0 0;
+}
+
 h1 {
   font-size: 2em;
   margin: 0;
+  float: left;
+}
+
+h1 a {
+  background: url(/assets/logo.png) no-repeat left top;
+  display: block;
+  width: 107px;
+  height: 52px;
+  text-indent: -15000px;
 }
 
 h1 span {
@@ -42,6 +56,17 @@ section {
   float: left;
   width: 45%;
   max-width: 590px;
+}
+
+.login-info {
+  float: right;
+  line-height: 3em;
+}
+
+.login-info .avatar.icon {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
 }
 
 #project-show header {
