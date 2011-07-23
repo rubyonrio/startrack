@@ -14,4 +14,12 @@ class Task < ActiveRecord::Base
   scope :scheduled, where(:status_id => 2)
   scope :current, where(:status_id => 3)
   scope :done, where(:status_id => 4)
+
+  def show_type_name
+    self.type.name rescue 'no-type'
+  end
+
+  def show_status_name
+    self.status.name.parameterize rescue 'no-status'
+  end
 end

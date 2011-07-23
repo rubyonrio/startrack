@@ -2,11 +2,18 @@ require 'spec_helper'
 
 describe Task do
   let(:task) {Factory.build(:task)}
-  
+
   describe 'Validates' do
     it 'should have a name' do
       task.name = nil
       task.should_not be_valid
+    end
+  end
+  
+  describe 'type relationship' do
+    it 'shoud return "no-type" if task do not have type' do
+      task.type = nil
+      task.show_type_name == 'no-type'
     end
   end
 
@@ -20,6 +27,17 @@ describe Task do
       task.project = nil
       task.should_not be_valid
     end
+    
+    it 'should require a type' do
+      task.type = nil
+      task.should_not be_valid
+    end
+    
+    it 'should require a status' do
+      task.status = nil
+      task.should_not be_valid
+    end
+    
 
     it 'should have many comments' do
       comment_one = Factory.build(:comment, :id => 1)
