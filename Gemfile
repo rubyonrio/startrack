@@ -16,6 +16,7 @@ group :development,:test do
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'rspec-rails', '2.6.1'
+  gem "simplecov", "~> 0.4.2"
   gem 'turn', :require => false
 end
 

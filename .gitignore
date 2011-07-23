@@ -1,6 +1,7 @@
 log/*
 tmp/*
 config/database.yml
+coverage/*
 .bundle
 db/*.sqlite3
 .rvmrc
