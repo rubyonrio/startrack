@@ -15,18 +15,21 @@ header {
   padding: 1em 0 0;
 }
 
-h1 {
-  font-size: 2em;
-  margin: 0;
+#logo {
   float: left;
 }
 
-h1 a {
+#logo a {
   background: url(/assets/logo.png) no-repeat left top;
   display: block;
   width: 107px;
   height: 52px;
   text-indent: -15000px;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0;
 }
 
 h1 span {

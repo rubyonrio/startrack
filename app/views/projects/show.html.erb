@@ -1,6 +1,6 @@
 <article id="project-show">
   <header>
-    <h2><%= @project.name %> <span>(<%= link_to 'edit', edit_project_path(@project) %>)</span></h2>
+    <h1><%= @project.name %> <span>(<%= link_to 'edit', edit_project_path(@project) %>)</span></h1>
     <%= link_to 'New Task', new_project_task_path(@project), :id => "new-task" %>
   </header>
   <section class="status-pane">
