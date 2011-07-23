@@ -18,19 +18,19 @@ class Task < ActiveRecord::Base
   scope :current, joins(:status).where("statuses.name = 'Current'")
   scope :done, joins(:status).where("statuses.name = 'Done'")
 
-  def show_type_name
-    self.type.name rescue 'no-type'
+  def show_responsible_name
+    self.responsible.name rescue 'No responsible yet'
+  end
+
+  def show_estimate_name
+    self.estimate.name rescue 'No estimative yet'
   end
 
   def show_type_parameterize_name
-    self.type.name.parameterize rescue 'no-type'
-  end
-
-  def show_status_name
-    self.status.name rescue 'no-status'
+    self.type.name.parameterize
   end
 
   def show_status_parameterize_name
-    self.status.name.parameterize rescue 'no-status'
+    self.status.name.parameterize
   end
 end

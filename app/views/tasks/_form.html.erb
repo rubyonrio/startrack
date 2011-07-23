@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :responsible %><br />
-    <%= f.collection_select :responsible_id, @responsibles, :id, :name %>
+    <%= f.collection_select :responsible_id, @responsibles, :id, :name, {:prompt => true} %>
   </div>
   <div class="field">
     <%= f.label :estimate %><br />
@@ -29,11 +29,11 @@
   </div>
   <div class="field">
     <%= f.label :status %><br />
-    <%= f.collection_select :status_id, @status, :id, :name %>
+    <%= f.collection_select :status_id, @status, :id, :name, {:prompt => true} %>
   </div>
   <div class="field">
     <%= f.label :type %><br />
-    <%= f.collection_select :type_id, @type, :id, :name %>
+    <%= f.collection_select :type_id, @type, :id, :name, {:prompt => true} %>
   </div>
   <div class="actions">
     <%= f.submit %>

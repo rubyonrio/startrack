@@ -66,9 +66,9 @@ section {
   line-height: 3em;
 }
 
-.login-info .avatar.icon {
-  width: 25px;
-  height: 25px;
+.avatar.icon {
+  width: 20px;
+  height: 20px;
   vertical-align: middle;
 }
 
