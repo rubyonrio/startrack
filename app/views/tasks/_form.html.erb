@@ -20,6 +20,10 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
+    <%= f.label :responsible %><br />
+    <%= f.collection_select :responsible_id, @responsibles, :id, :name %>
+  </div>
+  <div class="field">
     <%= f.label :estimate %><br />
     <%= f.collection_select :estimate_id, @estimate, :id, :name, {:prompt => true} %>
   </div>

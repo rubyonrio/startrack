@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
 
-  before_filter :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit]
+  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit]
 
   def show
     @task = Task.find(params[:id])
@@ -68,4 +68,8 @@ class TasksController < ApplicationController
     @type = Type.all
   end
   
+  def load_users
+    @responsibles = User.all
+  end
+
 end

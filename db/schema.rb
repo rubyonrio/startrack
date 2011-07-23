@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711002845) do
+ActiveRecord::Schema.define(:version => 20110723221242) do
 
   create_table "comments", :force => true do |t|
     t.text     "description"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20110711002845) do
     t.integer  "status_id"
     t.integer  "type_id"
     t.integer  "estimate_id"
+    t.integer  "responsible_id"
   end
 
   add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"

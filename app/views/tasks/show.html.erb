@@ -5,6 +5,8 @@
 
     <p><b>Owner:</b> <%= image_tag avatar_url(@task.user), :width => "20", :style => "vertical-align:middle;" %> <%= @task.user.name %></p>
 
+    <p><b>Responsible:</b> <%= image_tag avatar_url(@task.responsible), :width => "20", :style => "vertical-align:middle;" %> <%= @task.responsible.name %></p>
+
     <p><b>Estimate:</b> <%= @task.estimate.name rescue ''%></p>
 
     <p><b>Status:</b> <%= @task.show_status_name %></p>

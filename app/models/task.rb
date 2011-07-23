@@ -1,6 +1,7 @@
 class Task < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
+  belongs_to :responsible, :class_name => "User"
   belongs_to :status
   belongs_to :type
   belongs_to :estimate
