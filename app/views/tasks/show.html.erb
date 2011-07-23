@@ -7,7 +7,7 @@
 
     <p><b>Estimate:</b> <%= @task.estimate.name rescue ''%></p>
 
-    <p><b>Status:</b> <%= @task.status.name rescue ''%></p>
+    <p><b>Status:</b> <%= @task.show_status_name %></p>
 
     <p><b>Type:</b> <%= @task.show_type_name %></p>
 

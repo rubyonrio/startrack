@@ -5,6 +5,7 @@ Factory.sequence(:password) { "PaSsWoRd" }
 Factory.sequence(:integer) {  |integer| integer }
 
 Factory.define :project do |project|
+  project.id { 1 }
   project.name Factory.next(:name)
   project.description Factory.next(:description)
 end
@@ -15,6 +16,8 @@ Factory.define :task do |task|
   task.association :status
   task.association :type
   task.association :estimate
+  task.association :project
+  task.association :user
 end
 
 Factory.define :user do |user|

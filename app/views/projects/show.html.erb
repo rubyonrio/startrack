@@ -1,43 +1,34 @@
 <article id="project-show">
   <header>
     <h2><%= @project.name %> <span>(<%= link_to 'edit', edit_project_path(@project) %>)</span></h2>
-
     <%= link_to 'New Task', new_project_task_path(@project), :id => "new-task" %>
   </header>
-
   <section class="status-pane">
     <h2>Scheduled:</h2>
-
     <ul>
       <% @task_scheduled.each do |task| %>
       <li><%= link_to_show_task(task)%></li>
       <% end %>
     </ul>
   </section>
-
   <section class="status-pane current">  
     <h2>Current:</h2>
-
     <ul>
       <% @task_current.each do |task| %>
       <li><%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
-
   <section class="status-pane">  
     <h2>Done:</h2>
-
     <ul>
       <% @task_done.each do |task| %>
       <li><%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
-
   <section class="status-pane todo">
     <h2>TODO:</h2>
-
     <ul>
       <% @task_todo.each do |task| %>
       <li><%= link_to_show_task(task) %></li>

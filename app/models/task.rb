@@ -9,17 +9,27 @@ class Task < ActiveRecord::Base
   validates :user, :presence => true
   validates :project, :presence => true
   validates :name, :presence => true
+  validates :type, :presence => true
+  validates :status, :presence => true
 
-  scope :todo, where(:status_id => 1)
-  scope :scheduled, where(:status_id => 2)
-  scope :current, where(:status_id => 3)
-  scope :done, where(:status_id => 4)
+  scope :todo, joins(:status).where("statuses.name = 'TODO'")
+  scope :scheduled, joins(:status).where("statuses.name = 'Scheduled'")
+  scope :current, joins(:status).where("statuses.name = 'Current'")
+  scope :done, joins(:status).where("statuses.name = 'Done'")
 
   def show_type_name
     self.type.name rescue 'no-type'
   end
 
+  def show_type_parameterize_name
+    self.type.name.parameterize rescue 'no-type'
+  end
+
   def show_status_name
+    self.status.name rescue 'no-status'
+  end
+
+  def show_status_parameterize_name
     self.status.name.parameterize rescue 'no-status'
   end
 end
