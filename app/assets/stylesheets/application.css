@@ -10,6 +10,23 @@ body {
   background: #eee;
 }
 
+header {
+  overflow: hidden;
+  padding: 1em 0 0;
+}
+
+#logo {
+  float: left;
+}
+
+#logo a {
+  background: url(/assets/logo.png) no-repeat left top;
+  display: block;
+  width: 107px;
+  height: 52px;
+  text-indent: -15000px;
+}
+
 h1 {
   font-size: 2em;
   margin: 0;
@@ -44,6 +61,17 @@ section {
   max-width: 590px;
 }
 
+.login-info {
+  float: right;
+  line-height: 3em;
+}
+
+.avatar.icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
 #project-show header {
   overflow: hidden;
   padding: 0 0 1em;
@@ -62,6 +90,15 @@ section {
   width: 31.2%;
   padding: 1%;
   min-height: 300px;
+}
+
+.status-pane ul {
+  padding: 0;
+}
+
+.status-pane li {
+  list-style-type: none;
+  padding: .5em 0;
 }
 
 .status-pane.current {

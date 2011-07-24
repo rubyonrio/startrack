@@ -1,15 +1,17 @@
 <article>
   <p><b>Project:</b> <%= link_to @task.project.name, project_path(@task.project) %></p>
   <section id="task-details">
-    <h1>#<%= @task.id %> <%= @task.type.name %> - <%= @task.name %></h1>
+    <h2>#<%= @task.id %> <%= @task.type.name %> - <%= @task.name %></h2>
 
-    <p><b>Owner:</b> <%= image_tag avatar_url(@task.user), :width => "20", :style => "vertical-align:middle;" %> <%= @task.user.name %></p>
+    <p><b>Owner:</b> <%= image_tag avatar_url(@task.user), :class => "avatar icon" %> <%= @task.user.name %></p>
 
-    <p><b>Estimate:</b> <%= @task.estimate.name rescue ''%></p>
+    <p><b>Responsible:</b> <%= image_tag(avatar_url(@task.responsible), :class => "avatar icon") unless @task.responsible.nil? %> <%= @task.show_responsible_name %></p>
 
-    <p><b>Status:</b> <%= @task.status.name rescue ''%></p>
+    <p><b>Estimate:</b> <%= @task.show_estimate_name %></p>
 
-    <p><b>Type:</b> <%= @task.type.name rescue ''%></p>
+    <p><b>Status:</b> <%= @task.status.name %></p>
+
+    <p><b>Type:</b> <%= @task.type.name %></p>
 
     <p><b>Description:</b> <%= @task.description %></p>
 

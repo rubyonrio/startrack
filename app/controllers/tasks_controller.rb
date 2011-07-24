@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
 
+  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit]
+
   def show
     @task = Task.find(params[:id])
     @comments = @task.comments.all
@@ -10,16 +12,10 @@ class TasksController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @task = @project.tasks.new
-    @estimate = Estimate.all
-    @status = Status.all
-    @type = Type.all
   end
 
   def edit
     @task = Task.find(params[:id])
-    @estimate = Estimate.all
-    @status = Status.all
-    @type = Type.all
   end
 
   def create
@@ -57,4 +53,23 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to project_url(@task.project)
   end
+
+  private
+ 
+  def load_estimates
+    @estimate = Estimate.all
+  end
+  
+  def load_status
+    @status = Status.all
+  end
+  
+  def load_types
+    @type = Type.all
+  end
+  
+  def load_users
+    @responsibles = User.all
+  end
+
 end

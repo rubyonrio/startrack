@@ -1,46 +1,37 @@
 <article id="project-show">
   <header>
     <h1><%= @project.name %> <span>(<%= link_to 'edit', edit_project_path(@project) %>)</span></h1>
-
     <%= link_to 'New Task', new_project_task_path(@project), :id => "new-task" %>
   </header>
-
   <section class="status-pane">
     <h2>Scheduled:</h2>
-
     <ul>
-      <% @task_scheduled.each do |t| %>
-      <li><%= link_to "##{t.id} #{t.type.name} - #{t.name}", task_path(t), :class => "#{t.status.name.parameterize rescue 'no-status'} #{t.type.name.parameterize unless t.type.nil?}"  %></li>
+      <% @task_scheduled.each do |task| %>
+      <li><%= show_responsible_avatar(task) %> <%= link_to_show_task(task)%></li>
       <% end %>
     </ul>
   </section>
-
   <section class="status-pane current">  
     <h2>Current:</h2>
-
     <ul>
-      <% @task_current.each do |t| %>
-      <li><%= link_to "##{t.id} #{t.type.name} - #{t.name}", task_path(t), :class => "#{t.status.name.parameterize rescue 'no-status'} #{t.type.name.parameterize unless t.type.nil?}"  %></li>
+      <% @task_current.each do |task| %>
+      <li><%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
-
   <section class="status-pane">  
     <h2>Done:</h2>
-
     <ul>
-      <% @task_done.each do |t| %>
-      <li><%= link_to "##{t.id} #{t.type.name} - #{t.name}", task_path(t), :class => "#{t.status.name.parameterize rescue 'no-status'} #{t.type.name.parameterize unless t.type.nil?}"  %></li>
+      <% @task_done.each do |task| %>
+      <li><%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
-
   <section class="status-pane todo">
     <h2>TODO:</h2>
-
     <ul>
-      <% @task_todo.each do |t| %>
-      <li><%= link_to "##{t.id} #{t.type.name} - #{t.name}", task_path(t), :class => "#{t.status.name.parameterize rescue 'no-status'} #{t.type.name.parameterize unless t.type.nil?}"  %></li>
+      <% @task_todo.each do |task| %>
+      <li><%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
