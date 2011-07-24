@@ -7,7 +7,7 @@
     <h2>Scheduled:</h2>
     <ul>
       <% @task_scheduled.each do |task| %>
-      <li><%= link_to_show_task(task)%></li>
+      <li><%= show_responsible_avatar(task) %> <%= link_to_show_task(task)%></li>
       <% end %>
     </ul>
   </section>
