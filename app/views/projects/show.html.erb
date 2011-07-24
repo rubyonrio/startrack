@@ -7,7 +7,7 @@
     <h2>Scheduled:</h2>
     <ul>
       <% @task_scheduled.each do |task| %>
-      <li><%= show_responsible_avatar(task) %> <%= link_to_show_task(task)%></li>
+      <li><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task)%></li>
       <% end %>
     </ul>
   </section>
@@ -15,7 +15,7 @@
     <h2>Current:</h2>
     <ul>
       <% @task_current.each do |task| %>
-      <li><%= show_responsible_avatar(task) %> <%= link_to_show_task(task) %></li>
+      <li><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
@@ -23,7 +23,7 @@
     <h2>Done:</h2>
     <ul>
       <% @task_done.each do |task| %>
-      <li><%= show_responsible_avatar(task) %> <%= link_to_show_task(task) %></li>
+      <li><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
@@ -31,7 +31,7 @@
     <h2>TODO:</h2>
     <ul>
       <% @task_todo.each do |task| %>
-      <li><%= show_responsible_avatar(task) %> <%= link_to_show_task(task) %></li>
+      <li><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>

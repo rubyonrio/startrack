@@ -13,7 +13,7 @@
       <h1 id="logo"><%= link_to "Startrack", root_path %></h1>
       <% if user_signed_in? %>
       <div class="login-info">
-        <%= image_tag avatar_url(current_user), :class => "avatar icon" %> Logado como <%= current_user.email %>. Não é você?
+        <%= show_user_avatar(current_user) %> Logado como <%= current_user.email %>. Não é você?
         <%= link_to 'Sair', destroy_user_session_path %>
       </div>
       <% else %>

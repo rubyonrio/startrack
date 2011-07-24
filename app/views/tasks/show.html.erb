@@ -3,9 +3,9 @@
   <section id="task-details">
     <h2>#<%= @task.id %> <%= @task.type.name %> - <%= @task.name %></h2>
 
-    <p><b>Owner:</b> <%= image_tag avatar_url(@task.user), :class => "avatar icon" %> <%= @task.user.name %></p>
+    <p><b>Owner:</b> <%= show_user_avatar(@task.user) %> <%= @task.user.name %></p>
 
-    <p><b>Responsible:</b> <%= image_tag(avatar_url(@task.responsible), :class => "avatar icon") unless @task.responsible.nil? %> <%= @task.show_responsible_name %></p>
+    <p><b>Responsible:</b> <%= show_user_avatar(@task.responsible) %> <%= @task.show_responsible_name %></p>
 
     <p><b>Estimate:</b> <%= @task.show_estimate_name %></p>
 
