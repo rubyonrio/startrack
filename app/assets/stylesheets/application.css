@@ -92,6 +92,15 @@ section {
   min-height: 300px;
 }
 
+.status-pane ul {
+  padding: 0;
+}
+
+.status-pane li {
+  list-style-type: none;
+  padding: .5em 0;
+}
+
 .status-pane.current {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
