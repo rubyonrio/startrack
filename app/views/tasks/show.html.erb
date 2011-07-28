@@ -13,7 +13,7 @@
 
     <p><b>Type:</b> <%= @task.type.name %></p>
 
-    <p><b>Description:</b> <%= @task.description %></p>
+    <p><b>Description:</b> <%= raw @task.description.html_safe %></p>
 
     <%= link_to 'Edit', edit_task_path(@task) %>
   </section>
@@ -27,7 +27,7 @@
       <li>
         <%= link_to 'Destroy', comment_path(c), confirm: 'Are you sure?', method: :delete, :class => "destroy" if c.user == current_user%>
         <em><%= c.user.email %> said</em>
-        <%= c.description %>
+        <%= raw c.description.html_safe %>
       </li>
       <% end %>
     </ul>
