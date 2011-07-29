@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110723221242) do
+ActiveRecord::Schema.define(:version => 20110729021716) do
 
   create_table "comments", :force => true do |t|
     t.text     "description"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20110723221242) do
     t.integer  "type_id"
     t.integer  "estimate_id"
     t.integer  "responsible_id"
+    t.text     "description_html"
   end
 
   add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"
@@ -70,8 +71,8 @@ ActiveRecord::Schema.define(:version => 20110723221242) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "email",                                              :null => false
-    t.string   "encrypted_password",   :limit => 128,                :null => false
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                       :default => 0

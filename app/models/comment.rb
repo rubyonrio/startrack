@@ -4,9 +4,9 @@ class Comment < ActiveRecord::Base
 
   validates :description, :task, :user, :presence => true
   
-  before_save :to_textile
+  before_save :to_format
 
-  def to_textile
+  def to_format
     self.description = RedCloth.new(self.description).to_html
   end
 end

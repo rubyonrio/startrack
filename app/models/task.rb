@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
   validates :type, :presence => true
   validates :status, :presence => true
 
-  before_save :to_textile
+  before_save :to_format
 
   scope :todo, joins(:status).where("statuses.name = 'TODO'")
   scope :scheduled, joins(:status).where("statuses.name = 'Scheduled'")
@@ -36,7 +36,7 @@ class Task < ActiveRecord::Base
     self.status.name.parameterize
   end
 
-  def to_textile
-    self.description = RedCloth.new(self.description).to_html
+  def to_format
+    self.description_html = RedCloth.new(self.description).to_html
   end
 end
