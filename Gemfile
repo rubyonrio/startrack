@@ -26,6 +26,6 @@ end
 
 group :production do
   gem 'pg'
-  gem 'thrubyracer'
+  gem 'therubyracer'
 end
 
