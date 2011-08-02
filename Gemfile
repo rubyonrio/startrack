@@ -23,3 +23,7 @@ group :development,:test do
   gem "simplecov", "~> 0.4.2"
   gem 'turn', :require => false
 end
+
+group :production do
+  gem 'therubyracer'
+end
