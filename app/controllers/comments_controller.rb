@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        @task.watchers << current_user unless @task.watchers.include?(current_user)
         format.html { redirect_to @task, notice: 'Comment was successfully created.' }
         format.json { render json: [:task, @comment], status: :created, location: @comment }
       else
