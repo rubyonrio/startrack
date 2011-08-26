@@ -160,6 +160,23 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   margin: .5em 0;
 }
 
+.field.checkbox {
+  width: 50%;
+}
+
+.checkbox ul {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.checkbox li {
+  float: left;
+  list-style-type: none;
+  margin: 1% 0;
+  width: 30%;
+}
+
 /* Specific Areas */
 
 #task-details{

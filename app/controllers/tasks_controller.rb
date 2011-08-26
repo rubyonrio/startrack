@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    params[:task][:user_id] ||= []
+    params[:task][:watcher_ids] ||= []
 
     @task = Task.find(params[:id])
 
