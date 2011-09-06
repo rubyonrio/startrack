@@ -24,6 +24,12 @@
     <%= f.collection_select :responsible_id, @responsibles, :id, :name, {:prompt => true} %>
   </div>
   <div class="field">
+    <%= f.label :watchers %><br />
+    <% User.find(:all).each do |w| %>
+      <%= check_box_tag 'task[user_id][]', w.id, @task.watchers.include?(w) %><%= w.name %>
+    <% end %>
+  </div>
+  <div class="field">
     <%= f.label :estimate %><br />
     <%= f.collection_select :estimate_id, @estimate, :id, :name, {:prompt => true} %>
   </div>

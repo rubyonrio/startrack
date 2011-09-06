@@ -1,0 +1,9 @@
+<%= @watcher.name %>,
+
+The task <%= "##{@task.id} - #{@task.name}" %> recieved a new comment.
+
+---
+<%= raw @comment.description %>
+---
+
+<%= link_to "Click here to answer this comment", task_path(@task, :host => "localhost:3000") %>

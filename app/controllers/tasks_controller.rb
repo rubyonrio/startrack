@@ -35,6 +35,8 @@ class TasksController < ApplicationController
   end
 
   def update
+    params[:task][:user_id] ||= []
+
     @task = Task.find(params[:id])
 
     respond_to do |format|

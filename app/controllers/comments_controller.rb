@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         @task.watchers << current_user unless @task.watchers.include?(current_user)
+        notify_comment(@comment)
         format.html { redirect_to @task, notice: 'Comment was successfully created.' }
         format.json { render json: [:task, @comment], status: :created, location: @comment }
       else
@@ -24,6 +25,14 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to task_url(@comment.task), alert: 'Comment was successfully deleted.' }
       format.json { head :ok }
+    end
+  end
+
+  def notify_comment(comment)
+    unless @task.watchers.nil?
+      @task.watchers.each do |watcher|
+        CommentMailer.comment_notification(watcher, comment).deliver
+      end
     end
   end
 end
