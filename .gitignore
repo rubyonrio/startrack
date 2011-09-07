@@ -3,6 +3,7 @@ tmp/*
 config/database.yml
 coverage/*
 .bundle
+db/schema.rb
 db/*.sqlite3
 .rvmrc
 Gemfile.lock

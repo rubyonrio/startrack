@@ -55,19 +55,19 @@ class TasksController < ApplicationController
   end
 
   private
- 
+
   def load_estimates
     @estimate = Estimate.all
   end
-  
+
   def load_status
     @status = Status.all
   end
-  
+
   def load_types
     @type = Type.all
   end
-  
+
   def load_users
     @responsibles = User.all
   end
