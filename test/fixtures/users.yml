@@ -1,8 +1,8 @@
-one:
-  name: StartrackOne
-  email: star@example.com
+spok:
+  name: Spok
+  email: spok@example.com
 
-two:
-  name: StartrackTwo
-  email: track@example.com
+kirk:
+  name: Commander Kirk
+  email: kirk@example.com
 

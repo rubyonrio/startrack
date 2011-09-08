@@ -1,7 +1,9 @@
-one:
-  name: My Task
-  project: one
-  watchers: one
+create_enterprise:
+  name: Create Enterprise
+  project: first_journey
+  watchers: kirk
 
-two:
-  name: Another Task
+room_galaxy:
+  name: Room the galaxy
+  project: first_journey
+  watchers: kirk, spok

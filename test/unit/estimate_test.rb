@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EstimateTest < ActiveSupport::TestCase
   def setup
-    @estimate = estimates(:one)
+    @estimate = estimates(:fast)
   end
 
   test "should not save without a name" do

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StatusTest < ActiveSupport::TestCase
   def setup
-    @status = statuses(:one)
+    @status = statuses(:todo)
   end
 
   test "should not save without a name" do
@@ -11,8 +11,8 @@ class StatusTest < ActiveSupport::TestCase
   end
 
   test "should have many tasks" do
-    @task_one = tasks(:one)
-    @task_two = tasks(:two)
+    @task_one = tasks(:create_enterprise)
+    @task_two = tasks(:room_galaxy)
 
     @status.tasks << @task_one
     @status.tasks << @task_two

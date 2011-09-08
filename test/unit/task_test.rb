@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TaskTest < ActiveSupport::TestCase
   def setup
-    @task = tasks(:one)
+    @task = tasks(:create_enterprise)
   end
 
   test "should not save without name" do
