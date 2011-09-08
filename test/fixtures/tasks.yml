@@ -1,5 +1,7 @@
 one:
-  name: TaskOne
+  name: My Task
+  project: one
+  watchers: one
 
 two:
-  name: TaskTwo
+  name: Another Task

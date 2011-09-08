@@ -7,4 +7,4 @@ The task <%= "##{@task.id} - #{@task.name}" %> recieved a new comment.
 ---
 
 Use the link below to answer this comment:
-<%= task_path(@task, :host => "localhost:3000") %>
+<%= task_url(@task, :host => "localhost:3000") %>
