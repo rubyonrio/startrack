@@ -179,9 +179,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 
 /* Specific Areas */
 
-#task-details{
-  position: fixed;
-  top: 110px;
+#task-details {
   border: 1px solid #ccc;
   padding: 1%;
 }
@@ -207,7 +205,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 }
 
 #new_comment textarea {
-  width: 100%;
+  width: 99%;
   height: 10em;
 }
 
