@@ -10,3 +10,7 @@ class ActiveSupport::TestCase
   fixtures :all
   include Capybara::DSL
 end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
+end
