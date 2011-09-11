@@ -1,5 +1,5 @@
 one:
-  description: "I got some money to help you out with this issue!"
+  description: "<p>I got some money to help you out with this issue!</p>"
   task: create_enterprise
 
 two:
