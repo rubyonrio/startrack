@@ -3,10 +3,12 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    load_page_title "Listing all projects"
   end
 
   def show
     @project = Project.find(params[:id])
+    load_page_title @project.name
     @tasks = @project.tasks.all
     @task_todo = @project.tasks.todo
     @task_scheduled = @project.tasks.scheduled
@@ -16,10 +18,12 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    load_page_title "New project"
   end
 
   def edit
     @project = Project.find(params[:id])
+    load_page_title "Editing project #{@project.name}"
   end
 
   def create
