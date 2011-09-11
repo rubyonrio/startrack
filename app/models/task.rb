@@ -6,6 +6,7 @@ class Task < ActiveRecord::Base
   belongs_to :type
   belongs_to :estimate
   has_many :comments, :dependent => :destroy
+  has_and_belongs_to_many :watchers, :class_name => "User", :join_table => "tasks_watchers"
 
   validates :user, :presence => true
   validates :project, :presence => true

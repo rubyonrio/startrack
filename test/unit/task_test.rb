@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TaskTest < ActiveSupport::TestCase
   def setup
-    @task = tasks(:one)
+    @task = tasks(:create_enterprise)
   end
 
   test "should not save without name" do
@@ -10,24 +10,14 @@ class TaskTest < ActiveSupport::TestCase
     assert !@task.save
   end
 
-  test "shoud return 'no-type' in 'show_type_name' method if task do not have type" do
+  test "shoud not save without type" do
     @task.type = nil
-    assert_equal(@task.show_type_name, 'no-type')
+    assert !@task.save
   end
 
-  test "shoud return 'no-type' in 'show_type_parameterize_name' method if task do not have type" do
-    @task.type = nil
-    assert_equal(@task.show_type_parameterize_name, 'no-type')
-  end
-
-  test "shoud return 'no-status' in 'show_status_name' method if task do not have status" do
+  test "shoud not save without a status" do
     @task.status = nil
-    assert_equal(@task.show_status_name, 'no-status')
-  end
-
-  test "shoud return 'no-status' in 'show_status_parameterize_name' method if task do not have status" do
-    @task.status = nil
-    assert_equal(@task.show_status_parameterize_name, 'no-status')
+    assert !@task.save
   end
 
   test "should not save without an user" do

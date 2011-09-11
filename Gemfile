@@ -1,13 +1,12 @@
-source 'http://rubygems.org'
+source :rubygems
 
-gem 'rails', '3.1.0.rc4'
-gem 'devise'
-gem 'mysql2'
-gem 'sass'
-gem 'coffee-script'
-gem 'uglifier'
-gem 'jquery-rails'
-gem 'sprockets', '2.0.0.beta.10'
+gem 'rails', '3.1.0'
+gem 'devise', '1.4.3'
+gem 'mysql2', '0.3.6'
+gem 'sass-rails', '3.1.0'
+gem 'coffee-script', '2.2.0'
+gem 'uglifier', '1.0.2'
+gem 'jquery-rails', '1.0.13'
 gem 'RedCloth'
 
 group :development,:test do
@@ -18,10 +17,13 @@ group :development,:test do
     gem "ruby-debug19", :require => 'ruby-debug'
   end
 
-  gem 'capybara'
-  gem 'launchy'
+  gem 'capybara', '1.0.1'
+  gem 'launchy', '2.0.5'
   gem "simplecov", "~> 0.4.2"
-  gem 'turn', :require => false
+end
+
+group :production do
+  gem 'therubyracer'
 end
 
 group :production do

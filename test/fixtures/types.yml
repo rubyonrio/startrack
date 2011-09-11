@@ -1,5 +1,5 @@
-one:
-  name: TypeOne
+feature:
+  name: Feature
 
-two:
-  name: TypeTwo
+bug:
+  name: Bug

@@ -12,8 +12,17 @@
     <p><b>Status:</b> <%= @task.status.name %></p>
 
     <p><b>Type:</b> <%= @task.type.name %></p>
+    
+    <% if @task.watchers %>
+    <b>Watchers:</b>
+    <ol class="watchers">
+      <% @task.watchers.each do |watcher| %>
+      <%= content_tag :li, watcher.name %>
+      <% end %>
+    </ol>
+    <% end %>
 
-    <p><b>Description:</b> <%= raw @task.description_html.html_safe %></p>
+    <p><b>Description:</b> <%= raw show_task_description(@task) %></p>
 
     <%= link_to 'Edit', edit_task_path(@task) %>
   </section>

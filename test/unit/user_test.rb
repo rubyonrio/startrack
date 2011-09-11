@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = users(:one)
+    @user = users(:kirk)
   end
 
   test "should not save without name" do
