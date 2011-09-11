@@ -1,3 +1,4 @@
+<% content_for :title, "##{@task.id} #{@task.name} @ #{@task.project.name}" %>
 <article>
   <p><b>Project:</b> <%= link_to @task.project.name, project_path(@task.project) %></p>
   <section id="task-details">

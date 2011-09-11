@@ -5,7 +5,6 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
-    load_page_title "##{@task.id} #{@task.name} @ #{@task.project.name}"
     @comments = @task.comments.all
     @comment = @task.comments.new
   end
@@ -13,12 +12,10 @@ class TasksController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @task = @project.tasks.new
-    load_page_title "New task"
   end
 
   def edit
     @task = Task.find(params[:id])
-    load_page_title "Editing ##{@task.id} #{@task.name}"
   end
 
   def create

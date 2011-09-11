@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @page_title %></title>
+  <title><%= yield :title %></title>
   <link rel="shortcut icon" href="/favicon.ico" />
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
