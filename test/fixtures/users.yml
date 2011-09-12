@@ -1,6 +1,7 @@
 spok:
   name: Spok
   email: spok@example.com
+  encrypted_password: $2a$10$SnE5/xMXr.1VU7W12W2Ae.9hNm/GTY9E7CKlXi4hqmX2cPWJ5GRji # test
 
 kirk:
   name: Commander Kirk

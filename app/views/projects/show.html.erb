@@ -1,3 +1,4 @@
+<% content_for :title, @project.name %>
 <article id="project-show">
   <header>
     <h1><%= @project.name %> <span>(<%= link_to 'edit', edit_project_path(@project) %>)</span></h1>

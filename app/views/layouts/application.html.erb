@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Startrack</title>
+  <title><%= yield :title %></title>
   <link rel="shortcut icon" href="/favicon.ico" />
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
@@ -30,7 +30,7 @@
     <%= yield %>
 
     <footer>
-      Startrack is an agile based tracker developed by <%= link_to "RubyOnRio", "http://rubyonrio.org", :target => "_new" %> on version <%= `git describe --tags`.chomp %>
+      Startrack is an agile based tracker developed by <%= link_to "RubyOnRio", "http://rubyonrio.org", :target => "_new" %> on version <%= app_version %>
     </footer>
   </div>
 </body>

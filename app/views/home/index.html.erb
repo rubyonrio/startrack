@@ -1,8 +1,0 @@
-<% if user_signed_in? %>
-  <% @user_projects.each do |p| %>
-    <h2>Projects:</h2>
-    <%= p.name %>
-  <% end %>
-<% else %>
-  <p>You don't have any projects yet. <%= link_to "Create a new project", new_project_path %>?</p>
-<% end %>

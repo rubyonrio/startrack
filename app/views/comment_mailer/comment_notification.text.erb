@@ -3,7 +3,7 @@
 The task <%= "##{@task.id} - #{@task.name}" %> recieved a new comment.
 
 ---
-<%= raw @comment.description %>
+<%= strip_tags raw(@comment.description) %>
 ---
 
 Use the link below to answer this comment:

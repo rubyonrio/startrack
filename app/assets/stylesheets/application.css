@@ -52,7 +52,7 @@ h3 {
 }
 
 article {
-  min-height: 300px;
+  min-height: 550px;
 }
 
 section {
@@ -179,9 +179,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 
 /* Specific Areas */
 
-#task-details{
-  position: fixed;
-  top: 110px;
+#task-details {
   border: 1px solid #ccc;
   padding: 1%;
 }
@@ -207,7 +205,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 }
 
 #new_comment textarea {
-  width: 100%;
+  width: 99%;
   height: 10em;
 }
 
@@ -217,9 +215,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 
 /* Alerts */
 
-#notice {
-  color: green;
-  background: #cfc;
+.flash_messages {
   position: fixed;
   top: 0;
   left: 40%;
@@ -229,6 +225,21 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   opacity: .6;
   moz-opacity: .60;
   filter:alpha(opacity=60);
+}
+
+#notice {
+  background: #cdeecf;
+  border: 1px solid #68ed6f;
+}
+
+#alert {
+  background: #eeedcd;
+  border: 1px solid #ede968;
+}
+
+#error {
+  background: #eecdcd;
+  border: 1px solid #ee6868;
 }
 
 .field_with_errors {

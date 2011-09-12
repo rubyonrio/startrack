@@ -3,6 +3,7 @@ source :rubygems
 gem 'rails', '3.1.0'
 gem 'devise', '1.4.3'
 gem 'mysql2', '0.3.6'
+gem 'inherited_resources'
 gem 'sass-rails', '3.1.0'
 gem 'coffee-script', '2.2.0'
 gem 'uglifier', '1.0.2'
