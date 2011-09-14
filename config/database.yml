@@ -1,0 +1,6 @@
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: startrack_test
+  username:
+

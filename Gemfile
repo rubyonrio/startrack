@@ -18,6 +18,7 @@ group :development,:test do
     gem "ruby-debug19", :require => 'ruby-debug'
   end
 
+  gem 'shoulda', '2.11.3'
   gem 'capybara', '1.0.1'
   gem 'launchy', '2.0.5'
   gem "simplecov", "~> 0.4.2"

@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/rubyonrio/startrack.png)](http://travis-ci.org/rubyonrio/startrack)
+
 # Startrack Tracker:
 
 ## Goal
