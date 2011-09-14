@@ -6,6 +6,10 @@
 
 /* Main Structure */
 
+html, body {
+  height: 100%;
+}
+
 body {
   background: #eee;
 }
@@ -46,13 +50,11 @@ h3 {
 }
 
 #wrap {
+  position: relative;
+  min-height: 100%;
   max-width: 1260px;
   margin: 0 auto;
   padding: 0 2%;
-}
-
-article {
-  min-height: 550px;
 }
 
 section {
@@ -89,7 +91,14 @@ section {
 .status-pane {
   width: 31.2%;
   padding: 1%;
-  min-height: 300px;
+  height: 400px;
+  overflow: auto;
+}
+
+@media (max-height: 800px) {
+  .status-pane {
+    height: 300px;
+  } 
 }
 
 .status-pane ul {
@@ -125,7 +134,10 @@ aside {
 }
 
 footer {
+  position: absolute;
+  bottom: 0;
   text-align: center;
+  width: 94%;
   clear: both;
   border-top: 1px solid #ccc;
   padding: .5em 0;
