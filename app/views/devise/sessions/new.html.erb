@@ -3,7 +3,7 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
   <p><%= f.label :email %><br />
-  <%= f.email_field :email, :tabindex => "1" %></p>
+  <%= f.email_field :email, :tabindex => "1", :autofocus => "true" %></p>
 
   <p><%= f.label :password %><br />
   <%= f.password_field :password, :tabindex => "2" %></p>
