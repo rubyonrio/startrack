@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   def show
@@ -15,15 +15,15 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
+    @project = current_user.projects.build
   end
 
   def edit
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
   end
 
   def create
-    @project = Project.new(params[:project])
+    @project = current_user.projects.build(params[:project])
     if @project.save
       redirect_to @project, notice: 'Project was successfully created.'
     else
@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
     if @project.update_attributes(params[:project])
       redirect_to @project, notice: 'Project was successfully updated.'
     else
@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
     @project.destroy
     redirect_to projects_url
   end
