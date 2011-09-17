@@ -141,6 +141,9 @@ GEM
       json_pure
       rubyzip
     shoulda (2.11.3)
+    simple_form (1.5.1)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     simplecov (0.4.2)
       simplecov-html (~> 0.4.4)
     simplecov-html (0.4.5)
@@ -182,6 +185,7 @@ DEPENDENCIES
   ruby-debug19
   sass-rails (= 3.1.0)
   shoulda (= 2.11.3)
+  simple_form
   simplecov (~> 0.4.2)
   therubyracer
   uglifier (= 1.0.2)
