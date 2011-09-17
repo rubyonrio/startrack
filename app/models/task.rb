@@ -38,6 +38,6 @@ class Task < ActiveRecord::Base
   end
 
   def to_format
-    self.description_html = RedCloth.new(self.description).to_html
+    self.description_html = RedCloth.new(self.description).to_html rescue ''
   end
 end

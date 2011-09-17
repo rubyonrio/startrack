@@ -2,6 +2,9 @@ create_enterprise:
   name: Create Enterprise
   project: first_journey
   watchers: kirk
+  user: spok
+  type: bug
+  status: todo
 
 room_galaxy:
   name: Room the galaxy

@@ -25,7 +25,6 @@ class TaskTest < ActiveSupport::TestCase
     assert !@task.save
   end
 
-
   test "should require a project" do
     @task.project = nil
     assert !@task.save
@@ -39,6 +38,16 @@ class TaskTest < ActiveSupport::TestCase
   test "should require a status" do
     @task.status = nil
     assert !@task.save
+  end
+
+  test "should return 'No responsible yet' if do not have a responsible" do
+    @task.responsible = nil
+    assert @task.show_responsible_name, 'No responsible yet'
+  end
+
+  test "should return 'No estimative yet'if do not have a estimative" do
+    @task.estimate = nil
+    assert @task.show_estimate_name, 'No estimative yet'
   end
 
   test "should have many comments" do
