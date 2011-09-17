@@ -1,0 +1,10 @@
+<%= @watcher.name %>,
+
+The task <%= "##{@task.id} - #{@task.name}" %> recieved a new comment.
+
+---
+<%= strip_tags raw(@comment.description) %>
+---
+
+Use the link below to answer this comment:
+<%= task_url(@task, :host => "localhost:3000") %>

@@ -1,0 +1,10 @@
+before_script:
+  - "mysql -e 'create database startrack_test;' >/dev/null"
+  - "rake db:migrate"
+script: "bundle exec rake test"
+rvm:
+  - 1.9.2
+notifications:
+  recipients:
+    - ls@lucianosousa.net
+

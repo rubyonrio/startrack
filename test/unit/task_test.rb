@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TaskTest < ActiveSupport::TestCase
   def setup
-    @task = tasks(:one)
+    @task = tasks(:create_enterprise)
   end
 
   test "should not save without name" do
@@ -10,31 +10,20 @@ class TaskTest < ActiveSupport::TestCase
     assert !@task.save
   end
 
-  test "shoud return 'no-type' in 'show_type_name' method if task do not have type" do
+  test "shoud not save without type" do
     @task.type = nil
-    assert_equal(@task.show_type_name, 'no-type')
+    assert !@task.save
   end
 
-  test "shoud return 'no-type' in 'show_type_parameterize_name' method if task do not have type" do
-    @task.type = nil
-    assert_equal(@task.show_type_parameterize_name, 'no-type')
-  end
-
-  test "shoud return 'no-status' in 'show_status_name' method if task do not have status" do
+  test "shoud not save without a status" do
     @task.status = nil
-    assert_equal(@task.show_status_name, 'no-status')
-  end
-
-  test "shoud return 'no-status' in 'show_status_parameterize_name' method if task do not have status" do
-    @task.status = nil
-    assert_equal(@task.show_status_parameterize_name, 'no-status')
+    assert !@task.save
   end
 
   test "should not save without an user" do
     @task.user = nil
     assert !@task.save
   end
-
 
   test "should require a project" do
     @task.project = nil
@@ -49,6 +38,16 @@ class TaskTest < ActiveSupport::TestCase
   test "should require a status" do
     @task.status = nil
     assert !@task.save
+  end
+
+  test "should return 'No responsible yet' if do not have a responsible" do
+    @task.responsible = nil
+    assert @task.show_responsible_name, 'No responsible yet'
+  end
+
+  test "should return 'No estimative yet'if do not have a estimative" do
+    @task.estimate = nil
+    assert @task.show_estimate_name, 'No estimative yet'
   end
 
   test "should have many comments" do

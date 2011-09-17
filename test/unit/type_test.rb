@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TypeTest < ActiveSupport::TestCase
   def setup
-    @type = types(:one)
+    @type = types(:feature)
   end
 
   test "should not create without name" do

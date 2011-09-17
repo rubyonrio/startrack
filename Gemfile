@@ -3,6 +3,7 @@ source :rubygems
 gem 'rails', '3.1.0'
 gem 'devise', '1.4.3'
 gem 'mysql2', '0.3.6'
+gem 'inherited_resources'
 gem 'sass-rails', '3.1.0'
 gem 'coffee-script', '2.2.0'
 gem 'uglifier', '1.0.2'
@@ -18,6 +19,7 @@ group :development,:test do
     gem "ruby-debug19", :require => 'ruby-debug'
   end
 
+  gem 'shoulda', '2.11.3'
   gem 'capybara', '1.0.1'
   gem 'launchy', '2.0.5'
   gem "simplecov", "~> 0.4.2"

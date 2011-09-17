@@ -1,5 +1,12 @@
-one:
-  name: TaskOne
+create_enterprise:
+  name: Create Enterprise
+  project: first_journey
+  watchers: kirk
+  user: spok
+  type: bug
+  status: todo
 
-two:
-  name: TaskTwo
+room_galaxy:
+  name: Room the galaxy
+  project: first_journey
+  watchers: kirk, spok

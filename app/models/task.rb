@@ -6,6 +6,7 @@ class Task < ActiveRecord::Base
   belongs_to :type
   belongs_to :estimate
   has_many :comments, :dependent => :destroy
+  has_and_belongs_to_many :watchers, :class_name => "User", :join_table => "tasks_watchers"
 
   validates :user, :presence => true
   validates :project, :presence => true
@@ -37,6 +38,6 @@ class Task < ActiveRecord::Base
   end
 
   def to_format
-    self.description_html = RedCloth.new(self.description).to_html
+    self.description_html = RedCloth.new(self.description).to_html rescue ''
   end
 end

@@ -6,6 +6,10 @@
 
 /* Main Structure */
 
+html, body {
+  height: 100%;
+}
+
 body {
   background: #eee;
 }
@@ -46,13 +50,11 @@ h3 {
 }
 
 #wrap {
+  position: relative;
+  min-height: 100%;
   max-width: 1260px;
   margin: 0 auto;
   padding: 0 2%;
-}
-
-article {
-  min-height: 300px;
 }
 
 section {
@@ -89,7 +91,14 @@ section {
 .status-pane {
   width: 31.2%;
   padding: 1%;
-  min-height: 300px;
+  height: 400px;
+  overflow: auto;
+}
+
+@media (max-height: 800px) {
+  .status-pane {
+    height: 300px;
+  } 
 }
 
 .status-pane ul {
@@ -125,7 +134,10 @@ aside {
 }
 
 footer {
+  position: absolute;
+  bottom: 0;
   text-align: center;
+  width: 94%;
   clear: both;
   border-top: 1px solid #ccc;
   padding: .5em 0;
@@ -160,11 +172,26 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   margin: .5em 0;
 }
 
+.field.checkbox {
+  width: 50%;
+}
+
+.checkbox ul {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.checkbox li {
+  float: left;
+  list-style-type: none;
+  margin: 1% 0;
+  width: 30%;
+}
+
 /* Specific Areas */
 
-#task-details{
-  position: fixed;
-  top: 110px;
+#task-details {
   border: 1px solid #ccc;
   padding: 1%;
 }
@@ -190,7 +217,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 }
 
 #new_comment textarea {
-  width: 100%;
+  width: 99%;
   height: 10em;
 }
 
@@ -200,9 +227,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 
 /* Alerts */
 
-#notice {
-  color: green;
-  background: #cfc;
+.flash_messages {
   position: fixed;
   top: 0;
   left: 40%;
@@ -212,6 +237,21 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   opacity: .6;
   moz-opacity: .60;
   filter:alpha(opacity=60);
+}
+
+#notice {
+  background: #cdeecf;
+  border: 1px solid #68ed6f;
+}
+
+#alert {
+  background: #eeedcd;
+  border: 1px solid #ede968;
+}
+
+#error {
+  background: #eecdcd;
+  border: 1px solid #ee6868;
 }
 
 .field_with_errors {

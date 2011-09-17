@@ -1,3 +1,4 @@
+<% content_for :title, "##{@task.id} #{@task.name} @ #{@task.project.name}" %>
 <article>
   <p><b>Project:</b> <%= link_to @task.project.name, project_path(@task.project) %></p>
   <section id="task-details">
@@ -12,6 +13,15 @@
     <p><b>Status:</b> <%= @task.status.name %></p>
 
     <p><b>Type:</b> <%= @task.type.name %></p>
+
+    <% if @task.watchers %>
+    <b>Watchers:</b>
+    <ol class="watchers">
+      <% @task.watchers.each do |watcher| %>
+      <%= content_tag :li, watcher.name %>
+      <% end %>
+    </ol>
+    <% end %>
 
     <p><b>Description:</b> <%= raw show_task_description(@task) %></p>
 
