@@ -1,0 +1,24 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: startrack_development
+  username: root
+  password:
+  host: localhost
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: startrack_test
+  username:
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: startrack_production
+  username: root
+  password:
+  host: localhost
