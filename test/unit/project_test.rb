@@ -3,6 +3,7 @@ require 'test_helper'
 class ProjectTest < ActiveSupport::TestCase
   def setup
     @project = projects(:first_journey)
+    @project.users.build
   end
 
   test "should not save without a name" do
@@ -10,10 +11,16 @@ class ProjectTest < ActiveSupport::TestCase
     assert !@project.save
   end
 
+  test "should not save without a user" do
+    @project.users.clear
+    assert !@project.valid?
+  end
+
   test "should have many users" do
     @user_one = users(:kirk)
     @user_two = users(:spok)
-
+    
+    @project.users.clear
     @project.users << @user_one
     @project.users << @user_two
 
@@ -29,6 +36,4 @@ class ProjectTest < ActiveSupport::TestCase
 
     assert_equal(@project.tasks.length, 2)
   end
-
-
 end
