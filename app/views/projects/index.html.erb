@@ -1,21 +1,24 @@
 <% content_for :title, "Listing all projects" %>
 <h1>Listing projects</h1>
 
+<% unless @projects.nil? %>
 <table>
   <tr>
     <th>Name</th>
     <th>Description</th>
     <th></th>
   </tr>
-
-<% @projects.each do |project| %>
+  <% @projects.each do |project| %>
   <tr>
     <td><%= link_to project.name, project %> (<%= link_to 'Edit', edit_project_path(project) %>)</td>
     <td><%= project.description %></td>
     <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-<% end %>
+  <% end %>
 </table>
+<% else %>
+  <p>You don't have any projects. <%= link_to 'Create', new_project_path %> your first project!</p>
+<% end %>
 
 <br />
 

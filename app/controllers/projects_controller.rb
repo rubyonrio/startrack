@@ -3,6 +3,9 @@ class ProjectsController < InheritedResources::Base
   respond_to :html
   actions :all
 
+  def index
+  end
+
   def show
     show! do
       @tasks = @project.tasks.all
@@ -14,8 +17,8 @@ class ProjectsController < InheritedResources::Base
   end
 
   protected
-  def begin_of_association
+  def begin_of_association_chain
     @project = current_user.projects.where(id: params[:id]).first
-    @projects = current_user.projects
+    @projects = current_user.projects if current_user.projects.any?
   end
 end

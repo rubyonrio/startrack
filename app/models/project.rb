@@ -3,6 +3,6 @@ class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
 
   validates :name,  :presence => true
-	validates_length_of :users, :minimum => 1
+  validates_length_of :users, :minimum => 1
 	
 end
