@@ -95,12 +95,6 @@ section {
   overflow: auto;
 }
 
-@media (max-height: 800px) {
-  .status-pane {
-    height: 300px;
-  } 
-}
-
 .status-pane ul {
   padding: 0;
 }
@@ -126,6 +120,15 @@ section {
 
 .status-pane .bug {
   color: #df0000;
+}
+
+@media (max-height: 800px) {
+  .status-pane {
+    height: 300px;
+  }
+  .status-pane.todo {
+    height: 210px;
+  }
 }
 
 aside {
