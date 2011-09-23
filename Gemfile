@@ -9,6 +9,7 @@ gem 'mysql2', '0.3.7'
 gem 'uglifier', '1.0.3'
 gem 'RedCloth', '4.2.8'
 gem 'simple_form', '1.5.2'
+gem 'pg'
 
 group :development,:test do
   platforms :mri_18 do
