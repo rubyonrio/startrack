@@ -2,6 +2,7 @@ log/*
 tmp/*
 config/database.yml
 *.swp
+*.swo
 coverage/*
 .bundle
 db/schema.rb
