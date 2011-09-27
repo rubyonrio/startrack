@@ -5,6 +5,7 @@ class ProjectsControllerTest < ActionController::TestCase
   setup do
     @project = projects(:first_journey)
     @current_user = users(:spok)
+    @another_user = users(:kirk)
     sign_in @current_user
   end
 
@@ -65,5 +66,11 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_difference('Project.count', -1) do
       delete :destroy, id: @project.id
     end
+  end
+
+  test "should redirect to root_path if user does'nt have permission" do
+    @project.users.include?(@another_user)
+    get :show, id: @project.to_param
+    assert_redirected_to :root_path
   end
 end

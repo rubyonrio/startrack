@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :member_of?, :only => "show"
 
   def index
     @projects = current_user.projects
@@ -24,6 +25,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.build(params[:project])
+    @project.users << current_user
     if @project.save
       redirect_to @project, notice: 'Project was successfully created.'
     else
@@ -44,6 +46,13 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.find(params[:id])
     @project.destroy
     redirect_to projects_url
+  end
+
+  def member_of?
+    @project = Project.find(params[:id])
+    unless @project.users.include?(current_user)
+      redirect_to root_path, :alert => "You don't have permission to acess this project."
+    end
   end
 end
 
