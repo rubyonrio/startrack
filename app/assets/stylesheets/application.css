@@ -14,6 +14,21 @@ body {
   background: #eee;
 }
 
+body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  padding: 18px;
+  webkit-border-radius: 1px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(070, 070, 070, 1);
+  padding: 8px;
+  width: 6px;
+  height: 6px;
+  webkit-border-radius: 1px;
+}
+
 header {
   overflow: hidden;
   padding: 1em 0 0;
@@ -122,6 +137,21 @@ section {
   color: #df0000;
 }
 
+.status-pane::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  padding: 18px;
+  webkit-border-radius: 1px;
+}
+
+.status-pane::-webkit-scrollbar-thumb {
+  background-color: rgba(053, 057, 071, 0.3);
+  padding: 8px;
+  width: 6px;
+  height: 6px;
+  webkit-border-radius: 1px;
+}
+
 @media (max-height: 800px) {
   .status-pane {
     height: 300px;
@@ -142,6 +172,7 @@ footer {
   text-align: center;
   width: 94%;
   clear: both;
+  background: #eee;
   border-top: 1px solid #ccc;
   padding: .5em 0;
 }
