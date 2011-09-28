@@ -5,7 +5,6 @@ class ProjectsControllerTest < ActionController::TestCase
   setup do
     @project = projects(:first_journey)
     @current_user = users(:spok)
-    @another_user = users(:kirk)
     sign_in @current_user
   end
 
@@ -37,7 +36,7 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test "should show all related kind of task for a project" do
-    get :show, id: @project.to_param
+    get :show, id: @project.id
     assert_not_nil assigns(:tasks)
     assert_not_nil assigns(:task_todo)
     assert_not_nil assigns(:task_scheduled)
@@ -68,9 +67,9 @@ class ProjectsControllerTest < ActionController::TestCase
     end
   end
 
-  test "should redirect to root_path if user does'nt have permission" do
-    @project.users.include?(@another_user)
-    get :show, id: @project.to_param
-    assert_redirected_to :root_path
+  test "should redirect to root_path if user doesn't have permission" do
+    @current_user.projects.clear
+    get :show, id: @project.id
+    assert_redirected_to root_path
   end
 end
