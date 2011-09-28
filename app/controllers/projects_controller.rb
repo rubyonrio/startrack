@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
     @task_todo = @project.tasks.todo
     @task_scheduled = @project.tasks.scheduled
     @task_current = @project.tasks.current
-    @task_done = @project.tasks.done
+    @task_done = @project.tasks.done.order("updated_at DESC")
   end
 
   def new
