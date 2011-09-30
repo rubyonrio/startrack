@@ -1,0 +1,10 @@
+<%= @watcher.name %>,
+
+The task <%= "##{@task.id} - #{@task.name}" %> has been updated.
+
+---
+<%= strip_tags raw(@task_changes) %>
+---
+
+Use the link below to answer this comment:
+<%= task_url(@task, :host => "localhost:3000") %>

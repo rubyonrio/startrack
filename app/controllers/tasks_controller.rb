@@ -38,9 +38,13 @@ class TasksController < ApplicationController
     params[:task][:watcher_ids] ||= []
 
     @task = Task.find(params[:id])
+    @task.attributes = params[:task]
+    @task_changes = @task.changes
+    #TODO: get nested attributes changes
 
     respond_to do |format|
-      if @task.update_attributes(params[:task])
+      if @task.save
+        notify_changes(@task, @task_changes)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { head :ok }
       else
@@ -72,6 +76,14 @@ class TasksController < ApplicationController
 
   def load_users
     @responsibles = User.all
+  end
+
+  def notify_changes(task, changes)
+    unless @task.watchers.nil?
+      @task.watchers.each do |watcher|
+        TaskMailer.task_notification(watcher, task, changes).deliver
+      end
+    end
   end
 
 end
