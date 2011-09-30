@@ -187,6 +187,10 @@ input, textarea {
   color: #333;
 }
 
+textarea {
+  height: 5em;
+}
+
 input:active, input:focus, textarea:active, textarea:focus {
   background: #fff;
 }
