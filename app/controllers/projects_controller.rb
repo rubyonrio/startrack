@@ -9,9 +9,9 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @tasks = @project.tasks.all
-    @task_todo = @project.tasks.todo
-    @task_scheduled = @project.tasks.scheduled
-    @task_current = @project.tasks.current
+    @task_todo = @project.tasks.todo.order("updated_at DESC")
+    @task_scheduled = @project.tasks.scheduled.order("updated_at DESC")
+    @task_current = @project.tasks.current.order("updated_at DESC")
     @task_done = @project.tasks.done.order("updated_at DESC")
   end
 
