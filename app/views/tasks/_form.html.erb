@@ -1,48 +1,16 @@
-<%= form_for([@project, @task]) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<%= simple_form_for([@project, @task], :wrapper => :inline) do |f| %>
+  <%= f.error_notification %>
 
-      <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <fieldset class="inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.association :responsible, :collection => @responsibles %>
+    <%= f.association :watchers, :as => :check_boxes %>
+    <%= f.association :estimate, :collection => @estimate %>
+    <%= f.association :status, :collection => @status %>
+    <%= f.association :type, :collection => @type %>
+  </fieldset>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :responsible %><br />
-    <%= f.collection_select :responsible_id, @responsibles, :id, :name, {:prompt => true} %>
-  </div>
-  <div class="field checkbox">
-    <%= f.label :watchers %>
-    <ul>
-      <% User.find(:all).each do |w| %>
-      <li><%= check_box_tag 'task[watcher_ids][]', w.id, @task.watchers.include?(w) %><%= w.name %></li>
-      <% end %>
-    </ul>
-  </div>
-  <div class="field">
-    <%= f.label :estimate %><br />
-    <%= f.collection_select :estimate_id, @estimate, :id, :name, {:prompt => true} %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.collection_select :status_id, @status, :id, :name, {:prompt => true} %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.collection_select :type_id, @type, :id, :name, {:prompt => true} %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
