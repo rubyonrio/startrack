@@ -8,7 +8,8 @@ gem 'coffee-script', '2.2.0'
 gem 'uglifier', '1.0.2'
 gem 'jquery-rails', '1.0.13'
 gem 'RedCloth'
-gem 'simple_form'
+gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
+gem 'less-rails-bootstrap'
 
 group :development,:test do
   platforms :mri_18 do
