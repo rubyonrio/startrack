@@ -180,6 +180,6 @@ DEPENDENCIES
   sass-rails (= 3.1.4)
   shoulda (= 2.11.3)
   simple_form (= 1.5.2)
-  simplecov (~> 0.5.3)
+  simplecov (= 0.5.3)
   therubyracer (= 0.9.8)
   uglifier (= 1.0.3)
