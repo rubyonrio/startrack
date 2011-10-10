@@ -36,7 +36,7 @@
       <% @comments.each do |c| %>
       <li>
         <%= link_to 'Destroy', comment_path(c), confirm: 'Are you sure?', method: :delete, :class => "destroy" if c.user == current_user%>
-        <em><%= c.user.email %> said</em>
+        <em><%= c.user.email %> said <%= time_ago_in_words c.updated_at %></em>
         <%= raw c.description.html_safe %>
       </li>
       <% end %>
