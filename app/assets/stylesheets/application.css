@@ -66,10 +66,14 @@ h3 {
 
 #wrap {
   position: relative;
-  min-height: 100%;
   max-width: 1260px;
   margin: 0 auto;
   padding: 0 2%;
+}
+
+article {
+  padding: 0 0 43px;
+  overflow: hidden;
 }
 
 section {
@@ -167,7 +171,7 @@ aside {
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   text-align: center;
   width: 94%;
