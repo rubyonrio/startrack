@@ -2,6 +2,8 @@
 
 The task <%= "##{@task.id} - #{@task.name}" %> has been updated.
 
+<%= @watchers_changes unless @watchers_changes.nil? %>
+
 ---
 <%= strip_tags raw(@task_changes) %>
 ---

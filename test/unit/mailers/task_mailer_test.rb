@@ -7,7 +7,7 @@ class TaskMailerTest < ActionMailer::TestCase
     @task = tasks(:create_enterprise)
     @watcher = tasks(:create_enterprise).watchers.first
     @changes = tasks(:create_enterprise).type
-    @task_notification = TaskMailer.task_notification(@watcher, @task, @changes)
+    @task_notification = TaskMailer.task_notification(@watcher, @task, @changes, @watchers_changes)
   end
 
   test "comment notification" do
