@@ -3,17 +3,19 @@
 The task <%= "##{@task.id} - #{@task.name}" %> has been updated.
 
 <% unless @watchers_changes.nil? %>
+Added watcher:
 <% @watchers_changes[:added].each do |added_watcher| %>
-<%= "Added watcher:\n- #{added_watcher.name}" %>
+<%= "- #{added_watcher.name}" %>
 <% end %>
 
+Removed watcher:
 <% @watchers_changes[:removed].each do |removed_watcher| %>
-<%= "Removed watcher:\n- #{removed_watcher.name}" %>
+<%= "- #{removed_watcher.name}" %>
 <% end %>
 <% end %>
 
 ---
-<%= strip_tags raw(@task_changes) %>
+<%= strip_tags raw(@changes) %>
 ---
 
 Use the link below to answer this comment:

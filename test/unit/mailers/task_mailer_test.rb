@@ -9,7 +9,7 @@ class TaskMailerTest < ActionMailer::TestCase
     @watchers_changes = {}
     @watchers_changes[:added] = [tasks(:room_galaxy).watchers.first]
     @watchers_changes[:removed] = [tasks(:room_galaxy).watchers.last]
-    @changes = tasks(:room_galaxy).type
+    @changes = tasks(:room_galaxy).type.name
     @task_notification = TaskMailer.task_notification(@watcher, @task, @changes, @watchers_changes)
   end
 
