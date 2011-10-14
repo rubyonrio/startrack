@@ -29,6 +29,13 @@ class TasksControllerTest < ActionController::TestCase
     assert_equal "Task was successfully created.", flash[:notice]
   end
 
+  test "should update task" do
+    post :update, id: @task.id, task: {name: 'Testing'}
+
+    assert_redirected_to task_path(assigns(:task))
+    assert_equal "Task was successfully updated.", flash[:notice]
+  end
+
   test "should get edit" do
     get :edit, id: @task.id
     assert_response :success

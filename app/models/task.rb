@@ -40,4 +40,16 @@ class Task < ActiveRecord::Base
   def to_format
     self.description_html = RedCloth.new(self.description).to_html rescue ''
   end
+
+  def get_watchers_changes(params)
+    unless params.nil?
+      new_watchers = User.find(params)
+      current_watchers = User.find(self.watchers.collect(&:id).dup)
+      watchers_changes = {}
+      watchers_changes[:added] = new_watchers unless current_watchers.include?(new_watchers)
+      watchers_changes[:removed] = current_watchers unless new_watchers.include?(current_watchers)
+      watchers_changes
+    end
+  end
+
 end

@@ -2,7 +2,15 @@
 
 The task <%= "##{@task.id} - #{@task.name}" %> has been updated.
 
-<%= @watchers_changes unless @watchers_changes.nil? %>
+<% unless @watchers_changes.nil? %>
+<% @watchers_changes[:added].each do |added_watcher| %>
+<%= "Added watcher:\n- #{added_watcher.name}" %>
+<% end %>
+
+<% @watchers_changes[:removed].each do |removed_watcher| %>
+<%= "Removed watcher:\n- #{removed_watcher.name}" %>
+<% end %>
+<% end %>
 
 ---
 <%= strip_tags raw(@task_changes) %>

@@ -10,3 +10,4 @@ room_galaxy:
   name: Room the galaxy
   project: first_journey
   watchers: kirk, spok
+  type: bug

@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
-
   before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit]
 
   def show
@@ -36,11 +35,8 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-
-    @current_watchers = @task.watchers
-    @new_watchers = User.find(params[:task][:watcher_ids])
-    watchers_changes(@current_watchers, @new_watchers)
-
+    @watchers_changes = @task.get_watchers_changes(params[:task][:watcher_ids])
+    
     params[:task][:watcher_ids] ||= []
     @task.attributes = params[:task]
     @task_changes = @task.changes
@@ -79,16 +75,6 @@ class TasksController < ApplicationController
 
   def load_users
     @responsibles = User.all
-  end
-
-  def watchers_changes(current, new)
-    added = []
-    added << new unless current.include?(new)
-
-    removed = []
-    removed << current unless new.include?(current)
-
-    @watchers_changes = [added, removed]
   end
 
   def notify_changes(task, changes, watchers_changes)
