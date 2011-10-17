@@ -14,9 +14,11 @@ Removed watcher:
 <% end %>
 <% end %>
 
----
-<%= strip_tags raw(@changes) %>
----
-
+<%= raw "Name:\n#{@changes[:name].first} -> #{@changes[:name].last}\n" unless @changes[:name].nil? %>
+<%= raw "Description:\n#{@changes[:description].first} -> #{@changes[:description].last}\n" unless @changes[:description].nil? %>
+<%= raw "Responsible:\n#{@changes[:responsible_id].first} -> #{@changes[:responsible_id].last}\n" unless @changes[:responsible_id].nil? %>
+<%= raw "Type:\n#{@changes[:type_id].first} -> #{@changes[:type_id].last}\n" unless @changes[:type_id].nil? %>
+<%= raw "Status:\n#{@changes[:status_id].first} -> #{@changes[:status_id].last}\n" unless @changes[:status_id].nil? %>
+<%= raw "Estimate:\n#{@changes[:estimate_id].first} -> #{@changes[:estimate_id].last}\n" unless @changes[:estimate_id].nil? %>
 Use the link below to answer this comment:
 <%= task_url(@task, :host => "localhost:3000") %>

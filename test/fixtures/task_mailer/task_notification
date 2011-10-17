@@ -8,9 +8,23 @@ Added watcher:
 Removed watcher:
 - Spok
 
----
-Bug
----
+Name:
+Room the galaxy -> Dominate the galaxy
+
+Description:
+Destroy the enemy -> Annihilate the enemy
+
+Responsible:
+Commander Kirk -> Spok
+
+Type:
+Bug -> Feature
+
+Status:
+TODO -> Scheduled
+
+Estimate:
+Fast -> Longstanding
 
 Use the link below to answer this comment:
 http://localhost:3000/tasks/938857913
