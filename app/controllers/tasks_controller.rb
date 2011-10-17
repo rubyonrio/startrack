@@ -36,7 +36,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @watchers_changes = @task.get_watchers_changes(params[:task][:watcher_ids])
-    
+
     params[:task][:watcher_ids] ||= []
     @task.attributes = params[:task]
     @task_changes = @task.changes

@@ -43,11 +43,26 @@ class Task < ActiveRecord::Base
 
   def get_watchers_changes(params)
     unless params.nil?
-      new_watchers = User.find(params)
-      current_watchers = User.find(self.watchers.collect(&:id).dup)
+      new_watchers = []
+      new_watchers = params.collect(&:to_i)
+      current_watchers = []
+      current_watchers = self.watchers.collect(&:id).dup
+      
+      added_watchers  = new_watchers - current_watchers
+      removed_watchers = current_watchers - new_watchers
+      
       watchers_changes = {}
-      watchers_changes[:added] = new_watchers unless current_watchers.include?(new_watchers)
-      watchers_changes[:removed] = current_watchers unless new_watchers.include?(current_watchers)
+      watchers_changes[:added] = []
+      watchers_changes[:removed] = []
+
+      added_watchers.each do |added|
+        watchers_changes[:added] << User.find(added)
+      end
+
+      removed_watchers.each do |removed|
+        watchers_changes[:removed] << User.find(removed)
+      end
+      
       watchers_changes
     end
   end
