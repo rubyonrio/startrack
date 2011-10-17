@@ -2,23 +2,20 @@
 
 The task <%= "##{@task.id} - #{@task.name}" %> has been updated.
 
-<% unless @watchers_changes.nil? %>
+<% unless @watchers_changes[:added].empty? %>
 Added watcher:
 <% @watchers_changes[:added].each do |added_watcher| %>
 <%= "- #{added_watcher.name}" %>
 <% end %>
+<% end %>
 
+<% unless @watchers_changes[:removed].empty? %>
 Removed watcher:
 <% @watchers_changes[:removed].each do |removed_watcher| %>
 <%= "- #{removed_watcher.name}" %>
 <% end %>
 <% end %>
 
-<%= raw "Name:\n#{@changes[:name].first} -> #{@changes[:name].last}\n" unless @changes[:name].nil? %>
-<%= raw "Description:\n#{@changes[:description].first} -> #{@changes[:description].last}\n" unless @changes[:description].nil? %>
-<%= raw "Responsible:\n#{@changes[:responsible_id].first} -> #{@changes[:responsible_id].last}\n" unless @changes[:responsible_id].nil? %>
-<%= raw "Type:\n#{@changes[:type_id].first} -> #{@changes[:type_id].last}\n" unless @changes[:type_id].nil? %>
-<%= raw "Status:\n#{@changes[:status_id].first} -> #{@changes[:status_id].last}\n" unless @changes[:status_id].nil? %>
-<%= raw "Estimate:\n#{@changes[:estimate_id].first} -> #{@changes[:estimate_id].last}\n" unless @changes[:estimate_id].nil? %>
+<%= raw "Name:\n#{@changes[:name].first} -> #{@changes[:name].last}\n" unless @changes[:name].nil? %><%= raw "\nDescription:\n#{@changes[:description].first} -> #{@changes[:description].last}\n" unless @changes[:description].nil? %><%= raw "\nResponsible:\n#{@changes[:responsible_id].first} -> #{@changes[:responsible_id].last}\n" unless @changes[:responsible_id].nil? %><%= raw "\nType:\n#{@changes[:type_id].first} -> #{@changes[:type_id].last}\n" unless @changes[:type_id].nil? %><%= raw "\nStatus:\n#{@changes[:status_id].first} -> #{@changes[:status_id].last}\n" unless @changes[:status_id].nil? %><%= raw "\nEstimate:\n#{@changes[:estimate_id].first} -> #{@changes[:estimate_id].last}\n" unless @changes[:estimate_id].nil? %>
 Use the link below to answer this comment:
 <%= task_url(@task, :host => "localhost:3000") %>

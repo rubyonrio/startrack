@@ -13,7 +13,7 @@ class TaskMailerTest < ActionMailer::TestCase
     @changes[:name] = [tasks(:room_galaxy).name, "Dominate the galaxy"]
     @changes[:description] = [tasks(:room_galaxy).description, "Annihilate the enemy"]
     @changes[:responsible_id] = [tasks(:room_galaxy).responsible.name, "Spok"]
-    @changes[:type_id] = [tasks(:room_galaxy).type.name, "Feature"]
+    @changes[:type_id] = nil
     @changes[:status_id] = [tasks(:room_galaxy).status.name, "Scheduled"]
     @changes[:estimate_id] = [tasks(:room_galaxy).estimate.name, "Longstanding"]
     @task_notification = TaskMailer.task_notification(@watcher, @task, @changes, @watchers_changes)
