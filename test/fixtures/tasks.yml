@@ -8,6 +8,11 @@ create_enterprise:
 
 room_galaxy:
   name: Room the galaxy
+  description: Destroy the enemy
+  responsible: kirk
   project: first_journey
   watchers: kirk, spok
   type: bug
+  status: todo
+  estimate: fast
+
