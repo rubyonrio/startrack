@@ -3,6 +3,7 @@ require 'test_helper'
 class TaskTest < ActiveSupport::TestCase
   def setup
     @task = tasks(:create_enterprise)
+    @user = users(:spok)
   end
 
   test "should not save without name" do
@@ -57,5 +58,16 @@ class TaskTest < ActiveSupport::TestCase
     @task.comments << @comment_one
     @task.comments << @comment_two
     assert_equal(@task.comments.length, 2)
+  end
+
+  test "should get watchers changes" do
+    #TODO
+  end
+
+  test "should get changes names" do
+    @task.responsible = tasks(:room_galaxy).responsible
+    @task.responsible = @user
+    @task.get_changes_names(@task.changes)
+    assert @task.changes[:responsible_id], 'Spok'
   end
 end

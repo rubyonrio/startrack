@@ -39,7 +39,7 @@ class TasksController < ApplicationController
 
     params[:task][:watcher_ids] ||= []
     @task.attributes = params[:task]
-    @task_changes = @task.changes
+    @task_changes = @task.get_changes_names(@task.changes)
 
     respond_to do |format|
       if @task.save

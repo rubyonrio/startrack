@@ -1,6 +1,7 @@
 create_enterprise:
   name: Create Enterprise
   project: first_journey
+  responsible: kirk
   watchers: kirk
   user: spok
   type: bug
