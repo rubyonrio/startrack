@@ -2,8 +2,11 @@ require 'test_helper'
 
 class TaskTest < ActiveSupport::TestCase
   def setup
-    @task = tasks(:create_enterprise)
-    @user = users(:spok)
+    @task = tasks(:room_galaxy)
+    @new_user = users(:spok)
+    @new_status = statuses(:scheduled)
+    @new_estimate = estimates(:longstanding)
+    @new_type = types(:feature)
   end
 
   test "should not save without name" do
@@ -65,9 +68,14 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "should get changes names" do
-    @task.responsible = tasks(:room_galaxy).responsible
-    @task.responsible = @user
+    @task.responsible = @new_user
+    @task.status = @new_status
+    @task.estimate = @new_estimate
+    @task.type = @new_type
     @task.get_changes_names(@task.changes)
     assert @task.changes[:responsible_id], 'Spok'
+    assert @task.changes[:status_id], 'Scheduled'
+    assert @task.changes[:estimate_id], 'Longstanding'
+    assert @task.changes[:type_id], 'Feature'
   end
 end
