@@ -8,3 +8,5 @@ kirk:
   name: Commander Kirk
   email: kirk@example.com
 
+mccoy:
+  name: Leonard McCoy

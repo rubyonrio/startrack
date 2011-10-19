@@ -7,6 +7,7 @@ class TaskTest < ActiveSupport::TestCase
     @new_status = statuses(:scheduled)
     @new_estimate = estimates(:longstanding)
     @new_type = types(:feature)
+    @added_watcher = users(:mccoy)
   end
 
   test "should not save without name" do
@@ -64,7 +65,9 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "should get watchers changes" do
-    #TODO
+    @watchers_changes = @task.get_watchers_changes([@added_watcher.id.to_s])
+    assert @watchers_changes[:added].first.name, 'Leonard McCoy'
+    assert @watchers_changes[:removed].last.name, 'Spok'
   end
 
   test "should get changes names" do
