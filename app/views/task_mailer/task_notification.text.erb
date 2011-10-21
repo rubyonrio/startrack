@@ -18,4 +18,4 @@ Removed watcher:
 
 <%= raw "Name:\n#{@changes[:name].first} -> #{@changes[:name].last}\n" unless @changes[:name].nil? %><%= raw "\nDescription:\n#{@changes[:description].first} -> #{@changes[:description].last}\n" unless @changes[:description].nil? %><%= raw "\nResponsible:\n#{@changes[:responsible_id].first} -> #{@changes[:responsible_id].last}\n" unless @changes[:responsible_id].nil? %><%= raw "\nType:\n#{@changes[:type_id].first} -> #{@changes[:type_id].last}\n" unless @changes[:type_id].nil? %><%= raw "\nStatus:\n#{@changes[:status_id].first} -> #{@changes[:status_id].last}\n" unless @changes[:status_id].nil? %><%= raw "\nEstimate:\n#{@changes[:estimate_id].first} -> #{@changes[:estimate_id].last}\n" unless @changes[:estimate_id].nil? %>
 Use the link below to answer this comment:
-<%= task_url(@task, :host => "localhost:3000") %>
+<%= task_url(@task, :host => APP_CONFIG[:application][:address]) %>
