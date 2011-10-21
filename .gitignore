@@ -11,3 +11,4 @@ db/*.sqlite3
 Gemfile.lock
 .sass-cache/*
 .DS_Store
+config/initializers/setup_mail.rb
