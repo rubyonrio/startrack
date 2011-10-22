@@ -3,6 +3,7 @@ require 'test_helper'
 class TaskTest < ActiveSupport::TestCase
   def setup
     @task = tasks(:room_galaxy)
+    @task_two = tasks(:create_enterprise)
     @new_user = users(:spok)
     @new_status = statuses(:scheduled)
     @new_estimate = estimates(:longstanding)
@@ -71,14 +72,14 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "should get changes names" do
-    @task.responsible = @new_user
-    @task.status = @new_status
-    @task.estimate = @new_estimate
-    @task.type = @new_type
-    @task.get_changes_names(@task.changes)
-    assert @task.changes[:responsible_id], 'Spok'
-    assert @task.changes[:status_id], 'Scheduled'
-    assert @task.changes[:estimate_id], 'Longstanding'
-    assert @task.changes[:type_id], 'Feature'
+    @task_two.responsible = @new_user
+    @task_two.status = @new_status
+    @task_two.estimate = @new_estimate
+    @task_two.type = @new_type
+    @task_two.get_changes_names(@task_two.changes)
+    assert @task_two.changes[:responsible_id], 'Spok'
+    assert @task_two.changes[:status_id], 'Scheduled'
+    assert @task_two.changes[:estimate_id], 'Longstanding'
+    assert @task_two.changes[:type_id], 'Feature'
   end
 end

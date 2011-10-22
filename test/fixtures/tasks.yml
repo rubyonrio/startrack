@@ -1,11 +1,11 @@
 create_enterprise:
   name: Create Enterprise
   project: first_journey
-  responsible: kirk
   watchers: kirk
   user: spok
   type: bug
   status: todo
+  estimate: fast
 
 room_galaxy:
   name: Room the galaxy
@@ -16,4 +16,3 @@ room_galaxy:
   type: bug
   status: todo
   estimate: fast
-

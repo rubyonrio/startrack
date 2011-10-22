@@ -68,28 +68,21 @@ class Task < ActiveRecord::Base
   end
 
   def get_changes_names(changes)
-    unless changes[:responsible_id].nil?
-      old_responsible = User.find(changes[:responsible_id].first)
-      new_responsible = User.find(changes[:responsible_id].last)
-      changes[:responsible_id] = [old_responsible.name, new_responsible.name]
-    end
-
-    unless changes[:status_id].nil?
-      old_status = Status.find(changes[:status_id].first)
-      new_status = Status.find(changes[:status_id].last)
-      changes[:status_id] = [old_status.name, new_status.name]
-    end
+    field = {:responsible_id => User, :status_id => Status, :type_id => Type, :estimate_id => Estimate}
     
-    unless changes[:type_id].nil?
-      old_type = Type.find(changes[:type_id].first)
-      new_type = Type.find(changes[:type_id].last)
-      changes[:type_id] = [old_type.name, new_type.name]
-    end
-
-    unless changes[:estimate_id].nil?
-      old_estimate = Estimate.find(changes[:estimate_id].first)
-      new_estimate = Estimate.find(changes[:estimate_id].last)
-      changes[:estimate_id] = [old_estimate.name, new_estimate.name]
+    field.each do |key , value|
+      old = "None yet"
+      new = "None yet"
+      
+      if changes[key]
+        if changes[key].first
+          old = value.find(changes[key].first).name
+        end
+        if changes[key].last
+          new = value.find(changes[key].last).name
+        end
+      end
+      changes[key] = [old, new]
     end
 
     changes
