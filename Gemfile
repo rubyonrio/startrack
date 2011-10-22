@@ -11,6 +11,9 @@ gem 'RedCloth', '4.2.8'
 gem 'simple_form', '1.5.2'
 
 group :development,:test do
+  # Pretty printed test output
+  gem 'turn', :require => false
+  gem 'minitest'
   platforms :mri_18 do
     gem "ruby-debug", '0.10.4'
   end
