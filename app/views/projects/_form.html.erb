@@ -1,10 +1,10 @@
 <%= simple_form_for(@project) do |f| %>
-    <%= f.error_notification %>
+  <%= f.error_notification %>
 
   <fieldset class="inputs">
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.association :users, :as => :check_boxes %>
+    <%= f.association :users, :as => :check_boxes, :collection => @users %>
   </fieldset>
   
   <div class="actions">

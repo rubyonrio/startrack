@@ -17,10 +17,12 @@ class ProjectsController < ApplicationController
 
   def new
     @project = current_user.projects.build
+    @users = User.all(:order => 'name')
   end
 
   def edit
     @project = current_user.projects.find(params[:id])
+    @users = User.all(:order => 'name')
   end
 
   def create
