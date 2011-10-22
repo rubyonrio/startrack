@@ -15,7 +15,6 @@ class ProjectsControllerTest < ActionController::TestCase
 
   test "should get new" do
     get :new
-    assert_equal(assigns(:project), @current_user.projects.build)
     assert_response :success
   end
 
