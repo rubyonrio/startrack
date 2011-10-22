@@ -2,7 +2,7 @@
 
 The task <%= "##{@task.id} - #{@task.name}" %> recieved a new comment.
 
----
+<%= @comment.user.name %> said:
 <%= strip_tags raw(@comment.description) %>
 ---
 
