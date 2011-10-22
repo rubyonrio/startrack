@@ -17,7 +17,6 @@ group :development,:test do
   platforms :mri_19 do
     gem "ruby-debug19", '0.11.6', :require => 'ruby-debug'
   end
-
   gem 'shoulda', '2.11.3'
   gem 'capybara', '1.1.1'
   gem 'launchy', '2.0.5'

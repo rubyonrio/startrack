@@ -25,7 +25,6 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.build(params[:project])
-    @project.users << current_user
     if @project.save
       redirect_to @project, notice: 'Project was successfully created.'
     else
