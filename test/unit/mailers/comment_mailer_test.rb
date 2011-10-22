@@ -5,7 +5,7 @@ class CommentMailerTest < ActionMailer::TestCase
 
   def setup
     @comment = comments(:one)
-    @watcher = tasks(:create_enterprise).watchers.first
+    @watcher = tasks(:room_galaxy).watchers.first
     @commment_notification = CommentMailer.comment_notification(@watcher, @comment)
   end
 
