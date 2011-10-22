@@ -19,13 +19,13 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test "should create a project" do
-    project = @current_user.projects.build(name: "New project", description: "Description")
+    project = Project.new(name: "New project", description: "Description")
     assert_difference('Project.count') do
       post :create, project: project.attributes
     end
 
-    assert_equal 1, project.users.length
-    assert_not_nil project
+    assert_equal 1, assigns(:project).users.length
+    assert_not_nil assigns(:project)
     assert_redirected_to project_path(assigns(:project))
   end
 
