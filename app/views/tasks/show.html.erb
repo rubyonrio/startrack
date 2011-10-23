@@ -15,35 +15,50 @@
     <p><b>Type:</b> <%= @task.type.name %></p>
 
     <% if @task.watchers %>
-    <b>Watchers:</b>
-    <ol class="watchers">
-      <% @task.watchers.each do |watcher| %>
-      <%= content_tag :li, watcher.name %>
-      <% end %>
-    </ol>
+      <b>Watchers:</b>
+      <ol class="watchers">
+        <% @task.watchers.each do |watcher| %>
+          <%= content_tag :li, watcher.name %>
+        <% end %>
+      </ol>
     <% end %>
 
     <p><b>Description:</b> <%= raw show_task_description(@task) %></p>
 
     <%= link_to 'Edit', edit_task_path(@task) %>
+
+    <p><b>Arquivos:</b></p>
+    <div class="task_file_list">
+      <% @task.task_files.each do |task_file|  %>
+        <div>
+          <p>
+            <%= link_to task_file.file_name, task_file.file.url %>&nbsp;
+            <%= link_to(image_tag("bt_mais.gif"),"javascript:void(0)", {:onclick => "toggleTaskDescription(this);", :class => "mais"}) if task_file.description != nil %>
+          </p>
+          <div class="task_file_description" style="display:none;">
+            <%= task_file.description %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </section>
 
   <aside>
     <% if @task.comments.any? %>
-    <h2>Comments</h2>
+      <h2>Comments</h2>
 
-    <ul class="thread">
-      <% @comments.each do |c| %>
-      <li>
-        <%= link_to 'Destroy', comment_path(c), confirm: 'Are you sure?', method: :delete, :class => "destroy" if c.user == current_user%>
-        <em><%= c.user.email %> said <%= time_ago_in_words c.updated_at %></em>
-        <%= raw c.description.html_safe %>
-      </li>
-      <% end %>
-    </ul>
+      <ul class="thread">
+        <% @comments.each do |c| %>
+          <li>
+            <%= link_to 'Destroy', comment_path(c), confirm: 'Are you sure?', method: :delete, :class => "destroy" if c.user == current_user%>
+            <em><%= c.user.email %> said <%= time_ago_in_words c.updated_at %></em>
+            <%= raw c.description.html_safe %>
+          </li>
+        <% end %>
+      </ul>
     <% else %>
-    <h2>No comments yet!</h2>
-    <h3>User the form below to start posting...</h3>
+      <h2>No comments yet!</h2>
+      <h3>User the form below to start posting...</h3>
     <% end %>
 
     <%= form_for [@task, @comment] do |c| %>
@@ -53,3 +68,4 @@
     <% end %>
   </aside>
 </article>
+

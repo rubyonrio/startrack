@@ -1,0 +1,22 @@
+<% file_id = "file#{f.object.id ? f.object.id : child_index}" %>
+<div class="<%= 'new ' if f.object.new_record? %>task_file" id="<%= file_id %>">
+  <% if f.object.new_record? %>
+    <%= f.hidden_field :id %>
+    <div class="field upload">
+      <%= f.label :file %><br />
+      <%= f.file_field :file %>
+    </div>
+  <% else %>
+    <div class="field thumb">
+      <%= image_tag "task_file.gif" %>
+      <%= link_to "Download", f.object.file.url %>
+    </div>
+  <% end %>
+  <div class="field description">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field cover">
+    <%= link_to_remove_fields t(:remove), f, file_id %>
+  </div>
+</div>

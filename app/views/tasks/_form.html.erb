@@ -4,9 +4,9 @@
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
       <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -27,7 +27,7 @@
     <%= f.label :watchers %>
     <ul>
       <% User.find(:all).each do |w| %>
-      <li><%= check_box_tag 'task[watcher_ids][]', w.id, @task.watchers.include?(w) %><%= w.name %></li>
+        <li><%= check_box_tag 'task[watcher_ids][]', w.id, @task.watchers.include?(w) %><%= w.name %></li>
       <% end %>
     </ul>
   </div>
@@ -43,7 +43,17 @@
     <%= f.label :type %><br />
     <%= f.collection_select :type_id, @type, :id, :name, {:prompt => true} %>
   </div>
+  <h2>Arquivos da tarefa</h2>
+  <%= link_to_add_fields "Adicionar Arquivo", f, :task_files %>
+  <div id="task_files">
+    <% new_id = Time.now.to_i %>
+    <%= f.fields_for :task_files do |task_file| %>
+      <%= render :partial => 'task_file_fields', :locals => { :f => task_file, :child_index => new_id} %>
+    <% end %>
+  </div>
+  <br/>
   <div class="actions">
     <%= f.submit %>
   </div>
+  <br/>
 <% end %>

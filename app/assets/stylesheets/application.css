@@ -316,3 +316,21 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   text-decoration: line-through;
   color: #999;
 }
+
+.task_file {
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    margin: 0 1% 1% 0;
+    overflow: hidden;
+    padding: 1%;
+    width: 30%;
+}
+
+.task_file_description_visible {
+    background: url("../images/bt_mais.gif");
+}
+
+.task_file_description_hide {
+    background: url("../images/bt_menos.gif");
+}
