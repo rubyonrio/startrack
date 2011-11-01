@@ -12,8 +12,10 @@ gem 'simple_form', '1.5.2'
 gem 'dragonfly', '0.9.5'
 
 group :development,:test do
-  # Pretty printed test output
   gem 'turn', :require => false
+  gem 'shoulda', '2.11.3'
+  gem 'launchy', '2.0.5'
+  gem "simplecov", "0.5.3"
   gem 'minitest'
   platforms :mri_18 do
     gem "ruby-debug", '0.10.4'
@@ -21,10 +23,6 @@ group :development,:test do
   platforms :mri_19 do
     gem "ruby-debug19", '0.11.6', :require => 'ruby-debug'
   end
-  gem 'shoulda', '2.11.3'
-  gem 'capybara', '1.1.1'
-  gem 'launchy', '2.0.5'
-  gem "simplecov", "0.5.3"
 end
 
 group :production do
