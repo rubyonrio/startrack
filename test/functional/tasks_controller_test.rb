@@ -21,8 +21,8 @@ class TasksControllerTest < ActionController::TestCase
   end
 
   test "should create task" do
-    
-    assert_equal "piscina2.jpg", @task.task_files[0].file_name
+   @task.task_files << task_files(:one)
+    assert_equal "MyString", @task.task_files.first.file_name
     assert_difference('Task.count') do
       post :create, project_id: @project.id, task: @task.attributes
     end

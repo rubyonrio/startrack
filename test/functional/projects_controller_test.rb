@@ -10,23 +10,14 @@ class ProjectsControllerTest < ActionController::TestCase
 
   test "should list all projects of the user" do
     get :index
+    assert_equal assign
     assert_response :success
   end
 
   test "should get new" do
     get :new
+    assert_equal(assigns(:post), @current_user.projects.build)
     assert_response :success
-  end
-
-  test "should create a project" do
-    project = Project.new(name: "New project", description: "Description")
-    assert_difference('Project.count') do
-      post :create, project: project.attributes
-    end
-
-    assert_equal 1, assigns(:project).users.length
-    assert_not_nil assigns(:project)
-    assert_redirected_to project_path(assigns(:project))
   end
 
   test "should show all related kind of task for a project" do
@@ -38,4 +29,3 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:task_done)
   end
 end
-
