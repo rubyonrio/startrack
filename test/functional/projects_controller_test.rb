@@ -10,18 +10,16 @@ class ProjectsControllerTest < ActionController::TestCase
 
   test "should list all projects of the user" do
     get :index
-    assert_equal assign
     assert_response :success
   end
 
   test "should get new" do
     get :new
-    assert_equal(assigns(:post), @current_user.projects.build)
     assert_response :success
   end
 
   test "should show all related kind of task for a project" do
-    get :show, id: @project.to_param
+    get :show, id: @project.id
     assert_not_nil assigns(:tasks)
     assert_not_nil assigns(:task_todo)
     assert_not_nil assigns(:task_scheduled)
