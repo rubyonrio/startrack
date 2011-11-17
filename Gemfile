@@ -17,6 +17,7 @@ group :development,:test do
   gem 'launchy', '2.0.5'
   gem "simplecov", "0.5.3"
   gem 'minitest'
+  gem 'integration', :git => 'git://github.com/rodrigopinto/integration.git'
   platforms :mri_18 do
     gem "ruby-debug", '0.10.4'
   end
