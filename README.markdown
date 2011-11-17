@@ -1,28 +1,40 @@
-[![Build Status](https://secure.travis-ci.org/rubyonrio/startrack.png)](http://travis-ci.org/rubyonrio/startrack)
+# Startrack Tracker: [![Build Status][bimg]][blink]
 
-# Startrack Tracker:
+## What is it?
 
-## Goal
-Create an app to manager agile teams.
+This is a SaaS project that intend to help agile teams through the a KanBan-like dashboard to manage projects, tasks and teams.
+
+## License
+
+This code is free to be used under the terms of the [GNU General Public License](https://github.com/rubyonrio/startrack/blob/master/COPYING).
+
+## Bugs, Issues, Kudos and Catcalls
+
+Comments are welcome. Send your feedback through the [issue tracker on GitHub][i]
+
+## Contributors
+
+We have a list of contributors. Check them all at:
+[Contributors][c]
 
 ## Suggested features:
 
 * Organization account
 * Team members CRUD
 * Project CRUD
-** Show project status
+  * Show project status
 * User story CRUD
-** User Story has a total of tasks points
-** Show Finished Stories
-** Group Stories
-** Attach files to Stories
-** A Story may be accepted or not
-** Add Acceptance testing to a Story
+  * User Story has a total of tasks points
+  * Show Finished Stories
+  * Group Stories
+  * Attach files to Stories
+  * A Story may be accepted or not
+  * Add Acceptance testing to a Story
 * Task CRUD
-** User Story has many tasks
-** Each Task has status (done, new, assigned, etc)
-** Each Task has type (feature, bug, etc)
-** Each Task may has a owner
+  * User Story has many tasks
+  * Each Task has status (done, new, assigned, etc)
+  * Each Task has type (feature, bug, etc)
+  * Each Task may has a owner
 * Define Product Backlog
 * Define Sprint Backlog
 * Define workflow
@@ -39,3 +51,8 @@ Create an app to manager agile teams.
 5. Pair programing for teams
 6. Team alert for new entries on a User Story
 7. Use github API to use github issues as Startrack task syncing
+
+[i]:  http://github.com/rubyonrio/startrack/issues
+[c]:  https://github.com/rubyonrio/startrack/contributors
+[bimg]:  https://secure.travis-ci.org/rubyonrio/startrack.png
+[blink]: http://travis-ci.org/rubyonrio/startrack
