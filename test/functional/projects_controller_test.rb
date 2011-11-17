@@ -20,12 +20,12 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should not associate the current_user" do
+  test "should not associate the current_user to the users list" do
     get :new
     assert_equal [@kirk,@mccoy], assigns(:users)
   end
   
-  test "should create a project" do
+  test "should associate current_user to created a project by default" do
     post :create, :project => {"name"=>"outro duplicado", "user_ids"=>[@mccoy.id]}
     assert_equal assigns(:project).users, [@mccoy, @current_user]
   end
