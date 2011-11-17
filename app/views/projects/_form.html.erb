@@ -4,7 +4,9 @@
   <fieldset class="inputs">
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.association :users, :as => :check_boxes, :collection => @users %>
+    <%- unless @users.blank? -%>
+    <%= f.association :users, :as => :check_boxes, :collection => @users  %>
+    <%- end -%>
   </fieldset>
   
   <div class="actions">

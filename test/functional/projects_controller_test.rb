@@ -6,6 +6,8 @@ class ProjectsControllerTest < ActionController::TestCase
     @project = projects(:first_journey)
     @current_user = users(:spok)
     sign_in @current_user
+    @mccoy = users(:mccoy)
+    @kirk = users(:kirk)
   end
 
   test "should list all projects of the user" do
@@ -17,11 +19,15 @@ class ProjectsControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
+
+  test "should not associate the current_user" do
+    get :new
+    assert_equal [@kirk,@mccoy], assigns(:users)
+  end
   
   test "should create a project" do
-    mccoy = users(:mccoy)
-    post :create, :project => {"name"=>"outro duplicado", "user_ids"=>[mccoy.id]}
-    assert_equal assigns(:project).users, [mccoy, @current_user]
+    post :create, :project => {"name"=>"outro duplicado", "user_ids"=>[@mccoy.id]}
+    assert_equal assigns(:project).users, [@mccoy, @current_user]
   end
 
   test "should show all related kind of task for a project" do
