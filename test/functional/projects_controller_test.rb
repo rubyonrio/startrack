@@ -17,6 +17,12 @@ class ProjectsControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
+  
+  test "should create a project" do
+    mccoy = users(:mccoy)
+    post :create, :project => {"name"=>"outro duplicado", "user_ids"=>[mccoy.id]}
+    assert_equal assigns(:project).users, [mccoy, @current_user]
+  end
 
   test "should show all related kind of task for a project" do
     get :show, id: @project.id
