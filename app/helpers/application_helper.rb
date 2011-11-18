@@ -6,6 +6,6 @@ module ApplicationHelper
   end
 
   def app_version
-    %x[git describe --tags --abbrev=0]
+    ENV['APP_VERSION']
   end
 end
