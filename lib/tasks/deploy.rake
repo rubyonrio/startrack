@@ -12,7 +12,7 @@ namespace :heroku do
   end
 
   def app_version
-    %x[git describe --tags --abbrev=0]
+    %x[git describe --tags --abbrev=0].chomp
   end
 
   desc "Deploy app to Heroku"
