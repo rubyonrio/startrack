@@ -13,12 +13,12 @@
       <h1 id="logo"><%= link_to "Startrack", root_path %></h1>
       <% if user_signed_in? %>
       <div class="login-info">
-        <%= show_user_avatar(current_user) %> Logado como <%= current_user.email %>. Não é você?
-        <%= link_to 'Sair', destroy_user_session_path %>
+        <%= show_user_avatar(current_user) %> Logged as <%= current_user.email %>. Not you?
+        <%= link_to 'Logout', destroy_user_session_path %>
       </div>
       <% else %>
       <div class="login-info">
-        <%= link_to 'Cadastrar', new_user_registration_path %> ou <%= link_to 'Logar', new_user_session_path %>
+        <%= link_to 'Register', new_user_registration_path %> ou <%= link_to 'Login', new_user_session_path %>
       </div>
       <% end %>
     </header>
