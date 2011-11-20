@@ -27,7 +27,9 @@
 
     <%= link_to 'Edit', edit_task_path(@task) %>
 
-    <p><b>Arquivos:</b></p>
+    <% if @task.task_files and @task.task_files.size > 0 %>
+      <p><b>Files:</b></p>
+    <% end %>
     <div class="task_file_list">
       <% @task.task_files.each do |task_file|  %>
         <div>

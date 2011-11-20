@@ -43,8 +43,8 @@
     <%= f.label :type %><br />
     <%= f.collection_select :type_id, @type, :id, :name, {:prompt => true} %>
   </div>
-  <h2>Arquivos da tarefa</h2>
-  <%= link_to_add_fields "Adicionar Arquivo", f, :task_files %>
+  <h2><%= t(:task_files) %></h2>
+  <%= link_to_add_fields t(:add_file), f, :task_files %>
   <div id="task_files">
     <% new_id = Time.now.to_i %>
     <%= f.fields_for :task_files do |task_file| %>

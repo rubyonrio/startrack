@@ -3,3 +3,5 @@
 
 en:
   hello: "Hello world"
+  add_file: "Add File"
+  task_files: "Task Files"
