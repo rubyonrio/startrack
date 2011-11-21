@@ -1,8 +1,8 @@
 source :rubygems
 
-gem 'rails', '3.1.1'
-gem 'sass-rails', '3.1.4'
-gem 'jquery-rails', '1.0.14'
+gem 'rails', '3.1.2'
+gem 'sass-rails', '3.1.5'
+gem 'jquery-rails', '1.0.18'
 gem 'coffee-script', '2.2.0'
 gem 'devise', '1.4.7'
 gem 'mysql2', '0.3.7'
