@@ -14,11 +14,11 @@ gem 'resque',           '1.19.0'
 
 group :development,:test do
   gem 'turn', :require => false
-  gem 'shoulda',        '2.11.3'
-  gem 'launchy',        '2.0.5'
-  gem "simplecov",      '0.5.3'
-  gem 'minitest'
-  gem 'integration', :git => 'git://github.com/mergulhao/integration.git'
+  gem 'rspec-rails', '2.7.0'
+  gem 'shoulda', '2.11.3'
+  gem 'launchy', '2.0.5'
+  gem "simplecov", "0.5.3"
+  gem 'integration', :git => 'git://github.com/rodrigopinto/integration.git'
   gem 'heroku',         '2.14.0'
 
   platforms :mri_18 do
