@@ -22,14 +22,10 @@ class TasksController < ApplicationController
     @task = @project.tasks.build(params[:task])
     @task.user = current_user
 
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @project, notice: 'Task was successfully created.' }
-        format.json { render json: [:project, @task], status: :created, location: @task }
-      else
-        format.html { render action: "new" }
-        format.json { render json: [:project, @task].errors, status: :unprocessable_entity }
-      end
+    if @task.save
+      redirect_to @project, notice: 'Task was successfully created.'
+    else
+      render action: "new"
     end
   end
 
@@ -41,26 +37,22 @@ class TasksController < ApplicationController
     @task.attributes = params[:task]
     @task_changes = @task.get_changes_names(@task.changes)
 
-    respond_to do |format|
-      if @task.save
-        notify_changes(@task, @task_changes, @watchers_changes)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.save
+      notify_changes(@task, @task_changes, @watchers_changes)
+      redirect_to @task, notice: 'Task was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
+
     redirect_to project_url(@task.project)
   end
 
   private
-
   def load_estimates
     @estimate = Estimate.all
   end
@@ -84,5 +76,4 @@ class TasksController < ApplicationController
       end
     end
   end
-
 end
