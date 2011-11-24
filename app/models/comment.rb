@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
   validates :description, :task, :user, :presence => true
-  
+
   before_save :to_format
 
   def to_format

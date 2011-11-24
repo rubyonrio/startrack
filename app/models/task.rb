@@ -50,10 +50,10 @@ class Task < ActiveRecord::Base
       new_watchers = params.collect(&:to_i)
       current_watchers = []
       current_watchers = self.watchers.collect(&:id).dup
-      
+
       added_watchers  = new_watchers - current_watchers
       removed_watchers = current_watchers - new_watchers
-      
+
       watchers_changes = {}
       watchers_changes[:added] = []
       watchers_changes[:removed] = []
@@ -65,18 +65,18 @@ class Task < ActiveRecord::Base
       removed_watchers.each do |removed|
         watchers_changes[:removed] << User.find(removed)
       end
-      
+
       watchers_changes
     end
   end
 
   def get_changes_names(changes)
     field = {:responsible_id => User, :status_id => Status, :type_id => Type, :estimate_id => Estimate}
-    
+
     field.each do |key , value|
       old = "None yet"
       new = "None yet"
-      
+
       if changes[key]
         if changes[key].first
           old = value.find(changes[key].first).name
