@@ -36,7 +36,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @watchers_changes = @task.get_watchers_changes(params[:task][:watcher_ids])
 
-    params[:task][:watcher_ids] ||= []
     @task.attributes = params[:task]
     @task_changes = @task.get_changes_names(@task.changes)
 
@@ -81,9 +80,9 @@ class TasksController < ApplicationController
 
   def notify_changes(task, changes, watchers_changes)
     unless @task.watchers.nil?
-      @task.watchers.each do |watcher|
-        TaskMailer.task_notification(watcher, task, changes, watchers_changes).deliver
-      end
+      recipients = ""
+      @task.watchers.map { |watcher| recipients << "#{watcher.email}," }
+      TaskMailer.task_notification(recipients, task, changes, watchers_changes).deliver
     end
   end
 end

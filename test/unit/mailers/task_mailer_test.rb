@@ -5,7 +5,7 @@ class TaskMailerTest < ActionMailer::TestCase
 
   def setup
     @task = tasks(:room_galaxy)
-    @watcher = tasks(:room_galaxy).watchers.first
+    @watcher = tasks(:room_galaxy).watchers.first.email
     @watchers_changes = {}
     @watchers_changes[:added] = [tasks(:room_galaxy).watchers.first]
     @watchers_changes[:removed] = [tasks(:room_galaxy).watchers.last]
