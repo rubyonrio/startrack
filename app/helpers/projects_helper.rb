@@ -1,3 +1,0 @@
-module ProjectsHelper
-
-end
