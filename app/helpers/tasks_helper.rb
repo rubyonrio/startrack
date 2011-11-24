@@ -5,10 +5,10 @@ module TasksHelper
   end
 
   def show_task_description(task)
-    if task.description_html.nil?
-      task.description
-    else
+    if task.description_html?
       task.description_html.html_safe
+    else
+      task.description
     end
   end
 
