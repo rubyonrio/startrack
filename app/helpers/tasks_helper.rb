@@ -5,11 +5,7 @@ module TasksHelper
   end
 
   def show_task_description(task)
-    if task.description_html?
-      task.description_html.html_safe
-    else
-      task.description
-    end
+    task.description_html? task.description_html.html_safe : task.description
   end
 
   def link_to_remove_fields(name, f, file_id)
