@@ -111,7 +111,6 @@ section {
   width: 31.2%;
   padding: 1%;
   height: 400px;
-  overflow: auto;
 }
 
 .status-pane ul {
@@ -333,4 +332,14 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 
 .task_file_description_hide {
     background: url("../images/bt_menos.gif");
+}
+
+.ui-draggable {
+  cursor: move;
+}
+
+.ui-sortable-placeholder {
+  border: 1px dotted #999;
+  background: #fff;
+  padding: 1em 0;
 }

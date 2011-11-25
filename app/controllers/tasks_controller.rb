@@ -1,4 +1,7 @@
 class TasksController < ApplicationController
+
+  respond_to :js, :only => [:change_status]
+
   before_filter :authenticate_user!
   before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit]
 
@@ -50,6 +53,13 @@ class TasksController < ApplicationController
     @task.destroy
 
     redirect_to project_url(@task.project)
+  end
+
+  def change_status
+    @task = Task.find(params[:id])
+    @task.update_attributes(:status => params[:status])
+    
+    respond_with @task
   end
 
   private

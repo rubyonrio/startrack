@@ -43,4 +43,9 @@ class TasksControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:task)
   end
+
+  test "should change a task status to current" do
+    put :change_status, id: @task, task: {status: 'current'}
+    assert_equal 'current', @task.status.name
+  end
 end

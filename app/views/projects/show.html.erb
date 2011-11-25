@@ -4,35 +4,35 @@
     <h1><%= @project.name %> <span>(<%= link_to 'edit', edit_project_path(@project) %>)</span></h1>
     <%= link_to 'New Task', new_project_task_path(@project), :id => "new-task" %>
   </header>
-  <section class="status-pane">
+  <section id="scheduled" class="status-pane">
     <h2>Scheduled:</h2>
     <ul>
       <% @task_scheduled.each do |task| %>
-      <li><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task)%></li>
+      <li id="task-<%= task.id%>"><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
-  <section class="status-pane current">
+  <section id="current" class="status-pane current">
     <h2>Current:</h2>
     <ul>
       <% @task_current.each do |task| %>
-      <li><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
+      <li id="task-<%= task.id%>"><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
-  <section class="status-pane">
+  <section id="done" class="status-pane">
     <h2>Done:</h2>
     <ul>
       <% @task_done.each do |task| %>
-      <li><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
+      <li id="task-<%= task.id%>"><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
-  <section class="status-pane todo">
+  <section id="todo" class="status-pane todo">
     <h2>TODO:</h2>
     <ul>
       <% @task_todo.each do |task| %>
-      <li><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
+      <li id="task-<%= task.id%>"><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
       <% end %>
     </ul>
   </section>
