@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
   end
 
   def notify_comment(comment)
+    recipients = ""
     unless @task.watchers.nil?
       @task.watchers.map { |watcher| recipients << "#{watcher.email}," }
       CommentMailer.comment_notification(recipients, comment).deliver
