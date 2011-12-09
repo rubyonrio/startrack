@@ -21,7 +21,7 @@ class TasksControllerTest < ActionController::TestCase
   end
 
   test "should create task" do
-   @task.task_files << task_files(:one)
+    @task.task_files << task_files(:one)
     assert_equal "MyString", @task.task_files.first.file_name
     assert_difference('Task.count') do
       post :create, project_id: @project.id, task: @task.attributes
@@ -45,7 +45,7 @@ class TasksControllerTest < ActionController::TestCase
   end
 
   test "should change a task status to current" do
-    put :change_status, id: @task, task: {status: 'current'}
-    assert_equal 'current', @task.status.name
+    get :change_status, id: @task
+    assert_equal 3, assigns(:task).status_id
   end
 end

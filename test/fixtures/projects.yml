@@ -1,7 +1,9 @@
 first_journey:
+  id: 1
   name: First Journey
   users: spok
 
 mike_vallely:
+  id: 2
   name: Mike Vallely
   users: kirk

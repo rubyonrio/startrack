@@ -57,7 +57,7 @@ class TasksController < ApplicationController
 
   def change_status
     @task = Task.find(params[:id])
-    @task.update_attributes(:status => params[:status])
+    @task.update_attributes(:status_id => 3)
     
     respond_with @task
   end

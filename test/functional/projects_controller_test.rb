@@ -32,6 +32,7 @@ class ProjectsControllerTest < ActionController::TestCase
 
   test "should show all related kind of task for a project" do
     get :show, id: @project.id
+    puts "\n\n-> #{@project.tasks}\n\n"
     assert_not_nil assigns(:tasks)
     assert_not_nil assigns(:task_todo)
     assert_not_nil assigns(:task_scheduled)

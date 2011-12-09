@@ -15,11 +15,11 @@ $(function() {
         drop: function() {
             $.ajax({
                 type: "POST",
-                url: '/tasks/"+current_task+"/change_status/',
-                data: { _method:'PUT', page : {...} },
+                url: '/tasks/"+current_task+"/change_status/3',
+                data: {_method:'PUT'},
                 dataType: 'json',
                 success: function(msg) {
-                    alert("Data Saved: ");
+                    alert("Data Saved");
                 }
             });
         }

@@ -1,18 +1,20 @@
 create_enterprise:
+  id: 1
   name: Create Enterprise
-  project: first_journey
+  project_id: 1
   watchers: kirk
-  user: spok
-  type: bug
-  status: todo
-  estimate: fast
+  user_id: 1
+  type_id: 2
+  status_id: 1
+  estimate_id: 1
 
 room_galaxy:
+  id: 2
   name: Room the galaxy
   description: Destroy the enemy
-  responsible: kirk
-  project: first_journey
+  responsible_id: 2
+  project_id: 1
   watchers: kirk, spok
-  type: bug
-  status: todo
-  estimate: fast
+  type_id: 2
+  status_id: 1
+  estimate_id: 1
