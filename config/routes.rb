@@ -4,7 +4,7 @@ Startrack::Application.routes.draw do
 
   resources :projects, :shallow => true  do
     resources :tasks, :except => [:index] do
-      get :change_status, :on => :member
+      match "/change_status/:status_id" => "tasks#change_status", :as => :change_status, :on => :member
       resources :comments, :only => [:create, :destroy]
     end
   end

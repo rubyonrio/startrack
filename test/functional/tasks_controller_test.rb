@@ -45,7 +45,7 @@ class TasksControllerTest < ActionController::TestCase
   end
 
   test "should change a task status to current" do
-    get :change_status, id: @task
+    put :change_status, id: @task, status_id: 3
     assert_equal 3, assigns(:task).status_id
   end
 end

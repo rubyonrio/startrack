@@ -1,30 +1,41 @@
 $(function() {
     var current_task = ""
 
-    $( "#scheduled li" ).draggable({
-	connectToSortable: "#current ul",
-        helper: "#scheduled ul",
-	revert: "invalid",
-        appendTo: "body",
+    $("li").draggable({
+	connectToSortable: "ul",
+        helper: "ul",
+        appendTo: ".status-pane ul",
         start: function(){
-            current_task = $(this).attr('id');
+            current_task = $(this).attr('id').replace("task-","");
+        }
+    });
+
+    $("ul").sortable({
+        placeholder: "ui-sortable-placeholder"
+    });
+
+    $("#todo ul").droppable({
+        drop: function() {
+            $.get('/tasks/'+current_task+'/change_status/'+1)
+        }
+    });
+
+    $("#scheduled ul").droppable({
+        drop: function() {
+            $.get('/tasks/'+current_task+'/change_status/'+2)
         }
     });
 
     $("#current ul").droppable({
         drop: function() {
-            $.ajax({
-                type: "POST",
-                url: '/tasks/"+current_task+"/change_status/3',
-                data: {_method:'PUT'},
-                dataType: 'json',
-                success: function(msg) {
-                    alert("Data Saved");
-                }
-            });
+            $.get('/tasks/'+current_task+'/change_status/'+3)
         }
-    }).sortable({
-        placeholder: "ui-sortable-placeholder"
+    });
+
+    $("#done ul").droppable({
+        drop: function() {
+            $.get('/tasks/'+current_task+'/change_status/'+4)
+        }
     });
 
 });

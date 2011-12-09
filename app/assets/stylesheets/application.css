@@ -115,6 +115,7 @@ section {
 
 .status-pane ul {
   padding: 0;
+  min-height: 150px;
 }
 
 .status-pane li {
