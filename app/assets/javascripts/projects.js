@@ -1,17 +1,13 @@
 $(function() {
     var current_task = ""
 
-    $("li").draggable({
-	connectToSortable: "ul",
-        helper: "ul",
-        appendTo: ".status-pane ul",
-        start: function(){
-            current_task = $(this).attr('id').replace("task-","");
-        }
+    $("li").mousedown(function() {
+        current_task = $(this).attr('id').replace("task-","");
     });
 
-    $("ul").sortable({
-        placeholder: "ui-sortable-placeholder"
+    $("#todo ul, #scheduled ul, #current ul, #done ul").sortable({
+        placeholder: "ui-sortable-placeholder",
+        connectWith: ".ui-sortable"
     });
 
     $("#todo ul").droppable({

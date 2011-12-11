@@ -312,7 +312,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   background-color: #f0f0f0;
 }
 
-.done, .done:visited {
+#done a, #done a:visited {
   text-decoration: line-through;
   color: #999;
 }
@@ -335,12 +335,13 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
     background: url("../images/bt_menos.gif");
 }
 
-.ui-draggable {
+.ui-sortable li:hover {
+  background: #f6f6f6;
   cursor: move;
 }
 
 .ui-sortable-placeholder {
   border: 1px dotted #999;
-  background: #fff;
+  background: #f6f6f6;
   padding: 1em 0;
 }
