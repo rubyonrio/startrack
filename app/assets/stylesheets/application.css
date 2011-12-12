@@ -251,6 +251,15 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   margin-bottom: .5em;
 }
 
+.thread li ul {
+  margin: .5em 0;
+}
+
+.thread li li {
+  list-style-type: disc;
+  border-top: 0;
+}
+
 .thread em{
   display: block;
   font-size: .8em;
