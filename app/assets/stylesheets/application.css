@@ -111,6 +111,7 @@ section {
   width: 31.2%;
   padding: 1%;
   height: 400px;
+  overflow: auto;
 }
 
 .status-pane ul {
