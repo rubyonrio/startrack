@@ -1,5 +1,6 @@
 The task <%= "##{@task.id} - #{@task.name}" %> has been updated.
 
+<% if @watchers_changes %>
 <% unless @watchers_changes[:added].empty? %>
 Added watcher:
 <% @watchers_changes[:added].each do |added_watcher| %>
@@ -11,6 +12,7 @@ Added watcher:
 Removed watcher:
 <% @watchers_changes[:removed].each do |removed_watcher| %>
 <%= "- #{removed_watcher.name}" %>
+<% end %>
 <% end %>
 <% end %>
 
