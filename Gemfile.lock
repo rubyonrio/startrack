@@ -1,10 +1,9 @@
 GIT
-  remote: git://github.com/rodrigopinto/integration.git
-  revision: f62d18a9211c4eea26b6d4a109312fcc6c36fe96
+  remote: git://github.com/mergulhao/integration.git
+  revision: e5839fc9394c38ec897285a992b31a85e933c6c0
   specs:
     integration (0.0.1)
       hpricot
-      rcov
 
 GEM
   remote: http://rubygems.org/
@@ -64,7 +63,7 @@ GEM
       rubyzip
       term-ansicolor (~> 1.0.5)
     hike (1.2.1)
-    hpricot (0.8.4)
+    hpricot (0.8.5)
     i18n (0.6.0)
     jquery-rails (1.0.18)
       railties (~> 3.0)
@@ -115,7 +114,6 @@ GEM
       thor (~> 0.14.6)
     rake (0.9.2.2)
     rbx-require-relative (0.0.5)
-    rcov (0.9.11)
     rdoc (3.11)
       json (~> 1.4)
     redis (2.2.2)
