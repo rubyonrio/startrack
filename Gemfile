@@ -17,7 +17,6 @@ group :development,:test do
   gem 'shoulda', '2.11.3'
   gem 'launchy', '2.0.5'
   gem "simplecov", "0.5.3"
-  gem 'heroku',         '2.14.0'
 
   platforms :mri_18 do
     gem "ruby-debug",   '0.10.4'
