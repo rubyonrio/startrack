@@ -13,10 +13,10 @@ gem 'dragonfly',        '0.9.5'
 
 group :development,:test do
   gem 'turn', :require => false
-  gem 'rspec-rails', '2.7.0'
-  gem 'shoulda', '2.11.3'
-  gem 'launchy', '2.0.5'
-  gem "simplecov", "0.5.3"
+  gem 'rspec-rails',    '2.7.0'
+  gem 'shoulda-matchers', '1.0.0'
+  gem 'launchy',        '2.0.5'
+  gem "simplecov",      '0.5.3'
 
   platforms :mri_18 do
     gem "ruby-debug",   '0.10.4'
