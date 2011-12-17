@@ -6,6 +6,7 @@ class Comment < ActiveRecord::Base
 
   before_save :to_format
 
+  private
   def to_format
     self.description = RedCloth.new(self.description).to_html
   end
