@@ -10,4 +10,5 @@ class Comment < ActiveRecord::Base
   def to_format
     self.description = RedCloth.new(self.description).to_html
   end
+
 end
