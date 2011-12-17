@@ -11,8 +11,12 @@ describe Comment do
     let(:comment) { Factory.build(:comment) }
 
     it "should call to_format before save" do
+      comment = Comment.new
+      comment.description = "I got some new issue to resolve!"
+      comment.user = users(:mccoy) 
+      comment.task = tasks(:room_galaxy)
       comment.save
-      comment.description.should == "<p>I got some money to help you out with this issue!</p>"
+      comment.description.should == "<p>I got some new issue to resolve!</p>"
     end
   end
 end
