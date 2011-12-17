@@ -74,20 +74,19 @@ class Task < ActiveRecord::Base
     field = {:responsible_id => User, :status_id => Status, :type_id => Type, :estimate_id => Estimate}
 
     field.each do |key , value|
-      old = "None yet"
-      new = "None yet"
+      old_name = "None yet"
+      new_name = "None yet"
 
       if changes[key]
         if changes[key].first
-          old = value.find(changes[key].first).name
+          old_name = value.find(changes[key].first).name
         end
         if changes[key].last
-          new = value.find(changes[key].last).name
+          new_name = value.find(changes[key].last).name
         end
       end
-      changes[key] = [old, new]
+      changes[key] = [old_name, new_name]
     end
-
     changes
   end
 end
