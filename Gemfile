@@ -15,6 +15,7 @@ group :development,:test do
   gem 'turn', :require => false
   gem 'rspec-rails',    '2.7.0'
   gem 'shoulda-matchers', '1.0.0'
+  gem 'factory_girl_rails', '1.1.0'
   gem 'launchy',        '2.0.5'
   gem "simplecov",      '0.5.3'
 

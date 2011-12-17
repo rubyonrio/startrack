@@ -58,6 +58,10 @@ GEM
     erubis (2.7.0)
     execjs (1.2.9)
       multi_json (~> 1.0)
+    factory_girl (2.0.5)
+    factory_girl_rails (1.1.0)
+      factory_girl (~> 2.0.0)
+      railties (>= 3.0.0)
     heroku (2.14.0)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
@@ -204,6 +208,7 @@ DEPENDENCIES
   coffee-script (= 2.2.0)
   devise (= 1.4.7)
   dragonfly (= 0.9.5)
+  factory_girl_rails (= 1.1.0)
   heroku (= 2.14.0)
   integration!
   jquery-rails (= 1.0.18)
