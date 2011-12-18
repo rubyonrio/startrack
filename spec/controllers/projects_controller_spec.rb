@@ -34,10 +34,32 @@ describe ProjectsController do
         do_action
       end
 
-      it { assign_to(:project) }
-      it { assign_to(:users) }
+      it { should assign_to(:project) }
+      it { should assign_to(:users) }
       it { should respond_with(:success) }
       it { should render_template(:new) }
     end
   end
+  
+  describe "GET edit" do
+    it_should_behave_like "authentication_required_action"
+    let(:project) { projects(:first_journey) }
+
+    def do_action
+      get(:edit, :id => project.id)
+    end
+
+    context "authenticated" do
+      before(:each) do
+        login!
+        do_action
+      end
+
+      it { assigns(:project).should == project }
+      it { should assign_to(:users) }
+      it { should respond_with(:success) }
+      it { should render_template(:edit) }
+    end
+  end
+  
 end
