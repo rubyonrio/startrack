@@ -21,6 +21,32 @@ describe ProjectsController do
     end
   end
 
+  describe "GET show" do
+    it_should_behave_like "authentication_required_action"
+    let(:project) { projects(:first_journey) }
+
+    def do_action
+      get(:show, :id => project.id)
+    end
+
+    context "authenticated" do
+      before(:each) do
+        login!
+        do_action
+      end
+
+      it { should assign_to(:project) }
+      it { should assign_to(:tasks) }
+      it { should assign_to(:task_todo) }
+      it { should assign_to(:task_scheduled) }
+      it { should assign_to(:task_current) }
+      it { should assign_to(:task_done) }
+      it { should respond_with(:success) }
+      it { should render_template(:show) }
+    end
+  end
+
+
   describe "GET new" do
     it_should_behave_like "authentication_required_action"
 
