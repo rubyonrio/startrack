@@ -6,6 +6,8 @@ create_enterprise:
   type_id: 2
   status_id: 1
   estimate_id: 1
+  description: "Something cool here!"
+  description_html: "<p>Something cool here!</p>"
 
 room_galaxy:
   name: Room the galaxy
