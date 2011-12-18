@@ -30,19 +30,35 @@ describe ProjectsController do
     end
 
     context "authenticated" do
-      before(:each) do
-        login!
-        do_action
-      end
+      context "belong to the current user" do
+        before(:each) do
+          login!
+          do_action
+        end
 
-      it { should assign_to(:project) }
-      it { should assign_to(:tasks) }
-      it { should assign_to(:task_todo) }
-      it { should assign_to(:task_scheduled) }
-      it { should assign_to(:task_current) }
-      it { should assign_to(:task_done) }
-      it { should respond_with(:success) }
-      it { should render_template(:show) }
+        it { should assign_to(:project) }
+        it { should assign_to(:tasks) }
+        it { should assign_to(:task_todo) }
+        it { should assign_to(:task_scheduled) }
+        it { should assign_to(:task_current) }
+        it { should assign_to(:task_done) }
+        it { should respond_with(:success) }
+        it { should render_template(:show) }
+      end
+      
+      context "but not belong to the current user" do
+        let(:project) { projects(:mike_vallely) }
+        
+        before(:each) do
+          login!
+        end
+        
+        it "should raise an ActiveRecord::RecordNotFound" do
+          expect {
+            do_action
+          }.should raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
     end
   end
 

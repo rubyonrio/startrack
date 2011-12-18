@@ -1,12 +1,10 @@
 class ProjectsController < ApplicationController
-  before_filter :member_of?, :only => "show"
-
   def index
     @projects = current_user.projects
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
     @tasks = @project.tasks.all
     @task_todo = @project.tasks.todo.order("updated_at DESC")
     @task_scheduled = @project.tasks.scheduled.order("updated_at DESC")
@@ -48,12 +46,4 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to projects_url
   end
-
-  def member_of?
-    @project = Project.find(params[:id])
-    unless @project.users.include?(current_user)
-      redirect_to root_path, :alert => "You don't have permission to acess this project."
-    end
-  end
 end
-
