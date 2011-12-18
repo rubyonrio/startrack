@@ -44,7 +44,14 @@
     <%= f.collection_select :type_id, @type, :id, :name, {:prompt => true} %>
   </div>
   <h2><%= t(:task_files) %></h2>
-  <%= link_to_add_fields t(:add_file), f, :task_files %>
+  <div class="field">
+    <% 
+      fields = f.fields_for(:task_files, TaskFile.new, :child_index => "new_task_files") do |builder|
+        render("task_file_fields", :f => builder, :child_index => "new_task_files")
+      end
+    %> 
+    <%= link_to_function(t(:add_file), "add_fields('task_files', '#{escape_javascript(fields)}')", :class => "button small add-image") %>
+  </div>
   <div id="task_files">
     <% new_id = Time.now.to_i %>
     <%= f.fields_for :task_files do |task_file| %>
