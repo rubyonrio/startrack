@@ -46,6 +46,38 @@ describe ProjectsController do
     end
   end
 
+  describe "POST create" do
+    it_should_behave_like "authentication_required_action"
+
+    def do_action(attributes = {})
+      post(:create, project: attributes)
+    end
+
+    context "authenticated" do
+      before(:each) do
+        login!
+      end
+      
+      context "valid attributes" do
+        before(:each) do
+          do_action( name: "Hidden Project")
+        end
+
+        it { should assign_to(:project)}
+        it { assigns(:project).users.should == [subject.current_user] }
+        it { should redirect_to(assigns(:project)) }
+      end
+
+      context "invalid attributes" do
+        before(:each) do
+          do_action
+        end
+        
+        it { should render_template(:new) }
+        it { should respond_with(:success) }
+      end
+    end
+  end
 
   describe "GET new" do
     it_should_behave_like "authentication_required_action"
