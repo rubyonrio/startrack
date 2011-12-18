@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
+    @project = current_user.projects.build
     @users = User.without(current_user)
   end
 
