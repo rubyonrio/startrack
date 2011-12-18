@@ -2,20 +2,28 @@ require 'spec_helper'
 
 describe CommentsController do
   describe "GET destroy" do
-    #TODO: implement authentication required
+    it_should_behave_like "authentication_required_action"
     let(:comment) { comments(:one) }
 
     def do_action
-      get(:destroy, :id => comment.id)
+      delete(:destroy, :id => comment.id)
     end
 
     context "authenticated" do
       before(:each) do
-        #TODO: create authentication
-        do_action
+        login!
       end
 
-      it { should redirect_to('http://test.host/tasks/587127017') }
+      it "should delete a comment" do
+        expect {
+          do_action
+        }.to change(Comment, :count).by(-1)
+      end
+
+      it "should redirect to task show" do
+        do_action
+        should redirect_to('http://test.host/tasks/587127017')
+      end
     end
   end
 end

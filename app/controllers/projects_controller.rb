@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!
   before_filter :member_of?, :only => "show"
 
   def index

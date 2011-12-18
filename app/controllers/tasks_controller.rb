@@ -1,8 +1,5 @@
 class TasksController < ApplicationController
-
   respond_to :js, :only => [:change_status]
-
-  before_filter :authenticate_user!
   before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit]
 
   def show
