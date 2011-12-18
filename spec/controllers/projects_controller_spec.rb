@@ -46,6 +46,26 @@ describe ProjectsController do
     end
   end
 
+  describe "GET new" do
+    it_should_behave_like "authentication_required_action"
+
+    def do_action
+      get(:new)
+    end
+
+    context "authenticated" do
+      before(:each) do
+        login!
+        do_action
+      end
+
+      it { should assign_to(:project) }
+      it { should assign_to(:users) }
+      it { should respond_with(:success) }
+      it { should render_template(:new) }
+    end
+  end
+
   describe "POST create" do
     it_should_behave_like "authentication_required_action"
 
@@ -66,6 +86,7 @@ describe ProjectsController do
         it { should assign_to(:project)}
         it { assigns(:project).users.should == [subject.current_user] }
         it { should redirect_to(assigns(:project)) }
+        it { should set_the_flash.to("Project was successfully created.") }
       end
 
       context "invalid attributes" do
@@ -79,26 +100,6 @@ describe ProjectsController do
     end
   end
 
-  describe "GET new" do
-    it_should_behave_like "authentication_required_action"
-
-    def do_action
-      get(:new)
-    end
-
-    context "authenticated" do
-      before(:each) do
-        login!
-        do_action
-      end
-
-      it { should assign_to(:project) }
-      it { should assign_to(:users) }
-      it { should respond_with(:success) }
-      it { should render_template(:new) }
-    end
-  end
-  
   describe "GET edit" do
     it_should_behave_like "authentication_required_action"
     let(:project) { projects(:first_journey) }
@@ -117,6 +118,39 @@ describe ProjectsController do
       it { should assign_to(:users) }
       it { should respond_with(:success) }
       it { should render_template(:edit) }
+    end
+  end
+
+  describe "PUT update" do
+    it_should_behave_like "authentication_required_action"
+    let(:project) { projects(:first_journey) }
+
+    def do_action(attributes = {})
+      put(:update, id: project.id, project: attributes )
+    end
+
+    context "authenticated" do
+      before(:each) do
+        login!
+      end
+      
+      context "valid attributes" do
+        before(:each) do
+          do_action( name: "New Project name")
+        end
+
+        it { should assign_to(:project)}
+        it { should redirect_to(assigns(:project)) }
+        it { should set_the_flash.to("Project was successfully updated.") }
+      end
+
+      context "invalid attributes" do
+        before(:each) do
+          do_action(name: "")
+        end
+
+        it { should render_template(:edit) }
+      end
     end
   end
 
