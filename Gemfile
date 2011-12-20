@@ -11,6 +11,14 @@ gem 'RedCloth',         '4.2.8'
 gem 'simple_form',      '1.5.2'
 gem 'dragonfly',        '0.9.5'
 
+# Resque gems
+gem "resque",'1.19.0'
+gem "resque-scheduler"
+gem 'resque-status', :require => 'resque/status'
+gem 'resque_mailer'
+gem 'redis-store'
+gem 'systemu'
+
 group :development,:test do
   gem 'turn', :require => false
   gem 'rspec-rails',    '2.8.0'
