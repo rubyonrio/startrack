@@ -6,9 +6,9 @@ class Task < ActiveRecord::Base
   belongs_to :type
   belongs_to :estimate
   has_many :comments, :dependent => :destroy
+  has_many :task_files, :dependent => :destroy
   has_and_belongs_to_many :watchers, :class_name => "User", :join_table => "tasks_watchers"
 
-  has_many :task_files, :dependent => :destroy
   accepts_nested_attributes_for :task_files, :reject_if => lambda { |a| a[:id].blank? and a[:file].blank? }, :allow_destroy => true
 
   validates :user, :presence => true
