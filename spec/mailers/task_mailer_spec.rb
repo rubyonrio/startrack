@@ -10,11 +10,11 @@ describe TaskMailer do
     end
 
     it "should render successfully" do
-      lambda { TaskMailer.task_notification(watcher, task, @changes, @watchers_changes) }.should_not raise_error
+      lambda { TaskMailer.task_notification(watcher.email, task, @changes, @watchers_changes) }.should_not raise_error
     end
 
     describe "rendered without error" do
-      let(:mailer) { TaskMailer.task_notification(watcher, task, @changes, @watchers_changes) }
+      let(:mailer) { TaskMailer.task_notification(watcher.email, task, @changes, @watchers_changes) }
 
       it "should set correct subject" do
         mailer.subject.should == "[First Journey] The task ##{task.id} - Room the galaxy has been updated"
@@ -50,11 +50,11 @@ describe TaskMailer do
         mailer.content_type.should == "text/plain; charset=UTF-8"
       end
       it "should deliver successfully" do
-        lambda { TaskMailer.task_notification(watcher, task, @changes, @watchers_changes).deliver }.should_not raise_error
+        lambda { TaskMailer.task_notification(watcher.email, task, @changes, @watchers_changes).deliver }.should_not raise_error
       end
       describe "and delivered" do
         it "should be added to the delivery queue" do
-          lambda { TaskMailer.task_notification(watcher, task, @changes, @watchers_changes).deliver }.should change(ActionMailer::Base.deliveries,:size).by(1)
+          lambda { TaskMailer.task_notification(watcher.email, task, @changes, @watchers_changes).deliver }.should change(ActionMailer::Base.deliveries,:size).by(1)
         end
       end
     end
