@@ -15,4 +15,17 @@ describe TasksController do
     response.code.should eq("200")
   end
 
+  it "should get new" do
+    project = task.project
+    get :new, project_id: project.id
+    assigns(:project).should == project
+    response.code.should eq("200")
+  end
+
+  it "should get edit" do
+    get :edit, id: task.id
+    assigns(:task).should == task
+    response.code.should eq("200")
+  end
+
 end
