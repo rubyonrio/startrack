@@ -31,6 +31,11 @@ describe Task do
     task.show_estimate_name.should == 'Fast'
   end
 
+  it "should format task description with markdown" do
+    task.to_format
+    task.description_html.should_not == ''
+  end
+
   it "should get watchers changes" do
     @watchers_changes = task.get_watchers_changes([users(:mccoy).id])
     @watchers_changes[:added].first.name.should == 'Leonard McCoy'
