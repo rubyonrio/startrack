@@ -183,7 +183,7 @@ describe ProjectsController do
         login!
       end
 
-      it "should delete a comment" do
+      it "should delete a project" do
         expect {
           do_action
         }.to change(Project, :count).by(-1)
