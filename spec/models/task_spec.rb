@@ -31,6 +31,17 @@ describe Task do
     task.show_estimate_name.should == 'Fast'
   end
 
+  it "should get watchers changes" do
+    @watchers_changes = task.get_watchers_changes([users(:mccoy).id])
+    @watchers_changes[:added].first.name.should == 'Leonard McCoy'
+    @watchers_changes[:removed].first.name.should == 'Commander Kirk'
+  end
+
+  it "should get tasks changes names" do
+    @task_changes = task.get_changes_names({:type_id => [2, 1]})
+    @task_changes[:type_id].first.should == 'Bug'
+    @task_changes[:type_id].last.should == 'Feature'
+  end
 
 end
 
