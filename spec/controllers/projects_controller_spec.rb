@@ -45,14 +45,14 @@ describe ProjectsController do
         it { should respond_with(:success) }
         it { should render_template(:show) }
       end
-      
+
       context "but not belong to the current user" do
         let(:project) { projects(:mike_vallely) }
-        
+
         before(:each) do
           login!
         end
-        
+
         it "should raise an ActiveRecord::RecordNotFound" do
           expect {
             do_action
@@ -93,7 +93,7 @@ describe ProjectsController do
       before(:each) do
         login!
       end
-      
+
       context "valid attributes" do
         before(:each) do
           do_action( name: "Hidden Project")
@@ -109,7 +109,7 @@ describe ProjectsController do
         before(:each) do
           do_action
         end
-        
+
         it { should render_template(:new) }
         it { should respond_with(:success) }
       end
@@ -149,7 +149,7 @@ describe ProjectsController do
       before(:each) do
         login!
       end
-      
+
       context "valid attributes" do
         before(:each) do
           do_action( name: "New Project name")
