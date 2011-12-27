@@ -58,6 +58,36 @@ describe TasksController do
     end
   end
 
+  describe "PUT update" do
+    def do_action(attributes = {})
+      put(:update, id: task.id, task: attributes)
+    end
+
+    context "authenticated" do
+      before(:each) do
+        login!
+      end
+
+      context "valid attributes" do
+        before(:each) do
+          do_action( name: "New Project name", status_id: 2, type_id: 2 )
+        end
+
+        it { should assign_to(:task)}
+        it { should redirect_to(assigns(:task)) }
+        it { should set_the_flash.to("Task was successfully updated.") }
+      end
+
+      context "invalid attributes" do
+        before(:each) do
+          do_action(name: "")
+        end
+
+        it { should render_template(:edit) }
+      end
+    end
+  end
+
   describe "GET destroy" do
     def do_action
       delete(:destroy, :id => task.id)
