@@ -58,5 +58,28 @@ describe TasksController do
     end
   end
 
+  describe "GET destroy" do
+    def do_action
+      delete(:destroy, :id => task.id)
+    end
+
+    context "authenticated" do
+      before(:each) do
+        login!
+      end
+
+      it "should delete a task" do
+        expect {
+          do_action
+        }.to change(Task, :count).by(-1)
+      end
+
+      it "should redirect to project url" do
+        do_action
+        should redirect_to(task.project)
+      end
+    end
+  end
+
 end
 
