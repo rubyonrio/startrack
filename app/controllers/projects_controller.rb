@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = current_user.projects.find(params[:id])
-    @users = User.without(current_user)
+    @users = User.all
   end
 
   def create
