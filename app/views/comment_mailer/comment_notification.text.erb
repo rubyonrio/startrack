@@ -5,4 +5,5 @@ The task <%= "##{@task.id} - #{@task.name}" %> recieved a new comment.
 ---
 
 Use the link below to answer this comment:
-<%= task_url(@task, :host => APP_CONFIG[:application][:address]) %>
+<%# I will fix it late! I am doing like this, to fix the problems separately %>
+<%= project_task_url(Project.find(@task.project_id),@task, :host => APP_CONFIG[:application][:address]) %>
