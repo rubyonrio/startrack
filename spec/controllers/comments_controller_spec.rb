@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CommentsController do
-
+  let(:project) { projects(:first_journey)}
   let(:task) { tasks(:create_enterprise) }
   let(:comment) { comments(:one) }
 
@@ -9,7 +9,7 @@ describe CommentsController do
     it_should_behave_like "authentication_required_action"
 
     def do_action(attributes = {})
-      post(:create, :task_id => task.id, comment: attributes)
+      post(:create, project_id: project.id, task_id: task.id, comment: attributes)
     end
 
     context "authenticated" do
@@ -23,7 +23,7 @@ describe CommentsController do
         end
 
         it { should assign_to(:task)}
-        it { should redirect_to(assigns(:task)) }
+        it { should redirect_to(project_task_path(project,task)) }
         it { should set_the_flash.to("Comment was successfully created.") }
       end
 
@@ -31,19 +31,17 @@ describe CommentsController do
         before(:each) do
           do_action
         end
-
+        
         it { should set_the_flash.to("Comment was not created.") }
       end
-
     end
-
   end
 
   describe "GET destroy" do
     it_should_behave_like "authentication_required_action"
 
     def do_action
-      delete(:destroy, :id => comment.id)
+      delete(:destroy, project_id: project.id, task_id: task.id, id: comment.id)
     end
 
     context "authenticated" do
@@ -59,7 +57,7 @@ describe CommentsController do
 
       it "should redirect to task show" do
         do_action
-        should redirect_to('http://test.host/tasks/587127017')
+        should redirect_to(project_task_path(project, task))
       end
     end
   end

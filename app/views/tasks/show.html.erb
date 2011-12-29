@@ -25,7 +25,7 @@
 
     <p><b>Description:</b> <%= raw show_task_description(@task) %></p>
 
-    <%= link_to 'Edit', edit_task_path(@task) %>
+    <%= link_to 'Edit', edit_project_task_path(@project,@task) %>
 
     <% if @task.task_files and @task.task_files.size > 0 %>
       <p><b>Files:</b></p>
@@ -63,7 +63,7 @@
       <h3>User the form below to start posting...</h3>
     <% end %>
 
-    <%= form_for [@task, @comment] do |c| %>
+    <%= form_for [@project, @task, @comment] do |c| %>
       <%= c.label :description %><br />
       <%= c.text_area :description %>
       <%= c.submit %>

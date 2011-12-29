@@ -1,22 +1,23 @@
 class CommentsController < ApplicationController
 
   def create
-    @task = Task.find(params[:task_id])
+    @task = project.tasks.find(params[:task_id])
     @comment = @task.comments.build(params[:comment])
     @comment.user = current_user
     if @comment.save
       @task.watchers << current_user unless @task.watchers.include?(current_user)
       notify_comment(@comment)
-      redirect_to @task, notice: 'Comment was successfully created.'
+      redirect_to project_task_path(project,@task), notice: 'Comment was successfully created.'
     else
-     redirect_to @task, alert: 'Comment was not created.'
+      redirect_to project_task_path(project,@task), alert: 'Comment was not created.'
     end
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    task = project.tasks.find(params[:task_id])
+    @comment = task.comments.find(params[:id])
     @comment.destroy
-    redirect_to task_url(@comment.task), alert: 'Comment was successfully deleted.'
+    redirect_to project_task_path(project, @comment.task), alert: 'Comment was successfully deleted.'
   end
 
   def notify_comment(comment)
@@ -26,4 +27,9 @@ class CommentsController < ApplicationController
       CommentMailer.comment_notification(recipients, comment).deliver
     end
   end
+  
+  private
+    def project
+      @project ||= Project.find(params[:project_id])
+    end
 end

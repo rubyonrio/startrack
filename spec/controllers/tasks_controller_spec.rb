@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe TasksController do
-
+  let(:project) { projects(:first_journey) }
   let(:task) { tasks(:create_enterprise) }
 
   before(:each) do
@@ -9,7 +9,7 @@ describe TasksController do
   end
 
   it "shoud get show" do
-    get :show, id: task.id
+    get :show, project_id: project.id, id: task.id
     assigns(:task).should == task
     assigns(:comments).should == task.comments
     response.code.should eq("200")
@@ -23,13 +23,13 @@ describe TasksController do
   end
 
   it "should get edit" do
-    get :edit, id: task.id
+    get :edit, project_id: project.id, id: task.id
     assigns(:task).should == task
     response.code.should eq("200")
   end
 
   it "should change task status" do
-    get :change_status, id: task.id, status_id: 2
+    get :change_status, project_id: project.id, id: task.id, status_id: 2
     assigns(:task).status.name.should == 'Scheduled'
   end
 
@@ -60,7 +60,7 @@ describe TasksController do
 
   describe "PUT update" do
     def do_action(attributes = {})
-      put(:update, id: task.id, task: attributes)
+      put(:update, project_id: project.id, id: task.id, task: attributes)
     end
 
     context "authenticated" do
@@ -74,7 +74,7 @@ describe TasksController do
         end
 
         it { should assign_to(:task)}
-        it { should redirect_to(assigns(:task)) }
+        it { should redirect_to(project_task_path(project,task)) }
         it { should set_the_flash.to("Task was successfully updated.") }
       end
 
@@ -90,7 +90,7 @@ describe TasksController do
 
   describe "GET destroy" do
     def do_action
-      delete(:destroy, :id => task.id)
+      delete(:destroy, project_id: project.id, :id => task.id)
     end
 
     context "authenticated" do
