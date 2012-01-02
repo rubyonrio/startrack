@@ -2,6 +2,7 @@ $(function() {
     var current_task = ""
 
     $("li").mousedown(function() {
+        project = document.location.pathname.replace("/projects/","");
         current_task = $(this).attr('id').replace("task-","");
     });
 
@@ -12,25 +13,25 @@ $(function() {
 
     $("#todo ul").droppable({
         drop: function() {
-            $.get('/tasks/'+current_task+'/change_status/'+1)
+            $.get('/projects/'+project+'/tasks/'+current_task+'/change_status/'+1)
         }
     });
 
     $("#scheduled ul").droppable({
         drop: function() {
-            $.get('/tasks/'+current_task+'/change_status/'+2)
+            $.get('/projects/'+project+'/tasks/'+current_task+'/change_status/'+2)
         }
     });
 
     $("#current ul").droppable({
         drop: function() {
-            $.get('/tasks/'+current_task+'/change_status/'+3)
+            $.get('/projects/'+project+'/tasks/'+current_task+'/change_status/'+3)
         }
     });
 
     $("#done ul").droppable({
         drop: function() {
-            $.get('/tasks/'+current_task+'/change_status/'+4)
+            $.get('/projects/'+project+'/tasks/'+current_task+'/change_status/'+4)
         }
     });
 
