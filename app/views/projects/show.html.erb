@@ -8,7 +8,7 @@
     <h2>Scheduled:</h2>
     <ul>
       <% @task_scheduled.each do |task| %>
-      <li id="task-<%= task.id%>"><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
+      <li id="task-<%= task.id%>"><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(@project, task) %></li>
       <% end %>
     </ul>
   </section>
@@ -16,7 +16,7 @@
     <h2>Current:</h2>
     <ul>
       <% @task_current.each do |task| %>
-      <li id="task-<%= task.id%>"><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
+      <li id="task-<%= task.id%>"><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(@project, task) %></li>
       <% end %>
     </ul>
   </section>
@@ -24,7 +24,7 @@
     <h2>Done:</h2>
     <ul>
       <% @task_done.each do |task| %>
-      <li id="task-<%= task.id%>"><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(task) %></li>
+      <li id="task-<%= task.id%>"><%= show_user_avatar(task.responsible) %> <%= link_to_show_task(@project, task) %></li>
       <% end %>
     </ul>
   </section>
