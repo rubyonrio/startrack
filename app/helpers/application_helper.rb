@@ -6,6 +6,10 @@ module ApplicationHelper
   end
 
   def app_version
-    ENV['APP_VERSION']
+    if ENV['APP_VERSION'].nil?
+      %x[git describe --tags --abbrev=0]
+    else
+      ENV['APP_VERSION']
+    end
   end
 end
