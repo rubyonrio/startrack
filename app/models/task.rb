@@ -17,7 +17,7 @@ class Task < ActiveRecord::Base
   validates :type, :presence => true
   validates :status, :presence => true
 
-  before_save :to_format
+  before_save :to_format, :default_duration_time
 
   scope :todo, joins(:status).where("statuses.name = 'TODO'")
   scope :scheduled, joins(:status).where("statuses.name = 'Scheduled'")
@@ -99,5 +99,11 @@ class Task < ActiveRecord::Base
     self.duration_time = self.duration_time + ((Time.now.to_i - start_time.to_datetime.to_i) / 60)
     self.start_time = nil
     self.save
+  end
+
+  private
+
+  def default_duration_time
+    self.duration_time = 0 if self.duration_time.nil?
   end
 end
