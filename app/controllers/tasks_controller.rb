@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   respond_to :js, :only => [:change_status]
-  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit]
+  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit, :update]
 
   def show
     @task = project.tasks.find(params[:id])
