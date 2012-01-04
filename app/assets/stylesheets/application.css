@@ -93,6 +93,42 @@ section {
   vertical-align: middle;
 }
 
+.timer {
+  color: #949494;
+  font-size: .8em;
+  margin: 0 .3em;
+  text-decoration: none;
+}
+
+.timer.active {
+  color: #6ba43c;
+}
+
+.timer:hover {
+  opacity: .6;
+  moz-opacity: .60;
+  filter:alpha(opacity=60);
+}
+
+.timer .icon {
+  margin: 0 .2em 0 0;
+  vertical-align: middle;
+}
+
+#project-show header {
+  overflow: hidden;
+  padding: 0 0 1em;
+  border-bottom: 1px solid #ccc;
+}
+
+#project-show h1 {
+  float: left;
+}
+
+#new-task {
+  float: right;
+}
+
 .status-pane {
   width: 31.2%;
   padding: 1%;
