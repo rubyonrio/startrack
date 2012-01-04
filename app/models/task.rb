@@ -89,4 +89,15 @@ class Task < ActiveRecord::Base
     end
     changes
   end
+
+  def start_work
+    self.start_time = Time.now
+    self.save
+  end
+
+  def stop_work
+    self.duration_time = self.duration_time + ((Time.now.to_i - start_time.to_datetime.to_i) / 60)
+    self.start_time = nil
+    self.save
+  end
 end

@@ -1,0 +1,1 @@
+$("#task-<%= @task.id%>").replaceWith("<%= escape_javascript render(:partial => 'tasks/task_item', :locals => { :task => @task }) %>");
