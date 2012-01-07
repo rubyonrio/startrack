@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
+  before_filter :init, :only => [:show, :edit, :update, :destroy]  
+  
   def index
     @projects = current_user.projects
   end
 
   def show
-    @project = current_user.projects.find(params[:id])
     @tasks = @project.tasks.all
     @task_todo = @project.tasks.todo.order("updated_at DESC")
     @task_scheduled = @project.tasks.scheduled.order("updated_at DESC")
@@ -18,7 +19,6 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = current_user.projects.find(params[:id])
     @users = User.all
   end
 
@@ -28,22 +28,25 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to @project, notice: 'Project was successfully created.'
     else
-      render action: "new"
+      render action: :new
     end
   end
 
   def update
-    @project = current_user.projects.find(params[:id])
     if @project.update_attributes(params[:project])
       redirect_to @project, notice: 'Project was successfully updated.'
     else
-      render action: "edit"
+      render action: :edit
     end
   end
 
-  def destroy
-    @project = current_user.projects.find(params[:id])
+  def destroy    
     @project.destroy
     redirect_to projects_url
+  end
+  
+  private
+  def init
+    @project = current_user.projects.find(params[:id])
   end
 end

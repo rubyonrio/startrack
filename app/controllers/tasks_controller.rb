@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   respond_to :js, :only => [:change_status]
   before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit, :update]
+  before_filter :init, :only => [:show, :edit, :update, :destroy, :change_status]
 
   def show
-    @task = project.tasks.find(params[:id])
     @comments = @task.comments.all
     @comment = @task.comments.new
   end
@@ -14,7 +14,6 @@ class TasksController < ApplicationController
 
   def edit
     project
-    @task = @project.tasks.find(params[:id])
   end
 
   def create
@@ -24,12 +23,11 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to @project, notice: 'Task was successfully created.'
     else
-      render action: "new"
+      render action: :new
     end
   end
 
   def update
-    @task = project.tasks.find(params[:id])
     @watchers_changes = @task.get_watchers_changes(params[:task][:watcher_ids])
 
     @task.attributes = params[:task]
@@ -39,25 +37,27 @@ class TasksController < ApplicationController
       notify_changes(@task, @task_changes, @watchers_changes)
       redirect_to project_task_path(project,@task), notice: 'Task was successfully updated.'
     else
-      render action: "edit"
+      render action: :edit
     end
   end
 
   def destroy
-    @task = project.tasks.find(params[:id])
     @task.destroy
 
     redirect_to project_url(@task.project)
   end
 
   def change_status
-    @task = project.tasks.find(params[:id])
     @task.update_attributes(:status_id => params[:status_id])
 
     respond_with @task
   end
 
   private
+  def init
+    @task = project.tasks.find(params[:id])
+  end
+  
   def project
     @project ||= current_user.projects.find(params[:project_id])
   end
