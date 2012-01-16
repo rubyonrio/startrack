@@ -93,20 +93,6 @@ section {
   vertical-align: middle;
 }
 
-#project-show header {
-  overflow: hidden;
-  padding: 0 0 1em;
-  border-bottom: 1px solid #ccc;
-}
-
-#project-show h1 {
-  float: left;
-}
-
-#new-task {
-  float: right;
-}
-
 .status-pane {
   width: 31.2%;
   padding: 1%;
@@ -218,7 +204,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 }
 
 .field.checkbox {
-  width: 50%;
+  width: 100%;
 }
 
 .checkbox ul {

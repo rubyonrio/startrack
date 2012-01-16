@@ -62,22 +62,6 @@ class TasksController < ApplicationController
     @project ||= current_user.projects.find(params[:project_id])
   end
 
-  def load_estimates
-    @estimate = Estimate.all
-  end
-
-  def load_status
-    @status = Status.all
-  end
-
-  def load_types
-    @type = Type.all
-  end
-
-  def load_users
-    @responsibles = User.all
-  end
-
   def notify_changes(task, changes, watchers_changes)
     unless @task.watchers.nil?
       recipients = ""

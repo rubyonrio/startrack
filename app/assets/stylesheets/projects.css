@@ -1,0 +1,54 @@
+div.input label {
+  display: block;
+  margin-top: 10px;
+}
+
+div.input.check_boxes span {
+  display: block;
+}
+
+div.input.check_boxes span input {
+  display: inline;
+}
+
+div.input.check_boxes span label.collection_check_boxes {
+  display: inline;
+  margin: 10px 0 10px 10px;
+}
+
+#project-show {
+  position: relative;
+}
+
+#project-show header {
+  overflow: hidden;
+  padding: 0 0 1em;
+  border-bottom: 1px solid #ccc;
+}
+
+#project-show h1 {
+  float: left;
+}
+
+#link_new_task {
+  float: right;
+  text-decoration: none;
+}
+
+#link_new_task span {
+  font-size: .8em;
+  color: #999;
+}
+
+#new_task {
+  display: none;
+  position: absolute;
+  right: 5em;
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 1em;
+  width: 30em;
+  webkit-box-shadow: 0px 8px 8px #999; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  moz-box-shadow: 0px 8px 8px #999; /* FF3.5 - 3.6 */
+  box-shadow: 0px 8px 8px #999; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+}

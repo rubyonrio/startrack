@@ -1,10 +1,10 @@
-<%= form_for([@project, @task]) do |f| %>
-  <% if @task.errors.any? %>
+<%= form_for([project, task]) do |f| %>
+  <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
       <ul>
-        <% @task.errors.full_messages.each do |msg| %>
+        <% task.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -19,7 +19,7 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
-  <div class="field">
+  <div class="field"><%= puts "\n\n->#{@responsibles.inspect}\n\n" %>
     <%= f.label :responsible %><br />
     <%= f.collection_select :responsible_id, @responsibles, :id, :name, {:prompt => true} %>
   </div>
@@ -27,7 +27,7 @@
     <%= f.label :watchers %>
     <ul>
       <% User.find(:all).each do |w| %>
-        <li><%= check_box_tag 'task[watcher_ids][]', w.id, @task.watchers.include?(w) %><%= w.name %></li>
+        <li><%= check_box_tag 'task[watcher_ids][]', w.id, task.watchers.include?(w) %><%= w.name %></li>
       <% end %>
     </ul>
   </div>
@@ -47,7 +47,7 @@
   <div class="field">
     <% 
       fields = f.fields_for(:task_files, TaskFile.new, :child_index => "new_task_files") do |builder|
-        render("task_file_fields", :f => builder, :child_index => "new_task_files")
+        render("tasks/task_file_fields", :f => builder, :child_index => "new_task_files")
       end
     %> 
     <%= link_to_function(t(:add_file), "add_fields('task_files', '#{escape_javascript(fields)}')", :class => "button small add-image") %>

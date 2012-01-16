@@ -35,4 +35,29 @@ $(function() {
         }
     });
 
+    $("body").keypress(function(e) {
+        if (e.keyCode == 110) { 
+            $("#link_new_task").html("Cancel <span>(esq)</span>");
+            $("#new_task").show();
+            $("#task_name").focus();
+            return false;
+        };
+    });
+
+    $(document).keyup(function(e) {
+        if (e.keyCode == 27) {
+            $("#link_new_task").html("New task <span>(n)</span>");
+            $("#new_task").hide();
+            return false;
+        };
+    });
+    
+    $("#link_new_task").click(function() {
+        var link = $(this);
+        link.html(link.html() == 'Cancel <span>(esq)</span>' ? 'New task <span>(n)</span>' : 'Cancel <span>(esq)</span>');
+        $("#new_task").toggle();
+        $("#task_name").focus();
+        return false;
+    });
+
 });

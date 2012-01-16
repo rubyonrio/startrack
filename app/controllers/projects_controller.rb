@@ -1,11 +1,13 @@
 class ProjectsController < ApplicationController
   before_filter :init, :only => [:show, :edit, :update, :destroy]  
+  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:show]
   
   def index
     @projects = current_user.projects
   end
 
   def show
+    @new_task = @project.tasks.new
     @tasks = @project.tasks.all
     @task_todo = @project.tasks.todo.order("updated_at DESC")
     @task_scheduled = @project.tasks.scheduled.order("updated_at DESC")
