@@ -46,7 +46,7 @@ $(function() {
 
     $(document).keyup(function(e) {
         if (e.keyCode == 27) {
-            $("#link_new_task").html("New task <span>(press n)</span>").removeClass("active");
+            $("#link_new_task").html("New task <span>(ctrl n)</span>").removeClass("active");
             var new_task_form = $('#new_task');
             new_task_form.each (function(){
                 this.reset();
@@ -58,7 +58,7 @@ $(function() {
 
     $("#link_new_task").click(function() {
         var link = $(this);
-        link.html(link.html() == 'Cancel <span>(press esc)</span>' ? 'New task <span>(press n)</span>' : 'Cancel <span>(press esc)</span>').toggleClass("active");
+        link.html(link.html() == 'Cancel <span>(press esc)</span>' ? 'New task <span>(ctrl n)</span>' : 'Cancel <span>(press esc)</span>').toggleClass("active");
         $("#new_task").toggle();
         $("#task_name").focus();
         return false;

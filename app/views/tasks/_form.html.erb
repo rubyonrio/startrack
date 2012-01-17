@@ -11,13 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field full">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-  <div class="field">
+  <div class="field full">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
+  </div>
+  <div class="field medium">
+    <%= f.label :estimate %><br />
+    <%= f.collection_select :estimate_id, @estimate, :id, :name, {:prompt => true} %>
+  </div>
+  <div class="field medium">
+    <%= f.label :status %><br />
+    <%= f.collection_select :status_id, @status, :id, :name, {:prompt => true} %>
+  </div>
+  <div class="field medium">
+    <%= f.label :type %><br />
+    <%= f.collection_select :type_id, @type, :id, :name, {:prompt => true} %>
   </div>
   <div class="field"><%= puts "\n\n->#{@responsibles.inspect}\n\n" %>
     <%= f.label :responsible %><br />
@@ -27,31 +39,15 @@
     <%= f.label :watchers %>
     <ul>
       <% User.find(:all).each do |w| %>
-        <li><%= check_box_tag 'task[watcher_ids][]', w.id, task.watchers.include?(w) %><%= w.name %></li>
+        <li><label><%= check_box_tag 'task[watcher_ids][]', w.id, task.watchers.include?(w) %><%= w.name %></label></li>
       <% end %>
     </ul>
   </div>
-  <div class="field">
-    <%= f.label :estimate %><br />
-    <%= f.collection_select :estimate_id, @estimate, :id, :name, {:prompt => true} %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.collection_select :status_id, @status, :id, :name, {:prompt => true} %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.collection_select :type_id, @type, :id, :name, {:prompt => true} %>
-  </div>
   <h2><%= t(:task_files) %></h2>
-  <div class="field">
-    <% 
-      fields = f.fields_for(:task_files, TaskFile.new, :child_index => "new_task_files") do |builder|
-        render("tasks/task_file_fields", :f => builder, :child_index => "new_task_files")
-      end
-    %> 
-    <%= link_to_function(t(:add_file), "add_fields('task_files', '#{escape_javascript(fields)}')", :class => "button small add-image") %>
-  </div>
+  <% fields = f.fields_for(:task_files, TaskFile.new, :child_index => "new_task_files") do |builder| %>
+    <%= render("tasks/task_file_fields", :f => builder, :child_index => "new_task_files") %>
+  <% end %>
+  <%= link_to_function(t(:add_file), "add_fields('task_files', '#{escape_javascript(fields)}')", :class => "button small add-image") %>
   <div id="task_files">
     <% new_id = Time.now.to_i %>
     <%= f.fields_for :task_files do |task_file| %>

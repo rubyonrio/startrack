@@ -153,8 +153,13 @@ div.indent {
   border-color: transparent transparent transparent #000;
   content:' ';
 }
+
 #new_task::before{
   z-index:2;
   right: -30px;
   border-left-color: #333;
+}
+
+#new_task a, #new_task a:visited {
+  color: #fff;
 }

@@ -6,7 +6,7 @@
     <div class="indent">
       <%= link_to "#", :id => "link_new_task" do %>
         New task
-        <%= content_tag :span, "(press n)" %>
+        <%= content_tag :span, "(ctrl n)" %>
       <% end %>
     </div>
     <%= render :partial => 'tasks/form', :locals => {:project => @project, :task => @new_task} %>
