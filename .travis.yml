@@ -3,7 +3,6 @@ before_script:
   - "rake db:migrate"
 rvm:
   - 1.9.2
-  - rbx-19mode
 notifications:
   recipients:
     - ls@lucianosousa.net
