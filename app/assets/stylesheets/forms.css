@@ -1,0 +1,136 @@
+form {
+  font-size: 1.2em;
+}
+
+form br {
+  clear: left;
+}
+
+form h2 {
+  float: left;
+  margin-bottom: 2%;
+  font-size: 1.4em;
+}
+
+input:focus, input:active {
+  outline: none;
+  border: 1px solid #FFEA80;
+}
+
+input, textarea {
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  moz-border-radius: 5px;
+  webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: .5em 1%;
+}
+
+select {
+  font-size: 1em;
+}
+
+form p {
+  margin: 1em 0;
+}
+
+#error_explanation {
+  background: #ffcccc;
+  border: 1px solid #ee6868;
+  color: #660000;
+  padding: 1%;
+  margin: 0 2% 2% 0;
+  webkit-border-radius: 5px;
+  moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#error_explanation h2 {
+  color: #990000;
+  margin-bottom: .5em;
+}
+
+.field {
+  float: left;
+  margin: 0 2% 2% 0;
+}
+
+.field.edge {
+  margin-right: 0;
+}
+
+.field.small {
+  width: 14.8%;
+}
+
+.field.medium {
+  width: 31.2%;
+}
+
+.field.fifth {
+  width: 46.5%;
+}
+
+.field.large {
+  width: 81.2%;
+}
+
+.field.full {
+  width: 98%;
+}
+
+.field input, .field textarea {
+  width: 98%;
+}
+
+.field input[type=radio] {
+  width: 20px;
+}
+
+.field select {
+  width: 100%;
+}
+
+.field .radio {
+  float: left;
+  margin: 0 10% 0 0;
+}
+
+.field input[type=checkbox], .field .radio input {
+  width: 20px;
+  height: 20px;
+  float: left;
+}
+
+.field .side-link {
+  float: right;
+  margin: 1% 0;
+  font-size: .8em;
+}
+
+.actions {
+  text-align: right;
+  margin: 1% 0;
+  clear: both;
+}
+
+.actions a {
+  text-decoration: none;
+  font-size: 1em;
+  margin: 0 .5em 0 0;
+}
+
+.actions .button {
+  font-size: 1.1em;
+  margin: 0;
+}
+
+.add-image {
+  float: right;
+  line-height: 2em;
+}
+
+#task_files {
+  float: left;
+  width: 100%;
+}
