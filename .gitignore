@@ -13,3 +13,4 @@ Gemfile.lock
 .DS_Store
 config/initializers/setup_mail.rb
 public/system/dragonfly/*
+.rspec
