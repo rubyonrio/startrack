@@ -5,6 +5,7 @@ module TasksHelper
   end
 
   def show_task_description(task)
+    #TODO: Confirm if it make sense
     task.description_html? ? task.description_html.html_safe : task.description
   end
 end
