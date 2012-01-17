@@ -30,9 +30,84 @@ div.input.check_boxes span label.collection_check_boxes {
   float: left;
 }
 
-#link_new_task {
+div.indent {
   float: right;
+  background-color: #e2e2e2;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e2e2e2), color-stop(100%, #fafafa));
+  background-image: -webkit-linear-gradient(top, #e2e2e2, #fafafa);
+  background-image: -moz-linear-gradient(top, #e2e2e2, #fafafa);
+  background-image: -ms-linear-gradient(top, #e2e2e2, #fafafa);
+  background-image: -o-linear-gradient(top, #e2e2e2, #fafafa);
+  background-image: linear-gradient(top, #e2e2e2, #fafafa);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  padding: .5em 0;
+  width: 13em;
+}
+
+#link_new_task {
+  display: block;
   text-decoration: none;
+  background-color: #f0d400;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fffad8), color-stop(50%, #fff188), color-stop(50%, #f0d400), color-stop(100%, #ffe100));
+  background-image: -webkit-linear-gradient(top, #fffad8 0%, #fff188 50%, #f0d400 50%, #ffe100 100%);
+  background-image: -moz-linear-gradient(top, #fffad8 0%, #fff188 50%, #f0d400 50%, #ffe100 100%);
+  background-image: -ms-linear-gradient(top, #fffad8 0%, #fff188 50%, #f0d400 50%, #ffe100 100%);
+  background-image: -o-linear-gradient(top, #fffad8 0%, #fff188 50%, #f0d400 50%, #ffe100 100%);
+  background-image: linear-gradient(top, #fffad8 0%, #fff188 50%, #f0d400 50%, #ffe100 100%);
+  border-bottom: 1px solid #e0d200;
+  border-right: 1px solid #dfdfdf;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  -moz-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  -ms-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  -o-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  color: #666;
+  font-size: 1.2em;
+  text-align: center;
+  margin: 0 auto;
+  padding: .6em 0 .4em;
+  text-shadow: 0 1px 1px #fff;
+  width: 10em;
+}
+
+#link_new_task:hover {
+  background-color: #f0d400;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fffcd7), color-stop(50%, #fef5a6), color-stop(50%, #f2df4c), color-stop(100%, #fde84c));
+  background-image: -webkit-linear-gradient(top, #fffcd7 0%, #fef5a6 50%, #f2df4c 50%, #fde84c 100%);
+  background-image: -moz-linear-gradient(top, #fffcd7 0%, #fef5a6 50%, #f2df4c 50%, #fde84c 100%);
+  background-image: -ms-linear-gradient(top, #fffcd7 0%, #fef5a6 50%, #f2df4c 50%, #fde84c 100%);
+  background-image: -o-linear-gradient(top, #fffcd7 0%, #fef5a6 50%, #f2df4c 50%, #fde84c 100%);
+  background-image: linear-gradient(top, #fffcd7 0%, #fef5a6 50%, #f2df4c 50%, #fde84c 100%);
+  -webkit-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  -moz-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  -ms-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  -o-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+}
+
+#link_new_task:active, #link_new_task.active {
+  background-color: #e5e5e5;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e5e5e5), color-stop(50%, #d1d1d1), color-stop(50%, #c4c4c4), color-stop(100%, #b8b8b8));
+  background-image: -webkit-linear-gradient(top, #e5e5e5 0%, #d1d1d1 50%, #c4c4c4 50%, #b8b8b8 100%);
+  background-image: -moz-linear-gradient(top, #e5e5e5 0%, #d1d1d1 50%, #c4c4c4 50%, #b8b8b8 100%);
+  background-image: -ms-linear-gradient(top, #e5e5e5 0%, #d1d1d1 50%, #c4c4c4 50%, #b8b8b8 100%);
+  background-image: -o-linear-gradient(top, #e5e5e5 0%, #d1d1d1 50%, #c4c4c4 50%, #b8b8b8 100%);
+  background-image: linear-gradient(top, #e5e5e5 0%, #d1d1d1 50%, #c4c4c4 50%, #b8b8b8 100%);
+  webkit-box-shadow: inset 0 1px 0 0 #aaa, inset 0 0 30px 0 #999999, 0 1px 0 0 white;
+  moz-box-shadow: inset 0 0 30px 0 #999999, 0 1px 0 0 white;
+  ms-box-shadow: inset 0 0 30px 0 #999999, 0 1px 0 0 white;
+  o-box-shadow: inset 0 0 30px 0 #999999, 0 1px 0 0 white;
+  box-shadow: inset 0 0 30px 0 #999999, 0 1px 0 0 white;
+  border-bottom: 1px solid #e0d200;
 }
 
 #link_new_task span {
@@ -43,12 +118,43 @@ div.input.check_boxes span label.collection_check_boxes {
 #new_task {
   display: none;
   position: absolute;
-  right: 5em;
-  background: #eee;
-  border: 1px solid #ccc;
+  top: .6em;
+  right: 13em;
+  background: #333;
+  border: 1px solid #000;
   padding: 1em;
   width: 30em;
+  color: #ddd;
+  border-top-left-radius: .5em;
+  border-bottom-left-radius: .5em;
+  border-bottom-right-radius: .5em;
+  moz-border-radius-topleft: .5em;
+  moz-border-radius-bottomleft: .5em;
+  moz-border-radius-bottomright: .5em;
+  webkit-border-top-left-radius: .5em;
+  webkit-border-bottom-left-radius: .5em;
+  webkit-border-bottom-right-radius: .5em;
   webkit-box-shadow: 0px 8px 8px #999; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   moz-box-shadow: 0px 8px 8px #999; /* FF3.5 - 3.6 */
   box-shadow: 0px 8px 8px #999; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+}
+
+#new_task::after,
+#new_task::before{
+  display:block;
+  position:absolute;
+  z-index:1;
+  top: 0;
+  right: -31px;
+  width:0px;
+  height:0px;
+  border-style:solid;
+  border-width: 15px;
+  border-color: transparent transparent transparent #000;
+  content:' ';
+}
+#new_task::before{
+  z-index:2;
+  right: -30px;
+  border-left-color: #333;
 }

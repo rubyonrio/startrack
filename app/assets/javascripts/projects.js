@@ -36,8 +36,8 @@ $(function() {
     });
 
     $("body").keypress(function(e) {
-        if (e.keyCode == 110) { 
-            $("#link_new_task").html("Cancel <span>(esq)</span>");
+        if (e.keyCode == 110) {
+            $("#link_new_task").html("Cancel <span>(press esc)</span>").addClass("active");
             $("#new_task").show();
             $("#task_name").focus();
             return false;
@@ -46,15 +46,15 @@ $(function() {
 
     $(document).keyup(function(e) {
         if (e.keyCode == 27) {
-            $("#link_new_task").html("New task <span>(n)</span>");
+            $("#link_new_task").html("New task <span>(press n)</span>").removeClass("active");
             $("#new_task").hide();
             return false;
         };
     });
-    
+
     $("#link_new_task").click(function() {
         var link = $(this);
-        link.html(link.html() == 'Cancel <span>(esq)</span>' ? 'New task <span>(n)</span>' : 'Cancel <span>(esq)</span>');
+        link.html(link.html() == 'Cancel <span>(press esc)</span>' ? 'New task <span>(press n)</span>' : 'Cancel <span>(press esc)</span>').toggleClass("active");
         $("#new_task").toggle();
         $("#task_name").focus();
         return false;

@@ -2,10 +2,13 @@
 <article id="project-show">
   <header>
     <h1><%= @project.name %> <span>(<%= link_to 'edit', edit_project_path(@project) %>)</span></h1>
-    <%= link_to "#", :id => "link_new_task" do %>
-      New task
-      <%= content_tag :span, "(n)" %>
-    <% end %>
+
+    <div class="indent">
+      <%= link_to "#", :id => "link_new_task" do %>
+        New task
+        <%= content_tag :span, "(press n)" %>
+      <% end %>
+    </div>
     <%= render :partial => 'tasks/form', :locals => {:project => @project, :task => @new_task} %>
   </header>
   <section id="scheduled" class="status-pane">
