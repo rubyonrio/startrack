@@ -1,7 +1,7 @@
 <% content_for :title, "Editing ##{@task.id} #{@task.name}" %>
 <h1>Editing task</h1>
 
-<%= render 'form' %>
+<%= render :partial => 'form', :locals => {:project => @project, :task => @task} %>
 
 <%= link_to 'Show', [@project,@task] %> |
 <%= link_to 'Back', project_task_path %>

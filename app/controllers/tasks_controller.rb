@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to @project, notice: 'Task was successfully created.'
     else
-      render action: :new
+      redirect_to project_url(@task.project), notice: 'Err... sorry but something is wrong. :/'
     end
   end
 
