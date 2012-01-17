@@ -1,11 +1,12 @@
 before_script:
   - "mysql -e 'create database startrack_test;' >/dev/null"
   - "rake db:migrate"
-script: "bundle exec rake test"
 rvm:
   - 1.9.2
+  - rbx-19mode
 notifications:
   recipients:
     - ls@lucianosousa.net
     - rafael@tauil.com.br
+    - rodrigopqn@gmail.com
 
