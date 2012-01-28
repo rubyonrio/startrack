@@ -31,7 +31,7 @@
     <%= f.label :type %><br />
     <%= f.collection_select :type_id, @type, :id, :name, {:prompt => true} %>
   </div>
-  <div class="field"><%= puts "\n\n->#{@responsibles.inspect}\n\n" %>
+  <div class="field">
     <%= f.label :responsible %><br />
     <%= f.collection_select :responsible_id, @responsibles, :id, :name, {:prompt => true} %>
   </div>
