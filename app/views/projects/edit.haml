@@ -1,0 +1,9 @@
+- content_for :title, "Editing project #{@project.name}"
+%h1
+  Editing project -
+  = link_to '(remove)', @project, :confirm => 'Would you like to delete this project? Are you sure?', :method => :delete
+
+= render 'form'
+
+= link_to 'Show', @project |
+= link_to 'Back', projects_path
