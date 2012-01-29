@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @users = User.all
+    @users = User.without(current_user)
   end
 
   def create

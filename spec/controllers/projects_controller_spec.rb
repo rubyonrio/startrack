@@ -119,7 +119,7 @@ describe ProjectsController do
   describe "GET edit" do
     it_should_behave_like "authentication_required_action"
     let(:project) { projects(:first_journey) }
-
+    
     def do_action
       get(:edit, :id => project.id)
     end
@@ -131,7 +131,7 @@ describe ProjectsController do
       end
 
       it { assigns(:project).should == project }
-      it { should assign_to(:users) }
+      it { assigns(:users).should == users(:kirk,:mccoy) }
       it { should respond_with(:success) }
       it { should render_template(:edit) }
     end
