@@ -163,33 +163,3 @@ div.indent {
 #new_task a, #new_task a:visited {
   color: #fff;
 }
-
-
-.projects {
-  
-  ul {
-    list-style: none;
-    
-    li.project {
-      min-height: 140px; 
-      float: left; 
-      width: 46%;
-      border-radius: 6px / 6px;border: 2px solid #CCCCCC;
-      padding: 5px;
-      margin: 0 1% 1% 0;
-      border-image: initial;
-    }
-    
-    div.members {
-      ul {
-        margin: 0;
-        padding: 0;
-
-        li {
-          list-style: none;
-          display: inline
-        }
-      }
-    }
-  }
-}
