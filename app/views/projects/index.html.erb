@@ -6,7 +6,7 @@
     <% @projects.each do |project| %>
       <li>
         <%= link_to project.name, project %>
-        <%= content_tag :p, project.description unless project.description.empty? %>
+        <%= content_tag :p, project.description unless project.description.blank? %>
         <ul>
           <% project.users.each do |project_user| %>
             <li><%= show_user_avatar(project_user) %></li>
