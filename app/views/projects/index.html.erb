@@ -2,28 +2,19 @@
 <h3>My Projects - <%= link_to '(+) Create Project', new_project_path %></h3>
 
 <% unless @projects.blank? %>
-<table>
-  <tr>
-    <th width="100">Name </th>
-    <th width="100">Description </th>
-    <th width="100">Actions</th>
-  </tr>
-  <% @projects.each do |project| %>
-  <tr>
-    <td><%= link_to project.name, project %></td>
-    <td><%= project.description %></td>
-    <td>
-      <%= link_to 'Edit', edit_project_path(project) %>
-      <%= link_to '(X)Remove', project, :confirm => 'Are you sure?', :method => :delete %>
-    </td>
-  </tr>
-  <tr>
-    <td><%= project.description %></td>
-  <% end %>
-</table>
+  <ul id="project-list">
+    <% @projects.each do |project| %>
+      <li>
+        <%= link_to project.name, project %>
+        <%= content_tag :p, project.description unless project.description.empty? %>
+        <ul>
+          <% project.users.each do |project_user| %>
+            <li><%= show_user_avatar(project_user) %></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
 <% else %>
   <p>You don't have any projects. <%= link_to 'Create', new_project_path %> your first project!</p>
 <% end %>
-<br />
-
-
