@@ -8,10 +8,6 @@ class TasksController < ApplicationController
     @comment = @task.comments.new
   end
 
-  def new
-    @task = project.tasks.new
-  end
-
   def edit
     project
   end
