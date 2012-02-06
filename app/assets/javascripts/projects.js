@@ -35,27 +35,6 @@ $(function() {
         }
     });
 
-    $("body").keypress("n", function(e) {
-        if (e.ctrlKey) {
-            $("#link_new_task").html("Cancel <span>(press esc)</span>").addClass("active");
-            $("#new_task").show();
-            $("#task_name").focus();
-            return false;
-        };
-    });
-
-    $(document).keyup(function(e) {
-        if (e.keyCode == 27) {
-            $("#link_new_task").html("New task <span>(ctrl n)</span>").removeClass("active");
-            var new_task_form = $('#new_task');
-            new_task_form.each (function(){
-                this.reset();
-            });
-            new_task_form.hide();
-            return false;
-        };
-    });
-
     $("#link_new_task").click(function() {
         var link = $(this);
         link.html(link.html() == 'Cancel <span>(press esc)</span>' ? 'New task <span>(ctrl n)</span>' : 'Cancel <span>(press esc)</span>').toggleClass("active");
@@ -64,4 +43,40 @@ $(function() {
         return false;
     });
 
+    if ($("#project-show #new_task").length > 0) {
+        bind_n_key();
+    }
+
+    function bind_n_key() {
+        $(document).keyup(function(e) {
+            if (e.keyCode == 78) {
+                unbind_key();
+                bind_esc_key();
+                $("#link_new_task").html("Cancel <span>(press esc)</span>").addClass("active");
+                $("#new_task").show();
+                $("#task_name").focus();
+                return false;
+            }
+        });
+    }
+
+    function bind_esc_key() {
+        $(document).keyup(function(e) {
+            if (e.keyCode == 27) {
+                unbind_key();
+                bind_n_key();
+                $("#link_new_task").html("New task <span>(press n)</span>").removeClass("active");
+                var new_task_form = $('#new_task');
+                new_task_form.each (function(){
+                    this.reset();
+                });
+                new_task_form.hide();
+                return false;
+            };
+        });
+    }
+
+    function unbind_key() {
+        $(document).unbind("keyup");
+    }
 });
