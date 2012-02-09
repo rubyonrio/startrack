@@ -1,7 +1,7 @@
 $(function() {
     var current_task = ""
 
-    $("li").mousedown(function() {
+    $("#project-show li").mousedown(function() {
         project = document.location.pathname.replace("/projects/","");
         current_task = $(this).attr('id').replace("task-","");
     });
