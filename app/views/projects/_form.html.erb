@@ -4,6 +4,7 @@
   <fieldset class="inputs">
     <%= f.input :name %>
     <%= f.input :description %>
+    <%= f.check_box :public %> <%= f.label :public %><br />
     <%- unless @users.blank? -%>
     	<%= f.association :users, :as => :check_boxes, :collection => @users  %>
     <%- end -%>

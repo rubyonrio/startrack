@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
-  before_filter :authenticate_user!
+  before_filter :check_user
 
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
@@ -24,5 +25,13 @@ class ApplicationController < ActionController::Base
 
   def load_users
     @responsibles = User.all
+  end
+
+  def check_user
+    if user_signed_in?
+      active_user = current_user
+    else
+      active_user = User.where(:email => "guest@startrack.com").first
+    end
   end
 end

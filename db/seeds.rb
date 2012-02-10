@@ -21,3 +21,6 @@ Estimate.delete_all
   Estimate.create :name => estimate
 end
 
+User.delete_all
+User.create :name => "Guest", :email => "guest@startrack.com", password: "tester", password_confirmation: "tester"
+

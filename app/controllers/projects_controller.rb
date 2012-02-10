@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
-  before_filter :init, :only => [:show, :edit, :update, :destroy]  
+
+  before_filter :check_public, :only => [:show, :edit, :update, :destroy]
   before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:show]
-  
+
   def index
     @projects = current_user.projects
   end
@@ -42,13 +43,16 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def destroy    
+  def destroy
     @project.destroy
     redirect_to projects_url
   end
-  
-  private
-  def init
-    @project = current_user.projects.find(params[:id])
+
+  def check_public
+    @project = Project.find(params[:id])
+    unless @project.public
+      authenticate_user!
+      @project = current_user.projects.find(params[:id])
+    end
   end
 end

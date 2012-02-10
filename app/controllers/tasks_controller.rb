@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 
   respond_to :js, :only => [:change_status, :start, :stop]
+  before_filter :check_public_project
   before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit, :update]
   before_filter :init, :only => [:show, :edit, :update, :destroy, :change_status]
 
@@ -10,12 +11,13 @@ class TasksController < ApplicationController
   end
 
   def edit
-    project
+    @project
   end
 
   def create
-    @task = project.tasks.build(params[:task])
-    @task.user = current_user
+    @task = @project.tasks.build(params[:task])
+    @task.user = active_user
+    puts "\n\n\n-> #{active_user.inspect}\n"
 
     if @task.save
       redirect_to @project, notice: 'Task was successfully created.'
@@ -51,14 +53,14 @@ class TasksController < ApplicationController
   end
 
   def start
-    @task = project.tasks.find(params[:id])
+    @task = @project.tasks.find(params[:id])
     @task.start_work
 
     respond_with @task
   end
 
   def stop
-    @task = project.tasks.find(params[:id])
+    @task = @project.tasks.find(params[:id])
     @task.stop_work
 
     respond_with @task
@@ -67,11 +69,15 @@ class TasksController < ApplicationController
   private
 
   def init
-    @task = project.tasks.find(params[:id])
+    @task = @project.tasks.find(params[:id])
   end
 
-  def project
-    @project ||= current_user.projects.find(params[:project_id])
+  def check_public_project
+    @project = Project.find(params[:project_id])
+    unless @project.public
+      authenticate_user!
+      @project = current_user.projects.find(params[:project_id])
+    end
   end
 
   def notify_changes(task, changes, watchers_changes)
