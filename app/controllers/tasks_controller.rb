@@ -16,8 +16,7 @@ class TasksController < ApplicationController
 
   def create
     @task = @project.tasks.build(params[:task])
-    @task.user = active_user
-    puts "\n\n\n-> #{active_user.inspect}\n"
+    @task.user = @active_user
 
     if @task.save
       redirect_to @project, notice: 'Task was successfully created.'

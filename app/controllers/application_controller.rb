@@ -29,9 +29,9 @@ class ApplicationController < ActionController::Base
 
   def check_user
     if user_signed_in?
-      active_user = current_user
+      @active_user = current_user
     else
-      active_user = User.where(:email => "guest@startrack.com").first
+      @active_user = User.where(:email => "guest@startrack.com").first
     end
   end
 end
