@@ -65,14 +65,11 @@ class TasksController < ApplicationController
   end
 
   private
-<<<<<<< HEAD
+
   def init
     @task = project.tasks.find(params[:id])
   end
-  
-=======
 
->>>>>>> Added time track feature
   def project
     @project ||= current_user.projects.find(params[:project_id])
   end
