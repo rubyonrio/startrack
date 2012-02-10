@@ -22,11 +22,4 @@ module TasksHelper
       end
     end
   end
-
-  def to_hours(minutes)
-    if (minutes/60) > 0
-      result = minutes/60
-      return result
-    end
-  end
 end
