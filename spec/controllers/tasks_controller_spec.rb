@@ -104,5 +104,16 @@ describe TasksController do
     end
   end
 
+  it "shoud get start" do
+    get :start, project_id: project.id, id: task.id
+    response.code.should eq("406")
+  end
+
+  it "shoud get stop" do
+    get :start, project_id: project.id, id: task.id
+    get :stop, project_id: project.id, id: task.id
+    response.code.should eq("406")
+  end
+
 end
 

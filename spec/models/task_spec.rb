@@ -48,5 +48,17 @@ describe Task do
     @task_changes[:type_id].last.should == 'Feature'
   end
 
+  it "should start to track minutes" do
+    task.start_work
+    task.start_time.should_not == nil
+  end
+
+  it "should stop to track minutes and get the duration in minutes" do
+    task.start_work
+    task.stop_work
+    task.start_time.should == nil
+    task.duration_time.should_not == nil
+  end
+
 end
 
