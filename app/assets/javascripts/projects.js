@@ -36,10 +36,12 @@ $(function() {
     });
 
     $("#link_new_task").click(function() {
-        var link = $(this);
-        link.html(link.html() == 'Cancel <span>(press esc)</span>' ? 'New task <span>(ctrl n)</span>' : 'Cancel <span>(press esc)</span>').toggleClass("active");
-        $("#new_task").toggle();
-        $("#task_name").focus();
+        if ($(this).hasClass("active")) {
+            hide_new_task_form();
+        }
+        else {
+            show_new_task_form();
+        }
         return false;
     });
 
@@ -47,32 +49,32 @@ $(function() {
         bind_n_key();
     }
 
+    function show_new_task_form() {
+        $("#link_new_task").html("Cancel <span>(press esc)</span>").addClass("active");
+        $("#new_task").show();
+        $("#task_name").focus();
+        unbind_key();
+        bind_esc_key();
+    }
+
+    function hide_new_task_form() {
+        $("#link_new_task").html("New task <span>(press n)</span>").removeClass("active");
+        $("#new_task").get(0).reset();
+        $("#new_task").hide();
+        $("#link_new_task").focus().blur();
+        unbind_key();
+        bind_n_key();
+    }
+
     function bind_n_key() {
         $(document).keyup(function(e) {
-            if (e.keyCode == 78) {
-                unbind_key();
-                bind_esc_key();
-                $("#link_new_task").html("Cancel <span>(press esc)</span>").addClass("active");
-                $("#new_task").show();
-                $("#task_name").focus();
-                return false;
-            }
+            if (e.keyCode == 78) show_new_task_form();
         });
     }
 
     function bind_esc_key() {
         $(document).keyup(function(e) {
-            if (e.keyCode == 27) {
-                unbind_key();
-                bind_n_key();
-                $("#link_new_task").html("New task <span>(press n)</span>").removeClass("active");
-                var new_task_form = $('#new_task');
-                new_task_form.each (function(){
-                    this.reset();
-                });
-                new_task_form.hide();
-                return false;
-            };
+            if (e.keyCode == 27) hide_new_task_form();
         });
     }
 
