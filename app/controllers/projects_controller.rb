@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
-  before_filter :init, :only => [:show, :edit, :update, :destroy]  
+  before_filter :load_project, :only => [:show, :edit, :update, :destroy]
   before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:show]
+  before_filter :load_other_users, :only => [:new, :edit]
   
   def index
     @projects = current_user.projects
@@ -17,11 +18,9 @@ class ProjectsController < ApplicationController
 
   def new
     @project = current_user.projects.build
-    @users = User.without(current_user)
   end
 
   def edit
-    @users = User.without(current_user)
   end
 
   def create
@@ -48,7 +47,11 @@ class ProjectsController < ApplicationController
   end
   
   private
-  def init
+  def load_project
     @project = current_user.projects.find(params[:id])
+  end
+
+  def load_other_users
+    @users = User.without(current_user)
   end
 end

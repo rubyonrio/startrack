@@ -2,7 +2,7 @@ class TasksController < ApplicationController
 
   respond_to :js, :only => [:change_status, :start, :stop]
   before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit, :update]
-  before_filter :init, :only => [:show, :edit, :update, :destroy, :change_status]
+  before_filter :load_task, :only => [:show, :edit, :update, :destroy, :change_status, :start, :stop]
 
   def show
     @comments = @task.comments.all
@@ -20,7 +20,8 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to @project, notice: 'Task was successfully created.'
     else
-      redirect_to project_url(@task.project), notice: 'Err... sorry but something is wrong. :/'
+      flash[:error] = 'Err... sorry, but something is wrong. :/'
+      redirect_to project_url(@task.project)
     end
   end
 
@@ -51,14 +52,12 @@ class TasksController < ApplicationController
   end
 
   def start
-    @task = project.tasks.find(params[:id])
     @task.start_work
 
     respond_with @task
   end
 
   def stop
-    @task = project.tasks.find(params[:id])
     @task.stop_work
 
     respond_with @task
@@ -66,7 +65,7 @@ class TasksController < ApplicationController
 
   private
 
-  def init
+  def load_task
     @task = project.tasks.find(params[:id])
   end
 
