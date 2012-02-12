@@ -38,7 +38,7 @@
   <div class="field checkbox">
     <%= f.label :watchers %>
     <ul>
-      <% User.find(:all).each do |w| %>
+      <% User.all_not_guest.find(:all).each do |w| %>
         <li><label><%= check_box_tag 'task[watcher_ids][]', w.id, task.watchers.include?(w) %><%= w.name %></label></li>
       <% end %>
     </ul>

@@ -18,11 +18,11 @@ class ProjectsController < ApplicationController
 
   def new
     @project = current_user.projects.build
-    @users = User.without(current_user)
+    @users = User.without(current_user).all_not_guest
   end
 
   def edit
-    @users = User.without(current_user)
+    @users = User.without(current_user).all_not_guest
   end
 
   def create

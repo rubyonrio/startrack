@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
 
   default_scope order("name")
   scope :without, lambda { |user| where("id <> ? ", user.id)}
+  scope :all_not_guest, where("email <> ?", "guest@startrack.com")
 end

@@ -24,7 +24,11 @@ class ApplicationController < ActionController::Base
   end
 
   def load_users
-    @responsibles = User.all
+    if user_signed_in?
+      @responsibles = User.without(current_user).all_not_guest
+    else
+      @responsibles = User.all_not_guest
+    end
   end
 
   def check_user
