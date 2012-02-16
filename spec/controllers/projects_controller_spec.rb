@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe ProjectsController do
   describe "GET index" do
-    it_should_behave_like "authentication_required_action"
     let(:project) { projects(:first_journey) }
 
     def do_action
@@ -22,7 +21,6 @@ describe ProjectsController do
   end
 
   describe "GET show" do
-    it_should_behave_like "authentication_required_action"
     let(:project) { projects(:first_journey) }
 
     def do_action
@@ -63,8 +61,6 @@ describe ProjectsController do
   end
 
   describe "GET new" do
-    it_should_behave_like "authentication_required_action"
-
     def do_action
       get(:new)
     end
@@ -83,8 +79,6 @@ describe ProjectsController do
   end
 
   describe "POST create" do
-    it_should_behave_like "authentication_required_action"
-
     def do_action(attributes = {})
       post(:create, project: attributes)
     end
@@ -118,8 +112,9 @@ describe ProjectsController do
 
   describe "GET edit" do
     it_should_behave_like "authentication_required_action"
+
     let(:project) { projects(:first_journey) }
-    
+
     def do_action
       get(:edit, :id => project.id)
     end
@@ -139,6 +134,7 @@ describe ProjectsController do
 
   describe "PUT update" do
     it_should_behave_like "authentication_required_action"
+
     let(:project) { projects(:first_journey) }
 
     def do_action(attributes = {})
@@ -172,6 +168,7 @@ describe ProjectsController do
 
   describe "GET destroy" do
     it_should_behave_like "authentication_required_action"
+
     let(:project) { projects(:first_journey) }
 
     def do_action

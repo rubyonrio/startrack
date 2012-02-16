@@ -6,8 +6,6 @@ describe CommentsController do
   let(:comment) { comments(:one) }
 
   describe "POST create" do
-    it_should_behave_like "authentication_required_action"
-
     def do_action(attributes = {})
       post(:create, project_id: project.id, task_id: task.id, comment: attributes)
     end
@@ -31,15 +29,13 @@ describe CommentsController do
         before(:each) do
           do_action
         end
-        
+
         it { should set_the_flash.to("Comment was not created.") }
       end
     end
   end
 
   describe "GET destroy" do
-    it_should_behave_like "authentication_required_action"
-
     def do_action
       delete(:destroy, project_id: project.id, task_id: task.id, id: comment.id)
     end

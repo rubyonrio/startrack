@@ -33,7 +33,7 @@ class TasksController < ApplicationController
 
     if @task.save
       notify_changes(@task, @task_changes, @watchers_changes)
-      redirect_to project_task_path(project,@task), notice: 'Task was successfully updated.'
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
     else
       render action: :edit
     end
