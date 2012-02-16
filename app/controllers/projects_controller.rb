@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
 
   before_filter :check_public, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:show]
+  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:show, :new, :edit]
+  before_filter :authenticate_user!, :only => [:edit, :update, :destroy]
 
   def index
     @projects = current_user.projects
@@ -18,11 +19,9 @@ class ProjectsController < ApplicationController
 
   def new
     @project = current_user.projects.build
-    @users = User.without(current_user).all_not_guest
   end
 
   def edit
-    @users = User.without(current_user).all_not_guest
   end
 
   def create

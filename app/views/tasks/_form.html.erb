@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :responsible %><br />
-    <%= f.collection_select :responsible_id, @responsibles, :id, :name, {:prompt => true} %>
+    <%= f.collection_select :responsible_id, @users, :id, :name, {:prompt => true} %>
   </div>
   <div class="field checkbox">
     <%= f.label :watchers %>
