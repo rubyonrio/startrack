@@ -4,9 +4,10 @@
   <fieldset class="inputs">
     <%= f.input :name %>
     <%= f.input :description %>
-    <%- unless @users.blank? -%>
-    	<%= f.association :users, :as => :check_boxes, :collection => @users  %>
-    <%- end -%>
+    <%= f.input :time_track, :hint => "(Check this to enable time tracking on each task)" %>
+    <% unless @users.blank? %>
+      <%= f.association :users, :as => :check_boxes, :collection => @users, :label => "Members"  %>
+    <% end %>
   </fieldset>
 
   <div class="actions">

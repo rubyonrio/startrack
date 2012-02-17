@@ -108,6 +108,38 @@ form p {
   font-size: .8em;
 }
 
+/* Simple form */
+
+div.input {
+  margin: 1em 0;
+}
+
+div.input label {
+  display: block;
+  margin: 10px 0;
+}
+
+div.input.check_boxes span {
+  display: block;
+}
+
+div.input.check_boxes span input, div.input.boolean.optional input {
+  display: inline;
+}
+
+div.input.check_boxes span label.collection_check_boxes, div.input.boolean.optional label {
+  display: inline;
+  margin: 10px 0 10px 10px;
+}
+
+div.input.boolean.optional .hint {
+  color: #999;
+  font-size: .8em;
+  margin-left: .5em;
+}
+
+/* End Simple form */
+
 .actions {
   text-align: right;
   margin: 1% 0;

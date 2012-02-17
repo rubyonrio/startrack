@@ -1,3 +1,3 @@
 <li id="task-<%= task.id%>">
-  <%= show_user_avatar(task.responsible) %> <%= link_to_time_track(task.project, task) if APP_CONFIG['time_track'] %> <%= link_to_show_task(task.project, task) %>
+  <%= show_user_avatar(task.responsible) %> <%= link_to_time_track(task.project, task) if task.project.time_track %> <%= link_to_show_task(task.project, task) %>
 </li>

@@ -1,21 +1,3 @@
-div.input label {
-  display: block;
-  margin-top: 10px;
-}
-
-div.input.check_boxes span {
-  display: block;
-}
-
-div.input.check_boxes span input {
-  display: inline;
-}
-
-div.input.check_boxes span label.collection_check_boxes {
-  display: inline;
-  margin: 10px 0 10px 10px;
-}
-
 #project-list {
   margin: 0;
   padding: 0;
