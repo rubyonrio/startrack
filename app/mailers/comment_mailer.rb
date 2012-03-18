@@ -1,5 +1,5 @@
 class CommentMailer < ActionMailer::Base
-  include Resque::Mailer
+  #include Resque::Mailer
 
   def comment_notification(recipients, comment)
     @comment, @task = comment, comment.task
