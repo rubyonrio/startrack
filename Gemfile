@@ -13,11 +13,7 @@ gem 'dragonfly',        '0.9.5'
 
 # Resque gems
 gem "resque",'1.19.0'
-gem "resque-scheduler"
-gem 'resque-status', :require => 'resque/status'
 gem 'resque_mailer'
-gem 'redis-store'
-gem 'systemu'
 
 group :development,:test do
   gem 'turn', :require => false
