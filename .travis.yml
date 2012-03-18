@@ -1,8 +1,14 @@
 before_script:
   - "mysql -e 'create database startrack_test;' >/dev/null"
   - "rake db:migrate"
+
 rvm:
   - 1.9.2
+
+branches:
+  only:
+    - master
+
 notifications:
   recipients:
     - ls@lucianosousa.net
