@@ -7,11 +7,11 @@ describe CommentMailer do
     let(:recipients) { tasks(:room_galaxy).watchers.first.email }
 
     it "should render successfully" do
-      lambda { CommentMailer.comment_notification(recipients, comment) }.should_not raise_error
+      lambda { CommentMailer.comment_notification(comment.id) }.should_not raise_error
     end
 
     describe "rendered without error" do
-      let(:mailer) { CommentMailer.comment_notification(recipients, comment) }
+      let(:mailer) { CommentMailer.comment_notification(comment.id) }
 
       it "should set correct subject" do
         mailer.subject.should == "[First Journey] Spok made a new comment on ##{comment.task.id} - Create Enterprise"
@@ -47,11 +47,11 @@ describe CommentMailer do
         mailer.content_type.should == "text/plain; charset=UTF-8"
       end
       it "should deliver successfully" do
-        lambda { CommentMailer.comment_notification(recipients, comment).deliver }.should_not raise_error
+        lambda { CommentMailer.comment_notification(comment.id).deliver }.should_not raise_error
       end
       describe "and delivered" do
         it "should be added to the delivery queue" do
-          lambda { CommentMailer.comment_notification(recipients, comment).deliver }.should change(ActionMailer::Base.deliveries,:size).by(1)
+          lambda { CommentMailer.comment_notification(comment.id).deliver }.should change(ActionMailer::Base.deliveries,:size).by(1)
         end
       end
     end

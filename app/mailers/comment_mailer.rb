@@ -1,5 +1,4 @@
 class CommentMailer < ActionMailer::Base
-  include Resque::Mailer
 
   def comment_notification(comment_id)
     @comment = Comment.find comment_id

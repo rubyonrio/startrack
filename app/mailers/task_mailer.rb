@@ -1,5 +1,4 @@
 class TaskMailer < ActionMailer::Base
-  #include Resque::Mailer
 
   def task_notification(recipients, task, changes, watchers_changes)
     @task, @changes, @watchers_changes = task, changes, watchers_changes
