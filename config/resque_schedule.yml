@@ -1,6 +1,0 @@
-# Exemplo a ser usado pelo plugin resque_schedule
-# notify_by_email:
-#   cron: 0 9
-#   args: notify_by_email
-#   custom_job_class: JobNotifyByEmail
-#   description: Notify the user about something =)
