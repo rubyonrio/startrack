@@ -35,7 +35,7 @@
     <%= f.label :responsible %><br />
     <%= f.collection_select :responsible_id, @responsibles, :id, :name, {:prompt => true} %>
   </div>
-  <div class="field checkbox">
+  <div class="field checkbox select-watchers">
     <%= f.label :watchers %>
     <ul>
       <% User.find(:all).each do |w| %>
