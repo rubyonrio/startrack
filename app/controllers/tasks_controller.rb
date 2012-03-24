@@ -26,13 +26,13 @@ class TasksController < ApplicationController
   end
 
   def update
-    @watchers_changes = @task.get_watchers_changes(params[:task][:watcher_ids])
+    @watchers_changes = @task.get_watchers_changes(params[:task]["watcher_ids"])
 
     @task.attributes = params[:task]
     @task_changes = @task.get_changes_names(@task.changes)
 
     if @task.save
-      notify_changes(@task, @task_changes, @watchers_changes)
+      Resque.enqueue(TaskMail, @task.id, @task_changes, @watchers_changes)
       redirect_to project_task_path(project,@task), notice: 'Task was successfully updated.'
     else
       render action: :edit
@@ -71,13 +71,5 @@ class TasksController < ApplicationController
 
   def project
     @project ||= current_user.projects.find(params[:project_id])
-  end
-
-  def notify_changes(task, changes, watchers_changes)
-    unless @task.watchers.nil?
-      recipients = ""
-      @task.watchers.map { |watcher| recipients << "#{watcher.email}," }
-      TaskMailer.task_notification(recipients, task, changes, watchers_changes).deliver
-    end
   end
 end

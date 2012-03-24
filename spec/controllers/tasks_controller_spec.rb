@@ -63,10 +63,15 @@ describe TasksController do
 
       context "valid attributes" do
         before(:each) do
-          do_action( name: "New Project name", status_id: 2, type_id: 2 )
+          @status = statuses(:scheduled)
+          @type = types(:feature)
+          do_action({name: "New Project name", status_id: @status.id, type_id: @type.id, watcher_ids: [users(:spok).id]})
         end
 
         it { should assign_to(:task)}
+        it { assigns(:watchers_changes).should == {"removed" => [users(:kirk).id], "added" => [users(:spok).id]} }
+        it { assigns(:task_changes).should == { "name" => [task.name, "New Project name"], "status_id" => [task.status.name, @status.name],
+          "responsible_id" => ["None yet", "None yet"], "type_id" => [task.type.name, @type.name], "estimate_id" => ["None yet", "None yet"] } }
         it { should redirect_to(project_task_path(project,task)) }
         it { should set_the_flash.to("Task was successfully updated.") }
       end

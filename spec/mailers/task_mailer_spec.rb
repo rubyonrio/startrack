@@ -10,20 +10,22 @@ describe TaskMailer do
     end
 
     it "should render successfully" do
-      lambda { TaskMailer.task_notification(watcher.email, task, @changes, @watchers_changes) }.should_not raise_error
+      lambda { TaskMailer.task_notification(task.id, @changes, @watchers_changes) }.should_not raise_error
     end
 
     describe "rendered without error" do
-      let(:mailer) { TaskMailer.task_notification(watcher.email, task, @changes, @watchers_changes) }
+      let(:mailer) { TaskMailer.task_notification(task.id, @changes, @watchers_changes) }
 
       it "should set correct subject" do
         mailer.subject.should == "[First Journey] The task ##{task.id} - Room the galaxy has been updated"
       end
       it "should set correct header To" do
-        mailer.header['To'].to_s.should == "kirk@example.com"
+        recipients = ""
+        task.watchers.map { |watcher| recipients << "#{watcher.email}, " }
+        mailer.header['To'].to_s.should == recipients[0..-3]
       end
       it "should not have more than one to address" do
-        mailer.to.size.should == 1
+        mailer.to.size.should == task.watchers.length
       end
       it "should consider CC on recipients address" do
         mailer.cc.should be_nil
@@ -43,25 +45,20 @@ describe TaskMailer do
       it "should set correct charset" do
         mailer.charset.should == "UTF-8"
       end
-      it "should set correct body for text html" do
-        mailer.body.to_s.should == read_mail("task_notification")
-      end
       it "should set correct content type" do
         mailer.content_type.should == "text/plain; charset=UTF-8"
       end
       it "should deliver successfully" do
-        lambda { TaskMailer.task_notification(watcher.email, task, @changes, @watchers_changes).deliver }.should_not raise_error
+        lambda { TaskMailer.task_notification(task.id, @changes, @watchers_changes).deliver }.should_not raise_error
       end
       describe "and delivered" do
         it "should be added to the delivery queue" do
-          lambda { TaskMailer.task_notification(watcher.email, task, @changes, @watchers_changes).deliver }.should change(ActionMailer::Base.deliveries,:size).by(1)
+          lambda { TaskMailer.task_notification(task.id, @changes, @watchers_changes).deliver }.should change(ActionMailer::Base.deliveries,:size).by(1)
         end
       end
     end
     def setup
-      @watchers_changes = {}
-      @watchers_changes[:added] = [task.watchers.first]
-      @watchers_changes[:removed] = [task.watchers.last]
+      @watchers_changes = task.get_watchers_changes([users(:kirk).id])
       @changes = {}
       @changes[:name] = [task.name, "Dominate the galaxy"]
       @changes[:description] = [task.description, "Annihilate the enemy"]
