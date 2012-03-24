@@ -46,28 +46,27 @@ class Task < ActiveRecord::Base
 
   def get_watchers_changes(params)
     unless params.nil?
-      new_watchers = []
-      new_watchers = params.collect(&:to_i)
       current_watchers = []
-      current_watchers = self.watchers.collect(&:id).dup
+      watchers.map{ |watch| current_watchers << watch.id.to_s}
 
-      added_watchers  = new_watchers - current_watchers
-      removed_watchers = current_watchers - new_watchers
+      added_watchers = params - current_watchers
+      removed_watchers = current_watchers - params
 
       watchers_changes = {}
       watchers_changes[:added] = []
       watchers_changes[:removed] = []
 
-      added_watchers.each do |added|
-        watchers_changes[:added] << User.find(added)
+      added_watchers.each do |add|
+        watchers_changes[:added] << add.to_i
       end
 
-      removed_watchers.each do |removed|
-        watchers_changes[:removed] << User.find(removed)
+      removed_watchers.each do |remove|
+        watchers_changes[:removed] << remove.to_i
       end
 
-      watchers_changes
+
     end
+      watchers_changes
   end
 
   def get_changes_names(changes)

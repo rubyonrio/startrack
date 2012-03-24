@@ -38,8 +38,8 @@ describe Task do
 
   it "should get watchers changes" do
     @watchers_changes = task.get_watchers_changes([users(:mccoy).id])
-    @watchers_changes[:added].first.name.should == 'Leonard McCoy'
-    @watchers_changes[:removed].first.name.should == 'Commander Kirk'
+    @watchers_changes[:added].should == [users(:mccoy).id]
+    @watchers_changes[:removed].should == [users(:kirk).id]
   end
 
   it "should get tasks changes names" do
