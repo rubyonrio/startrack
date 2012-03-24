@@ -368,6 +368,11 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
     background: url("../images/bt_menos.gif");
 }
 
+.select-watchers {
+    overflow: auto;
+    height: 100px;
+}
+
 .ui-sortable li:hover {
   background: #f6f6f6;
   cursor: move;
