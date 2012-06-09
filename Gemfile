@@ -22,15 +22,6 @@ group :development,:test do
   gem 'factory_girl_rails', '1.1.0'
   gem 'launchy',        '2.0.5'
   gem "simplecov",      '0.5.3'
-
-  unless ENV["CI"]
-    platforms :mri_18 do
-      gem "ruby-debug",   '0.10.4'
-    end
-    platforms :mri_19 do
-      gem "ruby-debug19", '0.11.6', :require => 'ruby-debug'
-    end
-  end
 end
 
 group :production do
