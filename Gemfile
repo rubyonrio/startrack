@@ -7,7 +7,7 @@ gem 'coffee-script',    '2.2.0'
 gem 'devise',           '1.4.7'
 gem 'mysql2',           '0.3.7'
 gem 'uglifier',         '1.0.3'
-gem 'RedCloth',         '4.2.8'
+gem 'RedCloth',         '4.2.9'
 gem 'simple_form',      '1.5.2'
 gem 'dragonfly',        '0.9.5'
 
