@@ -56,7 +56,7 @@ describe ProjectsController do
         it "should raise an ActiveRecord::RecordNotFound" do
           expect {
             do_action
-          }.should raise_error(ActiveRecord::RecordNotFound)
+          }.to raise_error(ActiveRecord::RecordNotFound)
         end
       end
     end
