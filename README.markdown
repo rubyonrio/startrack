@@ -1,4 +1,4 @@
-# Startrack Tracker: [![Build Status][bimg]][blink]
+# Startrack Tracker: [![Build Status][bimg]][blink] [![Code Climate]][codeclimatelink]
 
 ## What is it?
 
@@ -56,3 +56,4 @@ We have a list of contributors. Check them all at:
 [c]:  https://github.com/rubyonrio/startrack/contributors
 [bimg]:  https://secure.travis-ci.org/rubyonrio/startrack.png
 [blink]: http://travis-ci.org/rubyonrio/startrack
+[codeclimatelink]: https://codeclimate.com/github/rubyonrio/startrack
