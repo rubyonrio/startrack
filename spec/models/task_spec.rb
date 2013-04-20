@@ -32,8 +32,8 @@ describe Task do
   end
 
   it "should format task description with markdown" do
-    task.to_format
-    task.description_html.should_not == ''
+    task.description = '* hello world'
+    task.normalize_description.should == "<ul>\n\t<li>hello world</li>\n</ul>"
   end
 
   it "should get watchers changes" do

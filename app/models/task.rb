@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
 
   validates :user, :status, :type, :name, :project, :duration_time, :presence => true
 
-  before_save :to_format
+  before_save :normalize_description
 
   scope :todo, joins(:status).where("statuses.name = 'TODO'")
   scope :scheduled, joins(:status).where("statuses.name = 'Scheduled'")
@@ -36,8 +36,8 @@ class Task < ActiveRecord::Base
     self.status.name.parameterize
   end
 
-  def to_format
-    self.description_html = RedCloth.new(self.description).to_html rescue ''
+  def normalize_description
+    self.description = RedCloth.new(self.description).to_html rescue 'Invalid description format'
   end
 
   def get_watchers_changes(params)
