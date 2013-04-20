@@ -11,13 +11,9 @@ class Task < ActiveRecord::Base
 
   accepts_nested_attributes_for :task_files, :reject_if => lambda { |a| a[:id].blank? and a[:file].blank? }, :allow_destroy => true
 
-  validates :user, :presence => true
-  validates :project, :presence => true
-  validates :name, :presence => true
-  validates :type, :presence => true
-  validates :status, :presence => true
+  validates :user, :status, :type, :name, :project, :duration_time, :presence => true
 
-  before_save :to_format, :default_duration_time
+  before_save :to_format
 
   scope :todo, joins(:status).where("statuses.name = 'TODO'")
   scope :scheduled, joins(:status).where("statuses.name = 'Scheduled'")
@@ -98,11 +94,5 @@ class Task < ActiveRecord::Base
     self.duration_time = self.duration_time + ((Time.now.to_i - start_time.to_datetime.to_i) / 60)
     self.start_time = nil
     self.save
-  end
-
-  private
-
-  def default_duration_time
-    self.duration_time = 0 if self.duration_time.nil?
   end
 end
