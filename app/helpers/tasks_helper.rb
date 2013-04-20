@@ -4,11 +4,6 @@ module TasksHelper
       :class => "#{task.show_status_parameterize_name} #{task.show_type_parameterize_name}"
   end
 
-  def show_task_description(task)
-    #TODO: Confirm if it make sense
-    task.description_html? ? task.description_html.html_safe : task.description
-  end
-
   def link_to_time_track(project, task)
     if task.start_time.nil?
       link_to start_project_task_path(project, task), :class => "timer", :remote => true do

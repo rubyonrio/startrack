@@ -10,21 +10,6 @@ describe TasksHelper do
     end
   end
 
-  describe "show_task_description" do
-    context "when description_html is nil" do
-      it "should return task description" do
-        task.description_html = nil
-        helper.show_task_description(task).should == "Something cool here!"
-      end
-    end
-
-    context "when description_html is not nil" do
-      it "should return task description_html" do
-        helper.show_task_description(task).should == "<p>Something cool here!</p>"
-      end
-    end
-  end
-
   describe "time tracker" do
     it "should return a link to start the timer" do
       helper.link_to_time_track(project, task).should == "<a href=\"#{start_project_task_path(project,task)}\" class=\"timer\" data-remote=\"true\"><img alt=\"Ico-timer\" class=\"icon\" src=\"/assets/ico-timer.png\" />#{task.duration_time}m</a>"

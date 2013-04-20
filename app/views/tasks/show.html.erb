@@ -23,7 +23,7 @@
       </ol>
     <% end %>
 
-    <p><b>Description:</b> <%= raw show_task_description(@task) %></p>
+    <p><b>Description:</b> <%= raw @task.description %></p>
 
     <%= link_to 'Edit', edit_project_task_path(@project,@task) %>
 
