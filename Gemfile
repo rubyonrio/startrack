@@ -24,6 +24,3 @@ group :development,:test do
   gem 'simplecov'
 end
 
-group :production do
-  gem 'therubyracer'
-end
