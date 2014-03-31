@@ -15,8 +15,8 @@ gem 'uglifier',            '~> 1.3.0'
 
 group :development,:test do
   gem 'turn', require: false
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'rspec-rails',         '~> 2.11.4'
+  gem 'shoulda-matchers',    '~> 1.4.1'
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'simplecov'
