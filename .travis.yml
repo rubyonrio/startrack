@@ -1,5 +1,6 @@
 before_script:
-  - "mysql -e 'create database startrack_test;' >/dev/null"
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
   - "rake db:migrate"
 
 rvm:
@@ -16,4 +17,7 @@ notifications:
     - ls@lucianosousa.net
     - rafael@tauil.com.br
     - rodrigopqn@gmail.com
+
+addons:
+  postgresql: "9.3"
 

@@ -1,22 +1,20 @@
 source 'https://rubygems.org'
 
-gem 'rails'
-gem 'sass-rails'
-gem 'jquery-rails'
 gem 'coffee-script'
 gem 'devise'
-gem 'mysql2'
-gem 'uglifier'
-gem 'RedCloth'
-gem 'simple_form'
 gem 'dragonfly'
-
-# Resque gems
+gem 'jquery-rails'
+gem 'pg'
+gem 'rails'
+gem 'RedCloth'
 gem 'resque'
 gem 'resque_mailer'
+gem 'sass-rails'
+gem 'simple_form'
+gem 'uglifier'
 
 group :development,:test do
-  gem 'turn', :require => false
+  gem 'turn', require: false
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
