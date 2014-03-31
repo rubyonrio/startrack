@@ -14,11 +14,11 @@ gem 'simple_form',         '~> 2.0.4'
 gem 'uglifier',            '~> 1.3.0'
 
 group :development,:test do
-  gem 'turn', require: false
-  gem 'rspec-rails',         '~> 2.11.4'
-  gem 'shoulda-matchers',    '~> 1.4.1'
-  gem 'factory_girl_rails'
-  gem 'launchy'
-  gem 'simplecov'
+  gem 'turn',                 '~> 0.9.7'
+  gem 'rspec-rails',          '~> 2.11.4'
+  gem 'shoulda-matchers',     '~> 1.4.1'
+  gem 'factory_girl_rails',   '~> 4.1.0'
+  gem 'launchy',              '~> 2.1.2'
+  gem 'simplecov',            '~> 0.7.1'
 end
 
