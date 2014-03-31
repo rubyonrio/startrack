@@ -1,7 +1,7 @@
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
-  - "rake db:migrate"
+  - "bundle exec rake db:migrate"
 
 rvm:
   - 2.0.0
