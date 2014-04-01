@@ -1,16 +1,17 @@
 class TasksController < ApplicationController
 
   respond_to :js, :only => [:change_status, :start, :stop]
-  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit, :update]
+  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :show, :create, :edit, :update]
   before_filter :load_task, :only => [:show, :edit, :update, :destroy, :change_status, :start, :stop]
+  before_filter :load_project, :only => [:show, :edit]
 
   def show
+    @new_task = @project.tasks.new
     @comments = @task.comments.all
     @comment = @task.comments.new
   end
 
   def edit
-    project
   end
 
   def create
@@ -66,10 +67,10 @@ class TasksController < ApplicationController
   private
 
   def load_task
-    @task = project.tasks.find(params[:id])
+    @task = load_project.tasks.find(params[:id])
   end
 
-  def project
+  def load_project
     @project ||= current_user.projects.find(params[:project_id])
   end
 end

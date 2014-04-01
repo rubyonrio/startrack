@@ -8,30 +8,46 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="wrap">
-    <header>
-      <h1 id="logo"><%= link_to "Startrack", root_path %></h1>
-      <% if user_signed_in? %>
+  <header>
+    <p id="logo"><%= link_to "Startrack", root_path %></p>
+    <% if user_signed_in? %>
+      <% if @project %>
+        <ul id="user-projects">
+          <% current_user.projects.each do |project| %>
+            <% if @project == project %>
+              <li class="active"><%= @project.name %> <span>(<%= link_to 'edit', edit_project_path(@project) %>)</span> <%= link_to "Show more", "#", :id => "user-projects-more" %></li>
+            <% else %>
+              <%= content_tag :li, link_to(project.name, project_path(project)) %>
+            <% end %>
+          <% end %>
+        </ul>
+        <div id="link_new_task" class="indent">
+          <%= link_to "#" do %>
+            New task
+            <%= content_tag :span, "(press n)" %>
+          <% end %>
+        </div>
+        <%= render :partial => 'tasks/form', :locals => {:project => @project, :task => @new_task} %>
+      <% end %>
       <div class="login-info">
         <%= show_user_avatar(current_user) %> Logged as <%= current_user.email %>. Not you?
         <%= link_to 'Logout', destroy_user_session_path %>
       </div>
-      <% else %>
+    <% else %>
       <div class="login-info">
         <%= link_to 'Register', new_user_registration_path %> or <%= link_to 'Login', new_user_session_path %>
       </div>
-      <% end %>
-    </header>
+    <% end %>
+  </header>
 
-    <hr />
-
+  <div id="wrap">
     <%= flash_messages %>
 
     <%= yield %>
-
-    <footer>
-      Startrack is an agile based tracker developed by <%= link_to "RubyOnRio", "http://rubyonrio.org", :target => "_new" %> on version <%= app_version %>
-    </footer>
   </div>
+
+  <footer>
+    Startrack is an agile based tracker developed by <%= link_to "RubyOnRio", "http://rubyonrio.org", :target => "_new" %> on version <%= app_version %>
+  </footer>
 </body>
 </html>

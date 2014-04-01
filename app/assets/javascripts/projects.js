@@ -35,7 +35,7 @@ $(function() {
         }
     });
 
-    $("#link_new_task").click(function() {
+    $("#link_new_task a").click(function() {
         if ($(this).hasClass("active")) {
             hide_new_task_form();
         }
@@ -50,7 +50,7 @@ $(function() {
     }
 
     function show_new_task_form() {
-        $("#link_new_task").html("Cancel <span>(press esc)</span>").addClass("active");
+        $("#link_new_task a").html("Cancel <span>(press esc)</span>").addClass("active");
         $("#new_task").show();
         $("#task_name").focus();
         unbind_key();
@@ -58,10 +58,10 @@ $(function() {
     }
 
     function hide_new_task_form() {
-        $("#link_new_task").html("New task <span>(press n)</span>").removeClass("active");
+        $("#link_new_task a").html("New task <span>(press n)</span>").removeClass("active");
         $("#new_task").get(0).reset();
         $("#new_task").hide();
-        $("#link_new_task").focus().blur();
+        $("#link_new_task a").focus().blur();
         unbind_key();
         bind_n_key();
     }
@@ -81,4 +81,12 @@ $(function() {
     function unbind_key() {
         $(document).unbind("keyup");
     }
+
+    $("#user-projects-more").click(function() {
+        $("#user-projects li").each(function() {
+            if (!$(this).hasClass("active")) {
+                $(this).toggle();
+            }
+        });
+    });
 });

@@ -45,25 +45,29 @@
   float: left;
 }
 
-div.indent {
-  float: right;
-  background-color: #e2e2e2;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e2e2e2), color-stop(100%, #fafafa));
-  background-image: -webkit-linear-gradient(top, #e2e2e2, #fafafa);
-  background-image: -moz-linear-gradient(top, #e2e2e2, #fafafa);
-  background-image: -ms-linear-gradient(top, #e2e2e2, #fafafa);
-  background-image: -o-linear-gradient(top, #e2e2e2, #fafafa);
-  background-image: linear-gradient(top, #e2e2e2, #fafafa);
+.indent {
+  background-color: #000;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #000), color-stop(100%, #656565));
+  background-image: -webkit-linear-gradient(top, #000, #656565);
+  background-image: -moz-linear-gradient(top, #000, #656565);
+  background-image: -ms-linear-gradient(top, #000, #656565);
+  background-image: -o-linear-gradient(top, #000, #656565);
+  background-image: linear-gradient(top, #000, #656565);
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
   border-radius: 8px;
   padding: .5em 0;
-  width: 13em;
 }
 
 #link_new_task {
+  float: right;
+  width: 13em;
+  margin: 1.3em 0 0 2em;
+}
+
+#link_new_task a {
   display: block;
   text-decoration: none;
   background-color: #f0d400;
@@ -74,17 +78,17 @@ div.indent {
   background-image: -o-linear-gradient(top, #fffad8 0%, #fff188 50%, #f0d400 50%, #ffe100 100%);
   background-image: linear-gradient(top, #fffad8 0%, #fff188 50%, #f0d400 50%, #ffe100 100%);
   border-bottom: 1px solid #e0d200;
-  border-right: 1px solid #dfdfdf;
+  border-right: 1px solid #999;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
-  -moz-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
-  -ms-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
-  -o-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
-  box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  -webkit-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #656565, 0 -1px 2px 1px #999;
+  -moz-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #656565, 0 -1px 2px 1px #999;
+  -ms-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #656565, 0 -1px 2px 1px #999;
+  -o-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #656565, 0 -1px 2px 1px #999;
+  box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #656565, 0 -1px 2px 1px #999;
   color: #666;
   font-size: 1.2em;
   text-align: center;
@@ -94,7 +98,7 @@ div.indent {
   width: 10em;
 }
 
-#link_new_task:hover {
+#link_new_task a:hover {
   background-color: #f0d400;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fffcd7), color-stop(50%, #fef5a6), color-stop(50%, #f2df4c), color-stop(100%, #fde84c));
   background-image: -webkit-linear-gradient(top, #fffcd7 0%, #fef5a6 50%, #f2df4c 50%, #fde84c 100%);
@@ -102,14 +106,14 @@ div.indent {
   background-image: -ms-linear-gradient(top, #fffcd7 0%, #fef5a6 50%, #f2df4c 50%, #fde84c 100%);
   background-image: -o-linear-gradient(top, #fffcd7 0%, #fef5a6 50%, #f2df4c 50%, #fde84c 100%);
   background-image: linear-gradient(top, #fffcd7 0%, #fef5a6 50%, #f2df4c 50%, #fde84c 100%);
-  -webkit-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
-  -moz-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
-  -ms-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
-  -o-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
-  box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  -webkit-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #656565, 0 -1px 2px 1px #999;
+  -moz-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #656565, 0 -1px 2px 1px #999;
+  -ms-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #656565, 0 -1px 2px 1px #999;
+  -o-box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #656565, 0 -1px 2px 1px #999;
+  box-shadow: inset 0 1px 0 0 #fffcca, 0 1px 0 0 #656565, 0 -1px 2px 1px #999;
 }
 
-#link_new_task:active, #link_new_task.active {
+#link_new_task a:active, #link_new_task a.active {
   background-color: #e5e5e5;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e5e5e5), color-stop(50%, #d1d1d1), color-stop(50%, #c4c4c4), color-stop(100%, #b8b8b8));
   background-image: -webkit-linear-gradient(top, #e5e5e5 0%, #d1d1d1 50%, #c4c4c4 50%, #b8b8b8 100%);
@@ -133,7 +137,8 @@ div.indent {
 #new_task {
   display: none;
   position: absolute;
-  top: .6em;
+  z-index: 5;
+  top: 1.6em;
   right: 13em;
   background: #333;
   border: 1px solid #000;
