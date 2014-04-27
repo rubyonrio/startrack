@@ -1,4 +1,4 @@
-# Startrack Tracker: [![Build Status][bimg]][blink] [![Code Climate][codeclimateimg]][codeclimatelink]
+# Startrack Tracker: [![Build Status][bimg]][blink] [![Code Climate][codeclimateimg]][codeclimatelink] [![Inline docs](http://inch-pages.github.io/github/rubyonrio/startrack.png)](http://inch-pages.github.io/github/rubyonrio/startrack)
 
 ## What is it?
 
