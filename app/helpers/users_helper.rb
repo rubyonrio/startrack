@@ -1,7 +1,7 @@
 #encoding: utf-8
 module UsersHelper
   def show_user_avatar(user)
-    image_tag avatar_url(user), title: "#{user.name}", :class => "avatar icon" unless user.nil?
+    image_tag avatar_url(user), title: user.name, :class => "avatar icon" unless user.nil?
   end
 
   private
