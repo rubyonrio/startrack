@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def link_to_logout
+    link_to 'Logout', destroy_user_session_path, method: :delete
+  end
+
   def flash_messages
     flash.collect do |key, msg|
       content_tag :p, msg, :id => key, :class => "flash_messages"

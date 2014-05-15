@@ -14,7 +14,7 @@
       <% if user_signed_in? %>
       <div class="login-info">
         <%= show_user_avatar(current_user) %> Logged as <%= current_user.email %>. Not you?
-        <%= link_to 'Logout', destroy_user_session_path %>
+        <%= link_to_logout %>
       </div>
       <% else %>
       <div class="login-info">
