@@ -9,6 +9,6 @@ class User < ActiveRecord::Base
 
   validates :name,  :presence => true
 
-  default_scope order("name")
+  default_scope { order("name") }
   scope :without, lambda { |user| where("id <> ? ", user.id)}
 end

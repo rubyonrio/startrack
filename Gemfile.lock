@@ -95,7 +95,7 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
-    pg (1.0.0)
+    pg (0.21.0)
     protected_attributes (1.1.4)
       activemodel (>= 4.0.1, < 5.0)
     public_suffix (3.0.2)
@@ -222,7 +222,7 @@ DEPENDENCIES
   launchy
   listen
   minitest
-  pg
+  pg (~> 0.20)
   protected_attributes
   rails
   resque
