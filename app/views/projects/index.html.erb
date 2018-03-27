@@ -1,11 +1,11 @@
 <% content_for :title, "My Projects" %>
-<h3>My Projects - <%= link_to '(+) Create Project', new_project_path %></h3>
+<h3>My Projects - <%= link_to '(+) Create Project', new_projects_path %></h3>
 
 <% unless @projects.blank? %>
   <ul id="project-list">
     <% @projects.each do |project| %>
       <li>
-        <%= link_to project.name, project %>
+        <%= link_to project.name, projects_path(project.id) %>
         <%= content_tag :p, project.description unless project.description.blank? %>
         <ul>
           <% project.users.each do |project_user| %>
@@ -16,5 +16,5 @@
     <% end %>
   </ul>
 <% else %>
-  <p>You don't have any projects. <%= link_to 'Create', new_project_path %> your first project!</p>
+  <p>You don't have any projects. <%= link_to 'Create', new_projects_path %> your first project!</p>
 <% end %>

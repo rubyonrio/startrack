@@ -1,7 +1,7 @@
 <% content_for :title, @project.name %>
 <article id="project-show">
   <header>
-    <h1><%= @project.name %> <span>(<%= link_to 'edit', edit_project_path(@project) %>)</span></h1>
+    <h1><%= @project.name %> <span>(<%= link_to 'edit', edit_projects_path(@project) %>)</span></h1>
 
     <div class="indent">
       <%= link_to "#", :id => "link_new_task" do %>
