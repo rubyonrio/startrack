@@ -15,10 +15,10 @@ class Task < ActiveRecord::Base
 
   before_save :normalize_description
 
-  scope :todo, joins(:status).where("statuses.name = 'TODO'")
-  scope :scheduled, joins(:status).where("statuses.name = 'Scheduled'")
-  scope :current, joins(:status).where("statuses.name = 'Current'")
-  scope :done, joins(:status).where("statuses.name = 'Done'")
+  scope :todo, ->  { joins(:status).where("statuses.name = 'TODO'") }
+  scope :scheduled, -> { joins(:status).where("statuses.name = 'Scheduled'") }
+  scope :current, -> { joins(:status).where("statuses.name = 'Current'") }
+  scope :done, -> { joins(:status).where("statuses.name = 'Done'") }
 
   def show_responsible_name
     self.responsible.name rescue 'No responsible yet'
