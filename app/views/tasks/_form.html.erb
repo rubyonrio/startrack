@@ -38,7 +38,7 @@
   <div class="field checkbox select-watchers">
     <%= f.label :watchers %>
     <ul>
-      <% User.find(:all).each do |w| %>
+      <% User.all.each do |w| %>
         <li><label><%= check_box_tag 'task[watcher_ids][]', w.id, task.watchers.include?(w) %><%= w.name %></label></li>
       <% end %>
     </ul>
@@ -47,7 +47,7 @@
   <% fields = f.fields_for(:task_files, TaskFile.new, :child_index => "new_task_files") do |builder| %>
     <%= render("tasks/task_file_fields", :f => builder, :child_index => "new_task_files") %>
   <% end %>
-  <%= link_to_function(t(:add_file), "add_fields('task_files', '#{escape_javascript(fields)}')", :class => "button small add-image") %>
+  <%= link_to(t(:add_file), data:{on: :click, call: 'add_fields', args: "[task_files, #{escape_javascript(fields)}]"}) %>
   <div id="task_files">
     <% new_id = Time.now.to_i %>
     <%= f.fields_for :task_files do |task_file| %>
