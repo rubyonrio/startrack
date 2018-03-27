@@ -24,17 +24,17 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(params[:project])
+    @project = Project.new(project_params)
     @project.users << current_user
     if @project.save
-      redirect_to @project, notice: 'Project was successfully created.'
+      redirect_to projects_url, notice: 'Project was successfully created.'
     else
       render action: :new
     end
   end
 
   def update
-    if @project.update_attributes(params[:project])
+    if @project.update_attributes(project_params)
       redirect_to @project, notice: 'Project was successfully updated.'
     else
       render action: :edit
@@ -49,10 +49,14 @@ class ProjectsController < ApplicationController
   private
 
   def load_project
-    @project = current_user.projects.find(params[:id])
+    @project = current_user.projects.find(params[:format])
   end
 
   def load_other_users
     @users = User.without(current_user)
+  end
+
+  def project_params
+    params.require(:project).permit(:name, :description, :time_track, :commit)
   end
 end
