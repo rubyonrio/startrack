@@ -14,14 +14,14 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = project.tasks.build(params[:task])
+    @task = project.tasks.build(task_params)
     @task.user = current_user
 
     if @task.save
-      redirect_to @project, notice: 'Task was successfully created.'
+      redirect_to projects_path, notice: 'Task was successfully created.'
     else
       flash[:error] = 'Err... sorry, but something is wrong. :/'
-      redirect_to project_url(@task.project)
+      redirect_to projects_url(@task.project)
     end
   end
 
@@ -70,6 +70,10 @@ class TasksController < ApplicationController
   end
 
   def project
-    @project ||= current_user.projects.find(params[:project_id])
+    @project ||= current_user.projects.find(params[:task][:project_id])
+  end
+
+  def task_params
+    params.require(:task).permit!
   end
 end
