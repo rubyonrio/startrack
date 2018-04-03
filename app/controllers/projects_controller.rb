@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
   private
 
   def load_project
-    @project = current_user.projects.find(params[:format])
+    @project = current_user.projects.find(params[:id])
   end
 
   def load_other_users
