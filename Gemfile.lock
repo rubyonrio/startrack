@@ -41,6 +41,7 @@ GEM
     arel (6.0.4)
     bcrypt (3.1.11)
     builder (3.2.3)
+    coderay (1.1.2)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -87,6 +88,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
+    method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
@@ -95,9 +97,12 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
-    pg (0.21.0)
+    pg (0.20.0)
     protected_attributes (1.1.4)
       activemodel (>= 4.0.1, < 5.0)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (3.0.2)
     rack (1.6.9)
     rack-protection (1.5.5)
@@ -222,8 +227,9 @@ DEPENDENCIES
   launchy
   listen
   minitest
-  pg (~> 0.20)
+  pg (= 0.20)
   protected_attributes
+  pry
   rails
   resque
   resque_mailer
