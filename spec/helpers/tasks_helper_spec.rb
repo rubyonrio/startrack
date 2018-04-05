@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe TasksHelper do
   let(:project) { projects(:first_journey) }
