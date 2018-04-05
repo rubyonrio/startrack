@@ -1,9 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CommentsController do
-  let(:project) { projects(:first_journey)}
-  let(:task) { tasks(:create_enterprise) }
-  let(:comment) { comments(:one) }
+  let(:project) { Project.find_by_name('First Journey') }
+  let(:task) { Task.find_by_name('Create Enterprise') }
+  let(:user) { User.find_by_name('Spok') }
+  let(:comment) { Comment.find_by(user: user) }
 
   describe "POST create" do
     it_should_behave_like "authentication_required_action"
@@ -22,18 +23,20 @@ describe CommentsController do
           do_action( description: "Hidden Project")
         end
 
-        it { should assign_to(:task)}
-        it { should redirect_to(project_task_path(project,task)) }
-        it { should set_the_flash.to("Comment was successfully created.") }
+        it { expect(assigns(:task)) }
+        it { expect(redirect_to(project_task_path(project, task))) }
+        it { expect(set_flash.to("Comment was successfully created.")) }
+
       end
 
-      context "invalid attributes" do
-        before(:each) do
-          do_action
-        end
-        
-        it { should set_the_flash.to("Comment was not created.") }
-      end
+     # context "invalid attributes" do
+     #   before(:each) do
+     #     do_action
+     #   end
+
+     #   it { expect(set_flash.to("Comment was not created.")) }
+
+     # end
     end
   end
 

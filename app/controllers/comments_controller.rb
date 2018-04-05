@@ -26,6 +26,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit!
+      params.require(:comment).permit(:task, :description)
     end
 end
