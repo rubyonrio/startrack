@@ -29,14 +29,14 @@ describe CommentsController do
 
       end
 
-     # context "invalid attributes" do
-     #   before(:each) do
-     #     do_action
-     #   end
+      context "invalid attributes" do
+        before(:each) do
+          do_action
+        end
 
-     #   it { expect(set_flash.to("Comment was not created.")) }
+        xit { expect(set_flash.to("Comment was not created.")) }
 
-     # end
+      end
     end
   end
 
