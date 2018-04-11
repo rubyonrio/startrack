@@ -1,29 +1,38 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe TasksController do
-  let(:project) { projects(:first_journey) }
-  let(:task) { tasks(:create_enterprise) }
-
+  let(:project) { Project.find_by_name('First Journey') }
+  let(:task) { Task.find_by_name('Create Enterprise') }
   before(:each) do
     login!
   end
 
-  it "shoud get show" do
-    get :show, project_id: project.id, id: task.id
-    assigns(:task).should == task
-    assigns(:comments).should == task.comments
-    response.code.should eq("200")
+  context "shoud get show" do
+
+    before do
+      get(:show, project_id: project.id, id: task.id)
+    end
+
+    it {expect(assigns(:task)).to eq(task)}
+    it {expect(assigns(:comments)).to eq(task.comments)}
+    it {expect(response.code).to eq("200")}
   end
 
-  it "should get edit" do
-    get :edit, project_id: project.id, id: task.id
-    assigns(:task).should == task
-    response.code.should eq("200")
+  context "should get edit" do
+    before do
+      get :edit, project_id: project.id, id: task.id
+    end
+
+    it {expect(assigns(:task)).to eq(task)}
+    it {expect(response.code).to eq("200")}
   end
 
-  it "should change task status" do
-    get :change_status, project_id: project.id, id: task.id, status_id: 2
-    assigns(:task).status.name.should == 'Scheduled'
+   context "should change task status" do
+     before do
+      get(:change_status, project_id: project.id, id: task.id, status: 'Scheduled')
+     end
+
+     it {expect(assigns(:task).status.name).to eq('Scheduled')}
   end
 
   describe "POST create" do
@@ -36,10 +45,10 @@ describe TasksController do
         do_action( name: "Hidden Project", status_id: 1, type_id: 1 )
       end
 
-      it { should assign_to(:task)}
-      it { assigns(:task).user.should == subject.current_user }
-      it { should redirect_to(task.project) }
-      it { should set_the_flash.to("Task was successfully created.") }
+      it { expect(assigns(:task))}
+      it { expect(assigns(:task).user).to eq(subject.current_user) }
+      it { expect(response).to redirect_to(project_task_path(assigns(:task).project, assigns(:task))) }
+      it { should set_flash.to("Task was successfully created.") }
     end
 
     context "invalid attributes" do
@@ -47,7 +56,7 @@ describe TasksController do
         do_action
       end
 
-      it { should redirect_to(task.project) }
+      it { expect(response).to redirect_to(project_path(task.project_id)) }
     end
   end
 
@@ -63,17 +72,19 @@ describe TasksController do
 
       context "valid attributes" do
         before(:each) do
-          @status = statuses(:scheduled)
-          @type = types(:feature)
-          do_action({name: "New Project name", status_id: @status.id, type_id: @type.id, watcher_ids: [users(:spok).id]})
+          @status = Status.find_by_name(Task::STATUSES[:scheduled])
+          @type = ::Type.find_by_name(Task::TYPES[:feature])
+          @spok = User.find_by_name("Spok")
+          @kirk = User.find_by_name("Commander Kirk")
+          do_action({name: "New Project name", status_id: @status.id, type_id: @type.id, watcher_ids: [@spok.id]})
         end
 
-        it { should assign_to(:task)}
-        it { assigns(:watchers_changes).should == {"removed" => [users(:kirk).id], "added" => [users(:spok).id]} }
+        it { expect(assigns(:task)) }
+        it { expect(assigns(:watchers_changes)).to eq({added: [@spok.id], removed: [@kirk.id]})}
         it { assigns(:task_changes).should == { "name" => [task.name, "New Project name"], "status_id" => [task.status.name, @status.name],
           "responsible_id" => ["None yet", "None yet"], "type_id" => [task.type.name, @type.name], "estimate_id" => ["None yet", "None yet"] } }
         it { should redirect_to(project_task_path(project,task)) }
-        it { should set_the_flash.to("Task was successfully updated.") }
+        it { should set_flash.to("Task was successfully updated.") }
       end
 
       context "invalid attributes" do
@@ -109,15 +120,19 @@ describe TasksController do
     end
   end
 
-  it "shoud get start" do
-    get :start, project_id: project.id, id: task.id
-    response.code.should eq("406")
+  context "shoud get start" do
+    before do
+      get :start, project_id: project.id, id: task.id
+    end
+    it {expect(response.code).to eq("302")}
   end
 
-  it "shoud get stop" do
-    get :start, project_id: project.id, id: task.id
-    get :stop, project_id: project.id, id: task.id
-    response.code.should eq("406")
+  context "shoud get stop" do
+    before do
+      get :start, project_id: project.id, id: task.id
+      get :stop, project_id: project.id, id: task.id
+    end
+    it {expect(response.code).to eq("302")}
   end
 
 end

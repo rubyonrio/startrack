@@ -14,21 +14,19 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = project.tasks.build(task_params)
+    @task = project.tasks.build(task_params[:task])
     @task.user = current_user
-
     if @task.save
-      redirect_to projects_path, notice: 'Task was successfully created.'
+      redirect_to project_task_path(@task.project, @task), notice: 'Task was successfully created.'
     else
       flash[:error] = 'Err... sorry, but something is wrong. :/'
-      redirect_to projects_url(@task.project)
+      redirect_to project_path(@task.project.id)
     end
   end
 
   def update
-    @watchers_changes = @task.get_watchers_changes(params[:task]["watcher_ids"])
-
-    @task.attributes = params[:task]
+    @watchers_changes = @task.get_watchers_changes(task_params[:task][:watcher_ids])
+    @task.attributes = task_params[:task]
     @task_changes = @task.get_changes_names(@task.changes)
 
     if @task.save
@@ -46,21 +44,24 @@ class TasksController < ApplicationController
   end
 
   def change_status
-    @task.update_attributes(:status_id => params[:status_id])
+    status_id = Status.find_by_name(task_params[:status]).id
 
-    respond_with @task
+    @task.update_attributes(status_id: status_id)
+    @task.save
+
+    redirect_to projects_path(@task.project)
   end
 
   def start
     @task.start_work
 
-    respond_with @task
+    redirect_to project_task_path(@task.project, @task)
   end
 
   def stop
     @task.stop_work
 
-    respond_with @task
+    redirect_to project_task_path(@task.project, @task)
   end
 
   private
@@ -74,6 +75,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit!
+    params.permit!
   end
 end
