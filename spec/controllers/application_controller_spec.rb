@@ -12,7 +12,7 @@ describe ApplicationController do
       let(:user) { User.find_by_name('Spok') }
 
       it "redirects to projects_url" do
-        expect(controller.after_sign_in_path_for(user)).to eq(projects_url)
+        expect(controller.after_sign_in_path_for(user)).to eq(projects_path)
       end
     end
 
@@ -20,7 +20,7 @@ describe ApplicationController do
     context "resource is not an User" do
       let(:task) { Task.find_by_name('Create enterprise') }
       it "redirects to root_url" do
-        expect(controller.after_sign_in_path_for(task)).to eq(root_url)
+        expect(controller.after_sign_in_path_for(task)).to eq(root_path)
       end
     end
   end

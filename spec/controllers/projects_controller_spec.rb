@@ -192,7 +192,7 @@ describe ProjectsController do
 
       it "should redirect to projects url" do
         do_action
-        should redirect_to(projects_url)
+        should redirect_to(projects_path)
       end
     end
   end
