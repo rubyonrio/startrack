@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Rails.application.routes.url_helpers
+
   def link_to_logout
     link_to 'Logout', destroy_user_session_path, method: :delete
   end
