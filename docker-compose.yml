@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: postgres
+  redis:
+    image: 'redis:alpine'
+    command: redis-server
+    volumes:
+      - redis:/data
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      port: "3000"
+      PGHOST: "db"
+      PGUSER: "postgres"
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  redis:
