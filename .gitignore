@@ -8,11 +8,9 @@ coverage/*
 db/schema.rb
 db/*.sqlite3
 .rvmrc
-Gemfile.lock
 .sass-cache/*
 .DS_Store
 config/initializers/setup_mail.rb
 public/system/dragonfly/*
 .rspec
-*.yml
 vendor/cache/*
