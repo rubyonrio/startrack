@@ -1,6 +1,6 @@
 module DeviseLoginTestHelper
   def login!
-    sign_in users(:spok)
+    sign_in User.find_by_name('Spok')
   end
 end
 
@@ -12,7 +12,7 @@ end
 shared_examples_for "authentication_required_action" do
   context "not logged in" do
     before do
-      do_action 
+      do_action
     end
     it "should redirect to sign in" do
       should redirect_to("http://test.host/users/sign_in")
