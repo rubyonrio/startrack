@@ -1,6 +1,6 @@
 require 'rails_helper'
 describe Comment do
-  let(:commenter) {build(:user)}
+  let(:commenter) {build(:user, email: 'john@doe.com')}
   let(:task) {build(:task)}
 
   it { should belong_to(:task) }
@@ -15,6 +15,7 @@ describe Comment do
       comment = Comment.new
       comment.description = "I got some new issue to resolve!"
       comment.user = commenter
+      # require 'pry'; binding.pry
       comment.task = task
       comment.save
       expect(comment.description).to eq("<p>I got some new issue to resolve!</p>")

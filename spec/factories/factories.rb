@@ -1,6 +1,6 @@
 FactoryBot.define do
     sequence :email do |n|
-        "test_mail#{n}@factory.com"
+        "test_mail#{n}-#{SecureRandom.hex(10)}@factory.com"
     end
 
     factory :user, aliases: [:responsible] do
