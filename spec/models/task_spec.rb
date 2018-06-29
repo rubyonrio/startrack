@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Task do
 
-  let(:task) { Task.find_by_name("Create Enterprise") }
+  let(:task) { build(:task, responsible: nil) }
 
   describe "Relationships" do
     it { should belong_to(:project) }
@@ -28,6 +28,9 @@ describe Task do
   end
 
   it "should show a estimative with 'show_estimate_name'" do
+    estimate = build(:estimate, name: 'Fast')
+    task.estimate = estimate
+
     expect(task.show_estimate_name).to eq('Fast')
   end
 
@@ -37,13 +40,20 @@ describe Task do
   end
 
   it "should get watchers changes" do
-    @watchers_changes = task.get_watchers_changes([User.find_by_name("Leonard McCoy").id])
-    expect(@watchers_changes[:added]).to eq([User.find_by_name("Leonard McCoy").id])
-    expect(@watchers_changes[:removed]).to eq([User.find_by_name("Commander Kirk").id])
+    john = create(:user, name: 'John')
+    mary = create(:user, name: 'Mary')
+    task.watchers << mary
+    @watchers_changes = task.get_watchers_changes([john.id])
+    
+    expect(@watchers_changes[:added]).to eq([john.id])
+    expect(@watchers_changes[:removed]).to eq([mary.id])
   end
 
   it "should get tasks changes names" do
-    @task_changes = task.get_changes_names({:type_id => [2, 1]})
+    bug = create(:type, name: 'Bug')
+    feature = create(:type, name: 'Feature')
+    @task_changes = task.get_changes_names({:type_id => [bug.id, feature.id]})
+
     expect(@task_changes[:type_id].first).to eq('Bug')
     expect(@task_changes[:type_id].last).to eq('Feature')
   end
