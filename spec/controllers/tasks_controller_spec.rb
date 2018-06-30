@@ -1,13 +1,17 @@
 require 'rails_helper'
 
 describe TasksController do
-  let(:project) { Project.find_by_name('First Journey') }
-  let(:task) { Task.find_by_name('Create Enterprise') }
+  let(:project) {create(:project)}
+  let(:user) {create(:user)}
+  let(:task) {create(:task, user: user, project: project)}
+  let(:status) {create(:status, name: 'Scheduled')}
+
   before(:each) do
-    login!
+    project.users << user
+    sign_in(user)
   end
 
-  context "shoud get show" do
+  context "get show" do
 
     before do
       get(:show, project_id: project.id, id: task.id)
@@ -18,7 +22,7 @@ describe TasksController do
     it {expect(response.code).to eq("200")}
   end
 
-  context "should get edit" do
+  context "get edit" do
     before do
       get :edit, project_id: project.id, id: task.id
     end
@@ -27,12 +31,14 @@ describe TasksController do
     it {expect(response.code).to eq("200")}
   end
 
-   context "should change task status" do
+   context "change task status" do
      before do
-      get(:change_status, project_id: project.id, id: task.id, status: 'Scheduled')
+      get(:change_status, project_id: project.id, id: task.id, status: status.name)
      end
 
-     it {expect(assigns(:task).status.name).to eq('Scheduled')}
+     it "assign tasks correctly" do 
+      expect(assigns(:task).status.name).to eq('Scheduled')
+     end
   end
 
   describe "POST create" do
@@ -66,23 +72,21 @@ describe TasksController do
     end
 
     context "authenticated" do
-      before(:each) do
-        login!
-      end
 
       context "valid attributes" do
         before(:each) do
-          @status = Status.find_by_name(Task::STATUSES[:scheduled])
-          @type = ::Type.find_by_name(Task::TYPES[:feature])
-          @spok = User.find_by_name("Spok")
-          @kirk = User.find_by_name("Commander Kirk")
-          do_action({name: "New Project name", status_id: @status.id, type_id: @type.id, watcher_ids: [@spok.id]})
+          type = create(:type)
+          spok = create(:user, name: 'Spok')
+          kirk = create(:user, name: 'Commander Kirk')
+          task.type = type
+
+          do_action({name: "New Project name", status_id: status.id, type_id: type.id, watcher_ids: [spok.id]})
         end
 
         it { expect(assigns(:task)) }
-        it { expect(assigns(:watchers_changes)).to eq({added: [@spok.id], removed: [@kirk.id]})}
-        it { assigns(:task_changes).should == { "name" => [task.name, "New Project name"], "status_id" => [task.status.name, @status.name],
-          "responsible_id" => ["None yet", "None yet"], "type_id" => [task.type.name, @type.name], "estimate_id" => ["None yet", "None yet"] } }
+        it { expect(assigns(:watchers_changes)).to eq({added: [spok.id], removed: [kirk.id]})}
+        it { assigns(:task_changes).should == { "name" => [task.name, "New Project name"], "status_id" => [task.status.name, status.name],
+          "responsible_id" => ["None yet", "None yet"], "type_id" => [task.type.name, type.name], "estimate_id" => ["None yet", "None yet"] } }
         it { should redirect_to(project_task_path(project,task)) }
         it { should set_flash.to("Task was successfully updated.") }
       end
@@ -104,7 +108,7 @@ describe TasksController do
 
     context "authenticated" do
       before(:each) do
-        login!
+        sign_in(user)
       end
 
       it "should delete a task" do
