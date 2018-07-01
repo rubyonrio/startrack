@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 describe CommentsController do
-  let(:project) { Project.find_by_name('First Journey') }
-  let(:task) { Task.find_by_name('Create Enterprise') }
-  let(:user) { User.find_by_name('Spok') }
-  let(:comment) { Comment.find_by(user: user) }
+  let(:project) { create(:project, name: 'First Journey') }
+  let(:user) { create(:user, name: 'Spok') }
+  let(:task) { create(:task, name:'Create Enterprise', user: user, project: project) }
+  let(:comment) { create(:comment, user: user, task: task) }
 
   describe "POST create" do
-    it_should_behave_like "authentication_required_action"
+    before do
+      sign_in(user)
+    end
 
     def do_action(attributes = {})
       post(:create, project_id: project.id, task_id: task.id, comment: attributes)
@@ -15,12 +17,12 @@ describe CommentsController do
 
     context "authenticated" do
       before(:each) do
-        login!
+        sign_in(user)
       end
 
       context "valid attributes" do
         before(:each) do
-          do_action( description: "Hidden Project")
+          do_action(description: "Hidden Project")
         end
 
         it { expect(assigns(:task)) }
@@ -41,25 +43,21 @@ describe CommentsController do
   end
 
   describe "GET destroy" do
-    it_should_behave_like "authentication_required_action"
-
-    def do_action
-      delete(:destroy, project_id: project.id, task_id: task.id, id: comment.id)
-    end
 
     context "authenticated" do
       before(:each) do
-        login!
+        sign_in(user)
+        @comment_to_delete = create(:comment, task: task, user: user)
       end
 
       it "should delete a comment" do
         expect {
-          do_action
+          delete(:destroy, project_id: project.id, task_id: task.id, id: @comment_to_delete.id)
         }.to change(Comment, :count).by(-1)
       end
 
       it "should redirect to task show" do
-        do_action
+        delete(:destroy, project_id: project.id, task_id: task.id, id: @comment_to_delete.id)
         should redirect_to(project_task_path(project, task))
       end
     end
