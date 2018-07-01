@@ -4,6 +4,7 @@ describe TasksController do
   let(:project) {create(:project)}
   let(:user) {create(:user)}
   let(:task) {create(:task, user: user, project: project)}
+  let(:type) {create(:type, name:'Bug')}
   let(:status) {create(:status, name: 'Scheduled')}
 
   before(:each) do
@@ -67,33 +68,35 @@ describe TasksController do
   end
 
   describe "PUT update" do
-    def do_action(attributes = {})
-      put(:update, project_id: project.id, id: task.id, task: attributes)
+    def do_action(project_id, task_id, attributes = {})
+      put(:update, project_id: project_id, id: task_id, task: attributes)
     end
 
     context "authenticated" do
 
       context "valid attributes" do
         before(:each) do
-          type = create(:type)
-          spok = create(:user, name: 'Spok')
-          kirk = create(:user, name: 'Commander Kirk')
-          task.type = type
+          @type = create(:type, name: 'Feature')
+          @spok = create(:user, name: 'Spok')
+          @kirk = create(:user, name: 'Commander Kirk')
+          @status = create(:status, name: 'Done')
+          @task = create(:task, user: @kirk, project: project, watchers: [@kirk], type: type, status: status)
+          @name = 'New task name'
 
-          do_action({name: "New Project name", status_id: status.id, type_id: type.id, watcher_ids: [spok.id]})
+          do_action(project.id, @task.id, {name: @name, status_id: @status.id, type_id: @type.id, watcher_ids: [@spok.id]})
         end
 
         it { expect(assigns(:task)) }
-        it { expect(assigns(:watchers_changes)).to eq({added: [spok.id], removed: [kirk.id]})}
-        it { assigns(:task_changes).should == { "name" => [task.name, "New Project name"], "status_id" => [task.status.name, status.name],
-          "responsible_id" => ["None yet", "None yet"], "type_id" => [task.type.name, type.name], "estimate_id" => ["None yet", "None yet"] } }
-        it { should redirect_to(project_task_path(project,task)) }
+        it { expect(assigns(:watchers_changes)).to eq({added: [@spok.id], removed: [@kirk.id]})}
+        it { expect(assigns(:task_changes)).to include({ "name" => [@task.name, @name], "status_id" => [@task.status.name, @status.name],
+          "responsible_id" => ["None yet", "None yet"], "type_id" => [@task.type.name, @type.name], "estimate_id" => ["None yet", "None yet"] }) }
+        it { should redirect_to(project_task_path(project,@task)) }
         it { should set_flash.to("Task was successfully updated.") }
       end
 
       context "invalid attributes" do
         before(:each) do
-          do_action(name: "")
+          do_action(project.id, task.id, name: "")
         end
 
         it { should render_template(:edit) }
@@ -102,24 +105,22 @@ describe TasksController do
   end
 
   describe "GET destroy" do
-    def do_action
-      delete(:destroy, project_id: project.id, :id => task.id)
-    end
 
     context "authenticated" do
       before(:each) do
         sign_in(user)
+        @task_to_destroy = create(:task, project: project)
       end
 
       it "should delete a task" do
         expect {
-          do_action
+          delete(:destroy, project_id: project.id, :id => @task_to_destroy.id)
         }.to change(Task, :count).by(-1)
       end
 
       it "should redirect to project url" do
-        do_action
-        should redirect_to(task.project)
+        delete(:destroy, project_id: project.id, :id => @task_to_destroy.id)
+        should redirect_to(project)
       end
     end
   end
