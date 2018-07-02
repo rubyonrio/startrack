@@ -1,7 +1,7 @@
 The task <%= "##{@task.id} - #{@task.name}" %> recieved a new comment.
 
 <%= @comment.user.name %> said:
-<%= strip_tags raw(@comment.description) %>
+<p><%= strip_tags raw(@comment.description) %></p>
 ---
 
 Use the link below to answer this comment:
