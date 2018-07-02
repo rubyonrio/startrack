@@ -14,3 +14,4 @@ config/initializers/setup_mail.rb
 public/system/dragonfly/*
 .rspec
 vendor/cache/*
+config/secrets.yml
