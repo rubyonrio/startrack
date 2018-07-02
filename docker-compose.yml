@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: postgres
+  redis:
+    image: 'redis:alpine'
+    command: redis-server
+    ports:
+    - "6379:6379"
+    volumes:
+      - redis:/data
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      port: "3000"
+      PGHOST: "db"
+      PGUSER: "postgres"
+      REDIS_URL: "redis://redis:6379"
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  redis:

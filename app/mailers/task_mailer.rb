@@ -4,6 +4,7 @@ class TaskMailer < ActionMailer::Base
     @task = Task.find task_id
     recipients = ""
     @task.watchers.map { |watcher| recipients << "#{watcher.email}, " }
+    recipients << @task.user.email
     @watchers_changes = {}
     @watchers_changes[:added] = []
     @watchers_changes[:removed] = []

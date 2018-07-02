@@ -1,22 +1,24 @@
-require 'spec_helper'
-
+require 'rails_helper'
 describe Comment do
+  let(:commenter) {build(:user, email: 'john@doe.com')}
+  let(:task) {build(:task)}
+
   it { should belong_to(:task) }
   it { should belong_to(:user) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:task) }
   it { should validate_presence_of(:user) }
-  
-  describe "to_format" do
-    let(:comment) { Factory.build(:comment) }
 
-    it "should call to_format before save" do
+  describe "to_format" do
+
+    it "format the comments to html" do
       comment = Comment.new
       comment.description = "I got some new issue to resolve!"
-      comment.user = users(:mccoy) 
-      comment.task = tasks(:room_galaxy)
+      comment.user = commenter
+      # require 'pry'; binding.pry
+      comment.task = task
       comment.save
-      comment.description.should == "<p>I got some new issue to resolve!</p>"
+      expect(comment.description).to eq("<p>I got some new issue to resolve!</p>")
     end
   end
 end

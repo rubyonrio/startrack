@@ -15,10 +15,23 @@ class Task < ActiveRecord::Base
 
   before_save :normalize_description
 
-  scope :todo, joins(:status).where("statuses.name = 'TODO'")
-  scope :scheduled, joins(:status).where("statuses.name = 'Scheduled'")
-  scope :current, joins(:status).where("statuses.name = 'Current'")
-  scope :done, joins(:status).where("statuses.name = 'Done'")
+  STATUSES = {
+    todo: 'Todo',
+    scheduled: 'Scheduled',
+    current: 'Current',
+    done: 'Done',
+    invalid: 'Invalid'
+  }
+
+  TYPES = {
+    feature: 'Feature',
+    bug: 'Bug'
+  }
+
+  scope :todo, ->  { joins(:status).where("statuses.name = #{STATUSES[:todo]}") }
+  scope :scheduled, -> { joins(:status).where("statuses.name = #{STATUSES[:scheduled]}") }
+  scope :current, -> { joins(:status).where("statuses.name = #{STATUSES[:current]}") }
+  scope :done, -> { joins(:status).where("statuses.name = #{STATUSES[:done]}") }
 
   def show_responsible_name
     self.responsible.name rescue 'No responsible yet'
@@ -66,8 +79,7 @@ class Task < ActiveRecord::Base
   end
 
   def get_changes_names(changes)
-    field = {:responsible_id => User, :status_id => Status, :type_id => Type, :estimate_id => Estimate}
-
+    field = {:responsible_id => User, :status_id => Status, :type_id => ::Type, :estimate_id => Estimate}
     field.each do |key , value|
       old_name = "None yet"
       new_name = "None yet"

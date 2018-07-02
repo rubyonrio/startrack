@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   def create
     @task = project.tasks.find(params[:task_id])
-    @comment = @task.comments.build(params[:comment])
+    @comment = @task.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
       @task.watchers << current_user unless @task.watchers.include?(current_user)
@@ -23,5 +23,9 @@ class CommentsController < ApplicationController
   private
     def project
       @project ||= Project.find(params[:project_id])
+    end
+
+    def comment_params
+      params.require(:comment).permit(:task, :description)
     end
 end

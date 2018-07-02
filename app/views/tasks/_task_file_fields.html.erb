@@ -18,6 +18,6 @@
   </div>
   <div class="field cover">
     <%= f.hidden_field(:_destroy) %>
-    <%= link_to_function(t(:remove), "remove_fields('#{file_id}')", :class => "side-link") %>
+    <%= link_to(t(:remove), data: {on: :click, call: 'remove_fields', args: "[#{file_id}]"}, class: "side-link") %>
   </div>
 </div>

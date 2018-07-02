@@ -1,12 +1,15 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CommentsController do
-  let(:project) { projects(:first_journey)}
-  let(:task) { tasks(:create_enterprise) }
-  let(:comment) { comments(:one) }
+  let(:project) { create(:project, name: 'First Journey') }
+  let(:user) { create(:user, name: 'Spok') }
+  let(:task) { create(:task, name:'Create Enterprise', user: user, project: project) }
+  let(:comment) { create(:comment, user: user, task: task) }
 
   describe "POST create" do
-    it_should_behave_like "authentication_required_action"
+    before do
+      sign_in(user)
+    end
 
     def do_action(attributes = {})
       post(:create, project_id: project.id, task_id: task.id, comment: attributes)
@@ -14,49 +17,47 @@ describe CommentsController do
 
     context "authenticated" do
       before(:each) do
-        login!
+        sign_in(user)
       end
 
       context "valid attributes" do
         before(:each) do
-          do_action( description: "Hidden Project")
+          do_action(description: "Hidden Project")
         end
 
-        it { should assign_to(:task)}
-        it { should redirect_to(project_task_path(project,task)) }
-        it { should set_the_flash.to("Comment was successfully created.") }
+        it { expect(assigns(:task)) }
+        it { expect(redirect_to(project_task_path(project, task))) }
+        it { expect(set_flash.to("Comment was successfully created.")) }
+
       end
 
       context "invalid attributes" do
         before(:each) do
-          do_action
+          do_action(description: "")
         end
-        
-        it { should set_the_flash.to("Comment was not created.") }
+
+        it { expect(set_flash.to("Comment was not created.")) }
+
       end
     end
   end
 
   describe "GET destroy" do
-    it_should_behave_like "authentication_required_action"
-
-    def do_action
-      delete(:destroy, project_id: project.id, task_id: task.id, id: comment.id)
-    end
 
     context "authenticated" do
       before(:each) do
-        login!
+        sign_in(user)
+        @comment_to_delete = create(:comment, task: task, user: user)
       end
 
       it "should delete a comment" do
         expect {
-          do_action
+          delete(:destroy, project_id: project.id, task_id: task.id, id: @comment_to_delete.id)
         }.to change(Comment, :count).by(-1)
       end
 
       it "should redirect to task show" do
-        do_action
+        delete(:destroy, project_id: project.id, task_id: task.id, id: @comment_to_delete.id)
         should redirect_to(project_task_path(project, task))
       end
     end
