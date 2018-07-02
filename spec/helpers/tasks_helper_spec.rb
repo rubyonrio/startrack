@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe TasksHelper do
-  let(:task) { Task.find_by_name("Create Enterprise") }
-  let(:project) { Project.find_by_name("First Journey") }
+  let(:project) { create(:project, name: "First Journey") }
+  let(:task) { create(:task, start_time: nil, project: project) }
 
   describe "link_to_show_task" do
     it "should return a link ti show task" do
