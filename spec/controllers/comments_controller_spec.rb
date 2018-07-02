@@ -33,10 +33,10 @@ describe CommentsController do
 
       context "invalid attributes" do
         before(:each) do
-          do_action
+          do_action(description: "")
         end
 
-        xit { expect(set_flash.to("Comment was not created.")) }
+        it { expect(set_flash.to("Comment was not created.")) }
 
       end
     end
