@@ -20,9 +20,6 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build
   end
 
-  def edit
-  end
-
   def create
     @project = Project.new(project_params)
     @project.users << current_user

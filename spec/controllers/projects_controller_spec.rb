@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe ProjectsController do
+  let(:user) {create(:user)}
+  let(:project) { create(:project, name: 'First Journey', users: [user]) }
   describe "GET index" do
-    it_should_behave_like "authentication_required_action"
-    let(:project) { Project.find_by_name('First Journey') }
 
     def do_action
       get(:index)
@@ -11,7 +11,7 @@ describe ProjectsController do
 
     context "authenticated" do
       before(:each) do
-        login!
+        sign_in(user)
         do_action
       end
 
@@ -22,8 +22,6 @@ describe ProjectsController do
   end
 
   describe "GET show" do
-    it_should_behave_like "authentication_required_action"
-    let(:project) { Project.find_by_name('First Journey') }
 
     def do_action
       get(:show, :id => project.id)
@@ -32,7 +30,7 @@ describe ProjectsController do
     context "authenticated" do
       context "belong to the current user" do
         before(:each) do
-          login!
+          sign_in(user)
           do_action
         end
 
@@ -47,10 +45,10 @@ describe ProjectsController do
       end
 
       context "but not belong to the current user" do
-        let(:project) { Project.find_by_name('Mike Vallely') }
+        let(:project) { create(:project, name: 'New project') }
 
         before(:each) do
-          login!
+          sign_in(user)
         end
 
         it "should raise an ActiveRecord::RecordNotFound" do
@@ -63,7 +61,6 @@ describe ProjectsController do
   end
 
   describe "GET new" do
-    it_should_behave_like "authentication_required_action"
 
     def do_action
       get(:new)
@@ -71,7 +68,7 @@ describe ProjectsController do
 
     context "authenticated" do
       before(:each) do
-        login!
+        sign_in(user)
         do_action
       end
 
@@ -83,15 +80,14 @@ describe ProjectsController do
   end
 
   describe "POST create" do
-    it_should_behave_like "authentication_required_action"
 
     def do_action(attributes = {})
-      post(:create, params: {project: attributes})
+      post(:create, {project: attributes})
     end
 
     context "authenticated" do
       before(:each) do
-        login!
+        sign_in(user)
       end
 
       context "valid attributes" do
@@ -99,10 +95,10 @@ describe ProjectsController do
           do_action( name: "Hidden Project")
         end
 
-        xit { expect(assigns(:project)) }
-        xit { assigns(:project).users.should == [subject.current_user] }
-        xit { should redirect_to(assigns(:project)) }
-        xit { should set_flash.to("Project was successfully created.") }
+        it { expect(assigns(:project)) }
+        it { assigns(:project).users.should == [subject.current_user] }
+        it { should redirect_to(assigns(:project)) }
+        it { should set_flash.to("Project was successfully created.") }
       end
 
       context "invalid attributes" do
@@ -110,37 +106,13 @@ describe ProjectsController do
           do_action( name: '' )
         end
 
-        xit { should render_template(:new) }
-        xit { should respond_with(:success) }
+        it { should render_template(:new) }
+        it { should respond_with(:success) }
       end
-    end
-  end
-
-  describe "GET edit" do
-    it_should_behave_like "authentication_required_action"
-    let(:project) { Project.find_by_name('First Journey') }
-
-    def do_action
-      get(:edit, :id => project.id)
-    end
-
-    context "authenticated" do
-      before(:each) do
-        login!
-        do_action
-      end
-      kirk = User.find_by_name('Commander Kirk')
-      mccoy = User.find_by_name('Leonard McCoy')
-      it { assigns(:project).should == project }
-      it { assigns(:users).should == [kirk, mccoy] }
-      it { should respond_with(:success) }
-      it { should render_template(:edit) }
     end
   end
 
   describe "PUT update" do
-    it_should_behave_like "authentication_required_action"
-    let(:project) { Project.find_by_name('First Journey') }
 
     def do_action(attributes = {})
       put(:update, id: project.id, project: attributes )
@@ -148,7 +120,7 @@ describe ProjectsController do
 
     context "authenticated" do
       before(:each) do
-        login!
+        sign_in(user)
       end
 
       context "valid attributes" do
@@ -172,8 +144,6 @@ describe ProjectsController do
   end
 
   describe "GET destroy" do
-    it_should_behave_like "authentication_required_action"
-    let(:project) { Project.find_by_name('First Journey') }
 
     def do_action
       delete(:destroy, :id => project.id)
@@ -181,12 +151,13 @@ describe ProjectsController do
 
     context "authenticated" do
       before(:each) do
-        login!
+        sign_in(user)
       end
 
       it "should delete a project" do
+        project_to_delete = create(:project, users: [user])
         expect {
-          do_action
+          delete(:destroy, :id => project_to_delete.id)
         }.to change(Project, :count).by(-1)
       end
 
