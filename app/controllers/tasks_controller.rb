@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
 
   respond_to :js, :only => [:change_status, :start, :stop]
-  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit, :update]
-  before_filter :load_task, :only => [:show, :edit, :update, :destroy, :change_status, :start, :stop]
+  before_action :load_users, :load_estimates, :load_status, :load_types, :only => [:new, :create, :edit, :update]
+  before_action :load_task, :only => [:show, :edit, :update, :destroy, :change_status, :start, :stop]
 
   def show
     @comments = @task.comments.all
