@@ -15,7 +15,7 @@ describe ProjectsController do
         do_action
       end
 
-      it { assigns(:projects).should == [project] }
+      it { expect(assigns(:projects)).to eq([project]) }
       it { should respond_with(:success) }
       it { should render_template(:index) }
     end
@@ -24,7 +24,7 @@ describe ProjectsController do
   describe "GET show" do
 
     def do_action
-      get(:show, :id => project.id)
+      get :show, params: { id: project.id }
     end
 
     context "authenticated" do
@@ -82,7 +82,7 @@ describe ProjectsController do
   describe "POST create" do
 
     def do_action(attributes = {})
-      post(:create, {project: attributes})
+      post :create, params: { project: attributes }
     end
 
     context "authenticated" do
@@ -96,7 +96,7 @@ describe ProjectsController do
         end
 
         it { expect(assigns(:project)) }
-        it { assigns(:project).users.should == [subject.current_user] }
+        it { expect(assigns(:project).users).to eq([subject.current_user]) }
         it { should redirect_to(assigns(:project)) }
         it { should set_flash.to("Project was successfully created.") }
       end
@@ -115,7 +115,7 @@ describe ProjectsController do
   describe "PUT update" do
 
     def do_action(attributes = {})
-      put(:update, id: project.id, project: attributes )
+      put :update, params: { id: project.id, project: attributes }
     end
 
     context "authenticated" do
@@ -146,7 +146,7 @@ describe ProjectsController do
   describe "GET destroy" do
 
     def do_action
-      delete(:destroy, :id => project.id)
+      delete :destroy, params: { id: project.id }
     end
 
     context "authenticated" do
@@ -157,7 +157,7 @@ describe ProjectsController do
       it "should delete a project" do
         project_to_delete = create(:project, users: [user])
         expect {
-          delete(:destroy, :id => project_to_delete.id)
+          delete :destroy, params: { id: project_to_delete.id }
         }.to change(Project, :count).by(-1)
       end
 

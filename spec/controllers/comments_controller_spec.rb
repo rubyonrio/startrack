@@ -12,7 +12,7 @@ describe CommentsController do
     end
 
     def do_action(attributes = {})
-      post(:create, project_id: project.id, task_id: task.id, comment: attributes)
+      post :create, params: { project_id: project.id, task_id: task.id, comment: attributes }
     end
 
     context "authenticated" do
@@ -52,12 +52,12 @@ describe CommentsController do
 
       it "should delete a comment" do
         expect {
-          delete(:destroy, project_id: project.id, task_id: task.id, id: @comment_to_delete.id)
+          delete :destroy, params: { project_id: project.id, task_id: task.id, id: @comment_to_delete.id }
         }.to change(Comment, :count).by(-1)
       end
 
       it "should redirect to task show" do
-        delete(:destroy, project_id: project.id, task_id: task.id, id: @comment_to_delete.id)
+        delete :destroy, params: { project_id: project.id, task_id: task.id, id: @comment_to_delete.id }
         should redirect_to(project_task_path(project, task))
       end
     end

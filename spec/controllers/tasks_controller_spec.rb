@@ -15,7 +15,7 @@ describe TasksController do
   context "get show" do
 
     before do
-      get(:show, project_id: project.id, id: task.id)
+      get :show, params: { project_id: project.id, id: task.id }
     end
 
     it {expect(assigns(:task)).to eq(task)}
@@ -25,7 +25,7 @@ describe TasksController do
 
   context "get edit" do
     before do
-      get :edit, project_id: project.id, id: task.id
+      get :edit, params: { project_id: project.id, id: task.id }
     end
 
     it {expect(assigns(:task)).to eq(task)}
@@ -34,22 +34,22 @@ describe TasksController do
 
    context "change task status" do
      before do
-      get(:change_status, project_id: project.id, id: task.id, status: status.name)
+      get :change_status, params: { project_id: project.id, id: task.id, status: status.name }
      end
 
-     it "assign tasks correctly" do 
+     it "assign tasks correctly" do
       expect(assigns(:task).status.name).to eq('Scheduled')
      end
   end
 
   describe "POST create" do
     def do_action(attributes = {})
-      post(:create, project_id: task.project, task: attributes)
+      post :create, params: { project_id: task.project, task: attributes }
     end
 
     context "valid attributes" do
       before(:each) do
-        do_action( name: "Hidden Project", status_id: 1, type_id: 1 )
+        do_action(name: "Hidden Project", status_id: 1, type_id: 1 )
       end
 
       it { expect(assigns(:task))}
@@ -69,7 +69,7 @@ describe TasksController do
 
   describe "PUT update" do
     def do_action(project_id, task_id, attributes = {})
-      put(:update, project_id: project_id, id: task_id, task: attributes)
+      put :update, params: { project_id: project_id, id: task_id, task: attributes }
     end
 
     context "authenticated" do
@@ -109,17 +109,17 @@ describe TasksController do
     context "authenticated" do
       before(:each) do
         sign_in(user)
-        @task_to_destroy = create(:task, project: project)
+        @task_to_destroy = create :task, project: project
       end
 
       it "should delete a task" do
         expect {
-          delete(:destroy, project_id: project.id, :id => @task_to_destroy.id)
+          delete :destroy, params: { project_id: project.id, :id => @task_to_destroy.id }
         }.to change(Task, :count).by(-1)
       end
 
       it "should redirect to project url" do
-        delete(:destroy, project_id: project.id, :id => @task_to_destroy.id)
+        delete :destroy, params: { project_id: project.id, :id => @task_to_destroy.id }
         should redirect_to(project)
       end
     end
@@ -127,15 +127,15 @@ describe TasksController do
 
   context "shoud get start" do
     before do
-      get :start, project_id: project.id, id: task.id
+      get :start, params: { project_id: project.id, id: task.id }
     end
     it {expect(response.code).to eq("302")}
   end
 
   context "shoud get stop" do
     before do
-      get :start, project_id: project.id, id: task.id
-      get :stop, project_id: project.id, id: task.id
+      get :start, params: { project_id: project.id, id: task.id }
+      get :stop, params: { project_id: project.id, id: task.id }
     end
     it {expect(response.code).to eq("302")}
   end
