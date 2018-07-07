@@ -28,10 +28,10 @@ class Task < ApplicationRecord
     bug: 'Bug'
   }
 
-  scope :todo, ->  { joins(:status).where("statuses.name = #{STATUSES[:todo]}") }
-  scope :scheduled, -> { joins(:status).where("statuses.name = #{STATUSES[:scheduled]}") }
-  scope :current, -> { joins(:status).where("statuses.name = #{STATUSES[:current]}") }
-  scope :done, -> { joins(:status).where("statuses.name = #{STATUSES[:done]}") }
+  scope :todo, ->  { joins(:status).where("statuses.name = '#{STATUSES[:todo]}'") }
+  scope :scheduled, -> { joins(:status).where("statuses.name = '#{STATUSES[:scheduled]}'") }
+  scope :current, -> { joins(:status).where("statuses.name = '#{STATUSES[:current]}'") }
+  scope :done, -> { joins(:status).where("statuses.name = '#{STATUSES[:done]}'") }
 
   def show_responsible_name
     self.responsible.name rescue 'No responsible yet'
