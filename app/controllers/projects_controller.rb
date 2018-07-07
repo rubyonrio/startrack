@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
-  before_filter :load_project, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_users, :load_estimates, :load_status, :load_types, :only => [:show]
-  before_filter :load_other_users, :only => [:new, :edit]
+  before_action :load_project, :only => [:show, :edit, :update, :destroy]
+  before_action :load_users, :load_estimates, :load_status, :load_types, :only => [:show]
+  before_action :load_other_users, :only => [:new, :edit]
 
   def index
     @projects = current_user.projects

@@ -6,22 +6,25 @@ gem 'dragonfly'
 gem 'jquery-rails'
 gem 'pg', '0.20'
 gem 'listen'
-gem 'rails', '4.2.10'
+gem 'rails', '5.0.7'
 gem 'RedCloth'
+gem 'redis'
 gem 'resque'
 gem 'resque_mailer'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
-gem 'protected_attributes'
-gem 'pry'
 
 group :development,:test do
-  gem 'minitest'
-  gem 'rspec-rails', '2.99.0'
-  gem 'shoulda-matchers', require: false
+  gem 'pry'
+  gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'simplecov'
+end
+
+group :test do
+   gem 'shoulda-matchers'
+   gem 'rails-controller-testing'
 end
 

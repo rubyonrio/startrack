@@ -15,7 +15,7 @@ describe UsersHelper do
     context "when user has not url_image" do
       it "should return the gravatar url" do
         gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-        expect(helper.show_user_avatar(user)).to eq("<img title=\"#{user.name}\" class=\"avatar icon\" src=\"http://gravatar.com/avatar/#{gravatar_id}?s=30\" alt=\"#{gravatar_id}?s=30\" />")
+        expect(helper.show_user_avatar(user)).to eq("<img title=\"#{user.name}\" class=\"avatar icon\" src=\"http://gravatar.com/avatar/#{gravatar_id}?s=30\" alt=\"#{gravatar_id.capitalize}?s=30\" />")
       end
     end
   end

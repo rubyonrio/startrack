@@ -1,4 +1,4 @@
-class Status < ActiveRecord::Base
+class Status < ApplicationRecord
   validates :name, :presence => true
   has_many :tasks
 end
